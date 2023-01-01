@@ -6,8 +6,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { Menu, X, LogOut } from "lucide-react";
 
 interface AdminLayoutProps {
-  title: string;
-  children: React.ReactNode;
+  title?: string;
+  children?: React.ReactNode;
 }
 
 export default function AdminLayout({ title, children }: AdminLayoutProps) {
@@ -75,26 +75,26 @@ export default function AdminLayout({ title, children }: AdminLayoutProps) {
           />
           <NavItem
             href="/admin/academy"
-            label="Academy"
+            label="Courses"
             icon="/images/icons/admin/academy.svg"
             active={pathname === "/admin/academy"}
           />
           <NavItem
-            href="/admin/customers"
-            label="Customers"
-            icon="/images/icons/admin/customers.svg"
-            active={pathname === "/admin/customers"}
+            href="/admin/students"
+            label="Students"
+            icon="/images/icons/admin/students.svg"
+            active={pathname === "/admin/students"}
           />
           <NavItem
-            href="/admin/words"
-            label="Words"
+            href="/admin/courses"
+            label="Course Title"
             icon="/images/icons/admin/word.svg"
             active={pathname === "/admin/words"}
           />
           <NavItem
-            href="/admin/fix"
-            label="Fix"
-            icon="/images/icons/admin/fix.svg"
+            href="/admin/cohort"
+            label="Cohort"
+            icon="/images/icons/admin/cohort.svg"
             active={pathname === "/admin/fix"}
           />
         </nav>
@@ -122,7 +122,7 @@ export default function AdminLayout({ title, children }: AdminLayoutProps) {
             <Menu className="h-6 w-6" />
           </button>
           <div className="text-lg text-gray-600 border-b border-b-[#E4E6EB] mb-5">
-            Welcome, <span className="font-medium text-gray-800">Admin</span>
+            Welcome, Admin
           </div>
           <h1 className="text-2xl font-semibold mt-5">{title}</h1>
         </header>

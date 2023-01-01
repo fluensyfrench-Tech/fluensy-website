@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import AdminLayout from "@/components/Admin/Layout";
-import { getDashboardData, DashboardResponse } from "@/lib/api";
+import { getDashboardData, DashboardResponse } from "@/lib/adminapi";
 import { useRouter } from "next/navigation";
 
 function Card({ title, value }: { title: string; value: string | number }) {
@@ -41,16 +41,16 @@ export default function DashboardPage() {
     );
   }
 
-  return (
-    <AdminLayout title="Dashboard">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <Card title="Total Students" value={data.total_students} />
-        <Card title="Total Enrollments" value={data.total_enrollments} />
-        <Card title="Total Revenue (₦)" value={data.total_revenue_ngn} />
-        <Card title="Total Revenue ($)" value={data.total_revenue_usd} />
-        <Card title="Pending Payments" value={data.pending_payments} />
-        <Card title="Active Cohorts" value={data.active_cohorts} />
-      </div>
-    </AdminLayout>
-  );
+return (
+  <AdminLayout title="Dashboard">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <Card title="Total Students" value={data?.total_students} />
+      <Card title="Total Enrollments" value={data?.total_enrollments} />
+      <Card title="Total Revenue (₦)" value={data?.total_revenue_ngn} />
+      <Card title="Total Revenue ($)" value={data?.total_revenue_usd} />
+      <Card title="Active Cohorts" value={data?.active_cohorts} />
+      <Card title="Total Courses" value={data?.total_courses} />
+    </div>
+  </AdminLayout>
+);
 }
