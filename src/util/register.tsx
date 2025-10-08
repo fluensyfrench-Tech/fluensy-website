@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import toast from 'react-hot-toast';
-import { showCustomToast } from '../components/showCustomToast';
+import { showCustomToast } from '../components/ShowCustomToast';
 
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyxuQww9ZWGLhSMxjp-_MkhNEeTh6wgmVDGprz26hY2BZWKjkHpTllwqPhB2drPh1TXhA/exec"; 
 

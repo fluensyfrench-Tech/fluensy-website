@@ -11,10 +11,11 @@ export function showCustomToast(message: string) {
         <h1>You&apos;re in 🎉</h1>
         <p className="text-sm font-medium text-gray-900">{message}</p>
         <p className="mt-1 text-sm text-gray-500">
-You did the right thing🤩 Expect something exciting in your inbox soon 💌
+          You did the right thing🤩 Expect something exciting in your inbox soon
+          💌
         </p>
-              <p className="mt-1 text-sm text-gray-500">
-And while you wait, come hang out in our learner’s club.
+        <p className="mt-1 text-sm text-gray-500">
+          And while you wait, come hang out in our learner’s club.
         </p>
         {/* <button
           onClick={() => {
