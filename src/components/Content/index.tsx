@@ -2,7 +2,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { registerEmail } from "../util/register";
+import { registerEmail } from "../../util/register";
 
 const Content: React.FC = () => {
   const headings = [

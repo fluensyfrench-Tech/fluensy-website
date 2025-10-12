@@ -1,6 +1,16 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+import CookieConsent from "@/components/CookieConsent";
+
+// ✅ Use Next.js font optimization
+import { Space_Grotesk } from "next/font/google";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Fluensy French",
@@ -32,10 +42,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={`scroll-smooth ${spaceGrotesk.className}`}>
       <body>
         <Toaster position="top-center" />
         {children}
+        <CookieConsent />
       </body>
     </html>
   );

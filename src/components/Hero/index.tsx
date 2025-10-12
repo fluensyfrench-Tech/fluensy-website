@@ -3,8 +3,8 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { cards } from "../data/content";
-import { registerEmail } from "../util/register";
+import { cards } from "../../data/content";
+import { registerEmail } from "../../util/register";
 
 const Hero: React.FC = () => {
   const illustrations = [

@@ -3,8 +3,7 @@
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Content from "@/components/Content";
+import Meetus from "@/components/Content/Meetus";
 import Footer from "@/components/Footer";
 
 export default function HomePage() {
@@ -57,12 +56,14 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="min-h-screen">
-      <Toaster position="top-center" />
-      <Navbar />
-      <Hero />
-      <Content />
-      <Footer />
-    </main>
+   <main className="h-screen flex flex-col">
+  <Toaster position="top-center" />
+  <Navbar />
+  <div className="flex-grow">
+    <Meetus />
+  </div>
+  <Footer />
+</main>
+
   );
 }

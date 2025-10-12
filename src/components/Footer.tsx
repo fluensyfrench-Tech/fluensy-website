@@ -1,3 +1,11 @@
+
+const navLinks = [
+  { label: "Meet", href: "/meet" },
+  { label: "The Academy", href: "/academy" },
+  { label: "Terms & Conditions", href: "/terms" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+];
+
 const Footer = () => {
   return (
     <footer className="bg-black text-white py-12">
@@ -18,24 +26,7 @@ const Footer = () => {
           <div className="space-y-2 text-base font-normal ml-0 md:ml-20">
             <h4 className="font-normal">Stay connected</h4>
             <ul className="space-y-1 text-sm font-light">
-              {["X", "Linkedin", "Tiktok", "Youtube", "Instagram"].map((item, idx) => (
-                <li key={idx}>
-                  <a
-                    href="#"
-                    className="transition-all duration-200 hover:text-[#7DE5F2] hover:scale-105 inline-block"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Company */}
-          <div className="space-y-2 text-base">
-            <h4 className="text-lg font-normal">Company</h4>
-            <ul className="space-y-2 text-sm font-light">
-              {["Meet", "The Academy", "Terms & Conditions", "Privacy Policy"].map(
+              {["X", "Linkedin", "Tiktok", "Youtube", "Instagram"].map(
                 (item, idx) => (
                   <li key={idx}>
                     <a
@@ -47,6 +38,23 @@ const Footer = () => {
                   </li>
                 )
               )}
+            </ul>
+          </div>
+
+          {/* Column 3: Company */}
+          <div className="space-y-2 text-base">
+            <h4 className="text-lg font-normal">Company</h4>
+            <ul className="space-y-2 text-sm font-light">
+              {navLinks.map(({ href, label }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    className="inline-block transition-all duration-200 hover:text-[#7DE5F2] hover:scale-105"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
