@@ -4,8 +4,9 @@ export const privacy = [
     label: "Introduction",
     content: [
       {
-        heading: "Welcome to fluensyfrench",
-        description: `At fluensyfrench, your privacy matters. We are committed to protecting your personal information and ensuring that it is collected, used, and stored responsibly. This Privacy Policy explains the information we collect, how we use it, when we share it, and the choices available to you across our services—including our website, fluensyfrench Academy, and mobile app waitlist.`,
+        description: `At fluensyfrench, your privacy matters. We are committed to protecting your personal information and ensuring that it is collected, used, and stored responsibly.<br />
+        This Privacy Policy explains the information we collect, how we use it, when we share it, and the choices available to you across our services—including our website, fluensyfrench Academy, and mobile app waitlist.<br />
+        By using our services, you agree to the practices described in this Privacy Policy. If you do not agree, you should discontinue using fluensyfrench services.`,
       },
     ],
   },
@@ -14,19 +15,19 @@ export const privacy = [
     label: "Information We Collect",
     content: [
       {
-        heading: "Data We Collect",
-        description: `We collect information in different ways depending on how you interact with us:
-
--  Academy Students (Website Registration): 
-  - Full name
-  - Email address
-  - Phone number
-  - Payment information (processed securely through third-party providers; we do not store your full payment details)
-
--  Mobile App Waitlist: 
-  - Email address
-
-We do not intentionally collect sensitive categories of data such as financial account numbers, medical records, or government-issued IDs unless required for compliance with applicable law.`,
+        description: `We collect information in different ways depending on how you interact with us:<br /><br />
+        <strong>Academy Students (Website Registration):</strong><br />
+        <ul class="list-disc list-inside">
+          <li>Full name</li>
+          <li>Email address</li>
+          <li>Phone number</li>
+          <li>Payment information (processed securely via third-party providers; we do not store your full payment details)</li>
+        </ul><br />
+        <strong>Mobile App Waitlist:</strong><br />
+        <ul class="list-disc list-inside">
+          <li>Email address</li>
+        </ul><br />
+        We do not intentionally collect sensitive categories of data such as financial account numbers, medical records, or government-issued identification unless required for compliance with applicable law.`,
       },
     ],
   },
@@ -35,29 +36,28 @@ We do not intentionally collect sensitive categories of data such as financial a
     label: "How We Use Your Information",
     content: [
       {
-        heading: "Purpose of Data Use",
-        description: `We use the information we collect to:
-
-- Provide and improve our courses, website, and mobile app services
-- Process registrations, subscriptions, and payments
-- Personalize your learning experience and communication
-- Communicate with you about courses, updates, and policy changes
-- Maintain platform security and prevent misuse
-- Manage the mobile app waitlist and onboarding`,
+        description: `We use the information we collect to:<br />
+        <ul class="list-disc list-inside">
+          <li>Provide and improve our courses, website, and mobile app services</li>
+          <li>Process registrations, subscriptions, and payments</li>
+          <li>Personalize your learning experience and communication</li>
+          <li>Communicate with you about courses, applications, updates, and policy changes</li>
+          <li>Maintain platform security, prevent fraud, and monitor misuse</li>
+          <li>Manage the mobile app waitlist and onboarding</li>
+        </ul>`,
       },
     ],
   },
+
   {
     id: "share",
     label: "How We Share Your Information",
     content: [
       {
-        heading: "When We Share Data",
-        description: `We do not sell your personal data. We may share information in the following cases:
-
--  Service Providers:  With trusted partners who handle hosting, analytics, or payment processing, bound by confidentiality agreements.
--  Legal Compliance:  When required by law or government authorities.
--  Business Transfers:  If fluensyfrench is involved in a merger or sale, your data may be transferred to the new owner.`,
+        description: `We do not sell your personal data. We may share your information in the following situations:<br />
+        - Service Providers: With trusted third parties who support our services (hosting, analytics, payment processing), bound by confidentiality obligations.<br />
+        - Legal Compliance: If required by law, government authority, or legal proceedings.<br />
+        - Business Transfers: In cases of merger, acquisition, or sale of assets, your data may be transferred to the new owner.`,
       },
     ],
   },
@@ -66,32 +66,30 @@ We do not intentionally collect sensitive categories of data such as financial a
     label: "Cookies and Tracking Technologies",
     content: [
       {
-        heading: "Cookie Use",
-        description: `fluensyfrench uses cookies and similar technologies to improve your experience, analyze performance, and deliver personalized content.
-
- Types of Cookies: 
--  Essential Cookies:  Necessary for core site functionality.
--  Analytics Cookies:  Help us understand how users interact with our platform.
--  Personalization Cookies:  Enable tailored course recommendations.
--  Advertising Cookies:  Used for relevant ads and promotions.
-
- Managing Cookies:   
-You can block or delete cookies in your browser settings. Disabling cookies may limit some features.
-
- Third-Party Analytics:   
-We may use tools like Google Analytics. These providers have their own privacy policies governing their data use.
-
-By using fluensyfrench, you consent to the use of cookies and tracking as described.`,
+        description: `fluensyfrench uses cookies and similar tracking technologies to improve your experience, analyze performance, and deliver personalized content.<br /><br />
+        <strong>Types of Cookies We Use:</strong><br />
+        <ul class="list-disc list-inside">
+          <li><strong>Essential Cookies:</strong> Necessary for the basic operation of our website and services (e.g., course access).</li>
+          <li><strong>Analytics Cookies:</strong> Help us understand how learners interact with our platform so we can improve functionality and usability.</li>
+          <li><strong>Personalization Cookies:</strong> Enable us to tailor recommendations, course suggestions, and communications to your preferences.</li>
+          <li><strong>Advertising and Third-Party Cookies (if applicable):</strong> May be used to deliver relevant ads or measure the effectiveness of promotional campaigns.</li>
+        </ul><br />
+        <strong>Managing Cookies:</strong><br />
+        Most browsers allow you to block, delete, or disable cookies through their settings. Please note that disabling cookies may limit some features of our services.<br /><br />
+        <strong>Third-Party Analytics:</strong><br />
+        We may work with analytics providers (such as Google Analytics) that use cookies and tracking scripts to help us measure traffic and usage trends. These providers have their own privacy policies governing their data practices.<br /><br />
+        By using fluensyfrench, you consent to the use of cookies and tracking technologies as described in this Privacy Policy.`,
       },
     ],
   },
+
   {
     id: "security",
     label: "Data Security",
     content: [
       {
-        heading: "Protecting Your Information",
-        description: `We use administrative, technical, and physical safeguards to protect your information from unauthorized access or misuse. While no system is 100% secure, we continuously update our practices to enhance security.`,
+        description: `We use administrative, technical, and physical safeguards to protect your information from unauthorized access or misuse.<br />
+        While no method is 100% secure, we continually update practices to protect your data.`,
       },
     ],
   },
@@ -100,8 +98,8 @@ By using fluensyfrench, you consent to the use of cookies and tracking as descri
     label: "Data Retention",
     content: [
       {
-        heading: "How Long We Keep Data",
-        description: `We retain your data as long as necessary to provide our services and comply with legal obligations. Data will be deleted upon request unless retention is required by law.`,
+        description: `We retain data as long as necessary to provide services and comply with legal obligations.<br />
+        Data will be deleted upon request unless legal retention requirements apply.`,
       },
     ],
   },
@@ -110,25 +108,28 @@ By using fluensyfrench, you consent to the use of cookies and tracking as descri
     label: "Your Rights",
     content: [
       {
-        heading: "Your Privacy Choices",
-        description: `Depending on your location, you may have the right to:
-- Access data we hold about you
-- Request correction of inaccuracies
-- Request deletion of your data
-- Restrict or object to processing
-- Request a portable copy of your data
-
-To exercise your rights, contact us at  fluensyfrench@gmail.com . Verification of identity may be required.`,
+        description: `Depending on your location, you may have the right to:<br />
+        <ul class="list-disc list-inside">
+          <li>Access the data we hold about you</li>
+          <li>Request corrections to inaccurate information</li>
+          <li>Request deletion of your data</li>
+          <li>Restrict or object to certain processing activities</li>
+          <li>Request a portable copy of your data</li>
+        </ul><br />
+        <strong>How to Exercise Your Rights:</strong><br />
+        To exercise these rights, contact us at <a href="mailto:fluensyfrench@gmail.com" target="_blank" rel="noopener noreferrer" class="text-[#7148E5] underline hover:text-[#7DE5F2] transition-colors duration-200">fluensyfrench@gmail.com</a>.<br />
+        Verification of identity may be required.`,
       },
     ],
   },
+
   {
     id: "transfers",
     label: "International Data Transfers",
     content: [
       {
-        heading: "Data Transfers",
-        description: `If you use fluensyfrench from outside the country where our servers are hosted, your data may be transferred internationally. We ensure such transfers comply with applicable laws and include appropriate safeguards.`,
+        description: `If you use fluensyfrench from outside the country where our servers are hosted, your data may be transferred internationally.<br />
+        We ensure such transfers comply with applicable laws and include appropriate safeguards.`,
       },
     ],
   },
@@ -137,8 +138,10 @@ To exercise your rights, contact us at  fluensyfrench@gmail.com . Verification o
     label: "Children’s Privacy",
     content: [
       {
-        heading: "Parental Consent",
-        description: `Our services are intended for learners of various ages. Children below the legal age of digital consent may only use fluensyfrench with parental or guardian permission. We do not knowingly collect data from children without consent. If you believe we have, please contact us for removal.`,
+        description: `Our services are intended for learners of various ages.<br />
+        Children below the legal age of digital consent in their jurisdiction may only use fluensyfrench with parental or guardian permission.<br />
+        We do not knowingly collect childrenʼs personal data without such consent.<br />
+        If you believe we have collected a childʼs data without authorization, contact us to have it removed.`,
       },
     ],
   },
@@ -147,8 +150,7 @@ To exercise your rights, contact us at  fluensyfrench@gmail.com . Verification o
     label: "Changes to This Policy",
     content: [
       {
-        heading: "Policy Updates",
-        description: `We may update this Privacy Policy periodically. Major changes will be communicated via email or prominent website notices. The “Last Updated” date reflects the latest version.`,
+        description: `We may update this Privacy Policy from time to time. Material changes will be communicated via email or prominent notices on our website. The “Last Updated” date at the top reflects the current version.`,
       },
     ],
   },
@@ -157,10 +159,7 @@ To exercise your rights, contact us at  fluensyfrench@gmail.com . Verification o
     label: "Contact Us",
     content: [
       {
-        heading: "Get in Touch",
-        description: `If you have questions or concerns about this Privacy Policy, contact us at  fluensyfrench@gmail.com .
-
-By using our services, you agree to the practices described in this Privacy Policy. If you do not agree, please discontinue use of fluensyfrench.`,
+        description: `If you have questions or concerns about this Privacy Policy, please contact us at: <a href="mailto:fluensyfrench@gmail.com" target="_blank" rel="noopener noreferrer" class="text-[#7148E5] underline hover:text-[#7DE5F2] transition-colors duration-200">fluensyfrench@gmail.com</a>`,
       },
     ],
   },

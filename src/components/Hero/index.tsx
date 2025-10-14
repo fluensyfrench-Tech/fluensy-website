@@ -5,6 +5,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { cards } from "../../data/content";
 import { registerEmail } from "../../util/register";
+import Link from "next/link";
 
 const Hero: React.FC = () => {
   const illustrations = [
@@ -28,32 +29,36 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-none md:leading-normal mb-6 sm:mb-8 md:mb-10"
+            className="text-3xl sm:text-5xl lg:text-7xl leading-none md:leading-normal mb-6"
           >
             <span className="block font-light">With fluensyfrench</span>
-            <span className="block mt-1 sm:mt-2 font-bold">Fluensy is possible</span>
+            <span className="block mt-2 font-bold">
+              Fluensy is possible
+            </span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-            className="text-base md:text-lg font-normal mb-5 xl:mb-8 max-w-xl mx-auto leading-relaxed"
+            className="text-base md:text-lg font-normal mb-6 md:mb-8 max-w-xl mx-auto leading-relaxed"
           >
             The only path to real fluensy is here
           </motion.p>
 
-          <motion.button
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-            className="group inline-flex items-center px-6 py-4 md:px-7 mt-3 md:mt-0 text-white
+          <Link href="/academy">
+            <motion.button
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+              className="group inline-flex items-center px-8 md:px-12 py-4 md:py-5 mt-3 md:mt-0 text-white
                        bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base sm:text-xl font-normal 
                        rounded-lg shadow-lg hover:shadow-xl 
                        transform hover:scale-105 transition-all duration-300"
-          >
-            Start your French course now
-          </motion.button>
+            >
+              Start your French course now
+            </motion.button>
+          </Link>
         </div>
       </section>
 
@@ -66,14 +71,20 @@ const Hero: React.FC = () => {
                 key={idx}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.2 }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeOut",
+                  delay: idx * 0.2,
+                }}
                 viewport={{ once: true }}
-                className={idx === 1 ? "flex-[1.5]" : "flex-1"}
+                className={
+                  idx === 0 ? "flex-[1.1]" : idx === 1 ? "flex-[1.5]" : "flex-1"
+                }
               >
                 <img
                   src={src}
                   alt={`Illustration ${idx + 1}`}
-                  className="w-full max-h-[345px] object-contain hover:scale-105 transition-transform duration-300"
+                  className="w-full max-h-[320px] md:max-h-[340px] 2xl:max-h-[450px] object-contain transition-transform duration-300"
                 />
               </motion.div>
             ))}
@@ -91,11 +102,12 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h2 className="font-medium text-[32px] md:text-5xl leading-[120%] mb-0 md:mb-8">
+            <h2 className="font-medium text-3xl md:text-5xl mb-0 md:mb-8 leading-tight md:leading-snug">
               Meet learners like
-              <br className="hidden md:block" /> you in our growing learners’ club
+              <br className="hidden md:block" /> you in our growing learners’
+              club
             </h2>
-            <button className="px-6 py-3 text-white bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base md:text-xl rounded-lg hidden md:block">
+            <button className="px-14 py-4 md:py-5 text-white bg-[#7148E5] hover:bg-white hover:text-[#181A25] text-base md:text-xl rounded-lg hidden md:block font-normal">
               Join now for free
             </button>
           </motion.div>
@@ -107,7 +119,11 @@ const Hero: React.FC = () => {
                 key={idx}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.2 }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeOut",
+                  delay: idx * 0.2,
+                }}
                 viewport={{ once: true }}
                 className="bg-white p-6 rounded-lg shadow-md flex flex-col gap-3"
               >
@@ -116,12 +132,14 @@ const Hero: React.FC = () => {
                   alt={`Icon ${idx + 1}`}
                   className="w-10 h-10 object-contain"
                 />
-                <p className="text-gray-800 text-base md:text-xl font-normal">{card.text}</p>
+                <p className="text-gray-800 text-base md:text-xl font-normal">
+                  {card.text}
+                </p>
               </motion.div>
             ))}
           </div>
 
-          <button className="w-full mt-2 px-6 py-3 text-white bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base md:text-xl rounded-lg block md:hidden">
+          <button className="w-full mt-2 px-6 py-4 md:py-5 text-white bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base md:text-xl rounded-lg block md:hidden">
             Join now for free
           </button>
         </div>

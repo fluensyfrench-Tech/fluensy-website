@@ -104,6 +104,7 @@ a {
   transition: all 0.2s ease-in-out;
 }
 
+
 /* -----------------------------
    Print Styles
 ----------------------------- */
@@ -126,4 +127,17 @@ a {
 
 .animate-fadeIn {
   animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 20s linear infinite;
 }

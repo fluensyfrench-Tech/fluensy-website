@@ -11,7 +11,7 @@ const AcademyHero: React.FC = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="w-full bg-[#F8F6F6] pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-[#F8F6F6] pt-[100px] pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center md:mt-5">
           {/* Left Text */}
           <motion.div
@@ -29,15 +29,17 @@ const AcademyHero: React.FC = () => {
               <br /> starts here
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-700 mt-5 mb-5">
-              We make learning French fun, impactful and accessible.
+            <p className="text-lg md:text-xl text-gray-700 mt-5 mb-3">
+              We make learning French fun, impactful and{" "}
+              <br className="hidden md:block" />
+              accessible to all
             </p>
 
             <Link href="/program">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
-                className="inline-block px-6 py-4 mt-5 text-white bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-xl font-normal rounded-lg shadow-md transition-all"
+                className="inline-block w-full md:w-auto px-20 py-4 md:py-5 mt-5 text-white bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-lg md:text-xl font-normal rounded-lg shadow-md transition-all"
               >
                 Choose your program
               </motion.button>
@@ -64,7 +66,7 @@ const AcademyHero: React.FC = () => {
       {/* Narration Block */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 text-left md:text-center flex flex-col items-center">
-          <p className="text-3xl md:text-5xl leading-relaxed font-medium">
+          <p className="text-3xl md:text-5xl leading-normal font-medium">
             Learn French anywhere you are
           </p>
           <p className="text-lg lg:text-xl mt-3 mb-5">
@@ -75,7 +77,7 @@ const AcademyHero: React.FC = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
-            className="mt-5 w-[80%] lg:w-[40%] py-4 text-white bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-xl font-normal rounded-lg shadow-md transition-all"
+            className="mt-5 w-full lg:w-[40%] py-4 text-white bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-xl font-normal rounded-lg shadow-md transition-all"
           >
             Enrol now
           </motion.button>
