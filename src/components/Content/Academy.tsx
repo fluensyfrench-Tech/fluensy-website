@@ -6,12 +6,11 @@ import { motion } from "framer-motion";
 import { cards } from "@/data/content";
 
 const Academy: React.FC = () => {
-
   const headings = [
-    "Fluency is possible 👍🏾",
-    "Fluency is possible 👍🏾",
-    "Fluency is possible 👍🏾",
-    "Fluency is possible 👍🏾",
+    "Fluensy is possible 👍🏾",
+    "Fluensy is possible 👍🏾",
+    "Fluensy is possible 👍🏾",
+    "Fluensy is possible 👍🏾",
   ];
 
   const features = [
@@ -29,9 +28,8 @@ const Academy: React.FC = () => {
     "Teach others and earn money",
     "Travel with confidence in French-speaking countries",
     "Connect with millions of French speakers worldwide",
-    "Experience the pride and joy of fluency",
+    "Experience the pride and joy of Fluensy",
   ];
-
 
   return (
     <>
@@ -49,7 +47,7 @@ const Academy: React.FC = () => {
               <p className="text-base font-normal mb-5">
                 Why fluensyfrench Academy
               </p>
-              <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-snug ">
                 Redefining the way you learn French
               </h2>
               <p className="text-lg md:text-xl max-w-md">
@@ -86,7 +84,7 @@ const Academy: React.FC = () => {
                     alt="Check Icon"
                     className="w-6 h-6"
                   />
-                  <span className="text-[#181A25] text-lg font-normal">
+                  <span className="text-[#181A25] text-xl font-normal">
                     {item}
                   </span>
                 </motion.li>
@@ -96,26 +94,28 @@ const Academy: React.FC = () => {
         </div>
       </section>
 
-      <section className="bg-white pb-16 mt-5 mb-5 md:mb-12">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            {headings.map((text, idx) => (
-              <motion.h2
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.2 }}
-                viewport={{ once: true, amount: 0.2 }}
-                className="text-base md:text-xl"
-              >
-                {text}
-              </motion.h2>
-            ))}
+      <section className="bg-white py-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="overflow-hidden whitespace-nowrap scroll-smooth">
+            <div className="inline-flex gap-15 animate-scroll-left">
+              {headings.map((text, idx) => (
+                <motion.h2
+                  key={idx}
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: idx * 0.2 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  className="text-base md:text-xl font-normal inline-block text-center px-12"
+                >
+                  {text}
+                </motion.h2>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#7148E5] relative z-30 -mt-5 md:-mt-10 xl:-mt-16 w-full">
+      <section className="bg-[#7148E5] relative z-30 w-full">
         <div className="max-w-6xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
@@ -124,14 +124,14 @@ const Academy: React.FC = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h2 className="font-medium text-[32px] text-white md:text-5xl leading-[120%] mb-0 md:mb-8">
+            <h2 className="font-medium text-3xl md:text-5xl text-white leading-snug mb-0 md:mb-8">
               Free community
               <br className="hidden md:block" /> support
             </h2>
-            <button className="text-white bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base md:text-xl rounded-lg hidden md:block text-left">
+            <div className="w-full md:w-[80%] text-white text-base md:text-xl rounded-lg hidden md:block text-left font-normal">
               Learning doesn’t stop when your lesson ends. From day 1, our
-              learners club supports your growth toward fluency.
-            </button>
+              learners club supports your growth toward Fluensy.
+            </div>
           </motion.div>
 
           {/* Right Cards */}
@@ -161,7 +161,7 @@ const Academy: React.FC = () => {
             ))}
           </div>
 
-          <button className="w-full mt-2 px-6 py-3 text-white bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base md:text-xl rounded-lg block md:hidden">
+          <button className="w-full mt-2 px-6 py-4 md:py-5 text-white bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base md:text-xl rounded-lg block md:hidden">
             Join now for free
           </button>
         </div>
@@ -180,9 +180,14 @@ const Academy: React.FC = () => {
         <div className="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto">
           {/* Left: Text + Image */}
           <div className="md:w-2/5 w-full flex flex-col items-start">
-            <h2 className="text-[#181A25] text-3xl md:text-5xl font-bold leading-tight mb-6">
-              Why you’ll love learning French
+            <h2
+              className="text-[#181A25] text-3xl md:text-5xl font-medium mb-6"
+              style={{ lineHeight: "1.2" }}
+            >
+              Why you’ll love <br className="hidden md:block" />
+              learning French
             </h2>
+
             <img
               src="/images/academy2.svg"
               alt="Learning French"
@@ -203,7 +208,7 @@ const Academy: React.FC = () => {
                   delay: idx * 0.1,
                 }}
                 viewport={{ once: true }}
-                className="bg-[#7148E5] text-white px-6 py-4 rounded-lg flex items-center space-x-3 shadow-md"
+                className="bg-[#7148E5] text-white xl:w-[75%] px-6 py-4 rounded-lg flex items-center space-x-3 shadow-md"
               >
                 <img
                   src="/images/icons/check.svg"

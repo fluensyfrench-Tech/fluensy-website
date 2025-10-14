@@ -27,12 +27,12 @@ export default function CookieConsent() {
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] md:w-[600px] bg-white border border-gray-200 rounded-2xl shadow-xl p-4 md:p-5 z-50 flex flex-col md:flex-row md:items-center justify-between gap-3 animate-fadeIn">
         <p className="text-sm text-[#3A3D44] leading-snug">
           We use cookies to make fluensyfrench work better for you and to comply
-          with the{" "}
+          with 
           <Link
             href="/privacy"
             className="text-[#7148E5] font-medium hover:underline"
           >
-            Nigeria Data Protection Regulation (NDPR)
+           your country&apos;s Data Protection Regulation 
           </Link>
           . By using our site, you agree to our{" "}
           <Link

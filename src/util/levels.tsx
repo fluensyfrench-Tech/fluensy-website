@@ -10,9 +10,7 @@ export const levels = [
       "Speak and understand basic French",
       "Basic self-introduction & daily conversation",
       "Read, write, and practice simple conversations",
-      "Use basic grammar and sentence structures",
-      "Zoom/Meet, 100% online",
-      "100 hours of guided learning",
+      "Use basic grammar and sentence structures"
     ],
   },
   {
@@ -25,9 +23,7 @@ export const levels = [
       "Hold simple conversations about everyday life",
       "Talk about past, present, and future activities",
       "Express opinions, preferences, and feelings",
-      "Read, write, and understand everyday texts",
-      "Zoom/Meet, 100% online",
-      "100 hours of guided learning",
+      "Read, write, and understand everyday texts"
     ],
   },
   {
@@ -40,9 +36,7 @@ export const levels = [
       "Engage in conversations on familiar topics",
       "Describe experiences, events, and future plans",
       "Express opinions, give reasons, and justify ideas",
-      "Read, write, and understand more complex texts",
-      "Zoom/Meet, 100% online",
-      "100 hours of guided learning",
+      "Read, write, and understand more complex texts"
     ],
   },
   {
@@ -55,9 +49,7 @@ export const levels = [
       "Talk about general and professional topics",
       "Describe experiences, events, and future plans in detail",
       "Express opinions clearly and argue or persuade effectively",
-      "Understand and produce detailed written texts",
-      "Zoom/Meet, 100% online",
-      "100 hours of guided learning",
+      "Understand and produce detailed written texts"
     ],
   },
 ];

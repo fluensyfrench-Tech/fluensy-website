@@ -66,13 +66,10 @@ const Program = () => {
             guiding you through each CEFR level from beginner to intermediate.
           </p>
 
-          {/* Subheading */}
-          <h3 className="text-3xl md:text-5xl font-medium text-[#181A25] mb-6">
-            Single-level program
-          </h3>
+        
 
-          {/* Card */}
-          <h4 className="text-2xl md:text-4xl font-medium mb-5">Cohort 1</h4>
+          <h4 className="text-3xl md:text-5xl font-medium mb-5">Single-level program</h4>
+            <h3 className="text-2xl md:text-4xl font-medium mb-5 mt-8">Cohort 1</h3>
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -80,7 +77,7 @@ const Program = () => {
             viewport={{ once: true }}
             className="w-full md:w-[60%] bg-white border border-[#C7CAD1] rounded-xl shadow-sm px-6 py-8"
           >
-            <ul className="space-y-4 text-[#181A25] text-base font-medium">
+            <ul className="space-y-4 text-[#181A25] text-base md:text-xl font-normal">
               {cohortDetails.map((item, idx) => (
                 <li key={idx} className="flex items-center space-x-3">
                   <img
@@ -96,9 +93,9 @@ const Program = () => {
         </div>
       </section>
 
-      <section className="w-full bg-white py-16 px-4 sm:px-6 lg:px-8">
+      <section className="w-full bg-white py-14 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-left">
-          <h2 className="text-2xl md:text-3xl font-semibold text-[#181A25] mb-10">
+          <h2 className="text-xl md:text-2xl font-medium text-[#181A25] mb-10">
             Choose the level that fits you best
           </h2>
 
@@ -109,8 +106,8 @@ const Program = () => {
                 className="bg-white rounded-xl border border-[#C7CAD1] shadow-sm px-6 py-8 text-left"
               >
                 {/* Price row */}
-                <div className="flex justify-between items-center mb-2 font-bold text-lg">
-                  <span className="bg-[#7DE5F2] text-[#3A3D44] rounded-lg p-2">
+                <div className="flex items-center mb-2 font-bold text-lg">
+                  <span className="bg-[#7DE5F2] text-[#3A3D44] rounded-lg p-2 mr-3">
                     {course.priceNGN}
                   </span>
                   <span className="bg-[#7DE5F2] text-[#3A3D44] rounded-lg p-2">
@@ -122,7 +119,7 @@ const Program = () => {
                 <h3 className="text-xl font-semibold text-[#181A25] mb-1 mt-5">
                   {course.level}
                 </h3>
-                <p className="text-sm text-[#3A3D44] mb-1">
+                <p className="text-xs text-[#3A3D44] mb-1">
                   {course.requirement}
                 </p>
 
@@ -185,7 +182,7 @@ const Program = () => {
       <section className="w-full bg-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <h2 className="text-3xl md:text-5xl font-bold text-[#181A25] mb-10 text-left">
+          <h2 className="text-3xl md:text-5xl font-medium text-[#181A25] mb-10 text-left">
             A1 to B2 Full Level Program
           </h2>
 
