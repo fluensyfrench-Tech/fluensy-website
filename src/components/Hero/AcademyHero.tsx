@@ -11,7 +11,7 @@ const AcademyHero: React.FC = () => {
   return (
     <>
       {/* Hero Section */}
-    <section className="w-full bg-[#F8F6F6] pt-[100px] pb-16 px-4 sm:px-6 lg:px-8">
+      <section className="w-full bg-[#F8F6F6] pt-[100px] pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center md:mt-5">
           {/* Left Text */}
           <motion.div
@@ -21,12 +21,13 @@ const AcademyHero: React.FC = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <h1
-              className="font-bold text-[38px] sm:text-[70px] lg:text-[70px] leading-[50px] md:leading-[85px] tracking-tight mt-12 sm:mt-0"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              className="font-bold text-[38px] lg:text-[70px] leading-[50px] md:leading-[85px] tracking-tight mt-12 sm:mt-0"
+              style={{ fontFamily: "'Space Grotesk'" }}
             >
               Your journey to
-              <br /> <span className="text-[#7148E5]">fluent</span> French
-              <br /> starts here
+              <br className="hidden xl:block" />
+              <span className="text-[#7148E5]"> fluent</span> French
+              <br className="hidden xl:block" /> starts here
             </h1>
 
             <p className="text-lg md:text-xl text-gray-700 mt-5 mb-3">
@@ -39,7 +40,7 @@ const AcademyHero: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
-                className="inline-block w-full md:w-auto px-20 py-4 md:py-5 mt-5 text-white bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-lg md:text-xl font-normal rounded-lg shadow-md transition-all"
+                className="w-full md:w-auto px-4 md:px-20 py-4 md:py-5 mt-5 text-white bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-lg md:text-xl font-medium rounded-lg shadow-md transition-all"
               >
                 Choose your program
               </motion.button>

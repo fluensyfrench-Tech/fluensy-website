@@ -1,5 +1,5 @@
 const navLinks = [
-  { label: "Meet us", href: "/meet" },
+  { label: "Meet us", href: "/meet-us" },
   { label: "The Academy", href: "/academy" },
   { label: "Terms & Conditions", href: "/terms" },
   { label: "Privacy Policy", href: "/privacy-policy" },

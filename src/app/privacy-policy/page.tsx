@@ -29,7 +29,7 @@ const Privacy: React.FC = () => {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col lg:flex-row gap-10">
           {/* Sidebar Menu */}
           <nav className="space-y-2 sticky top-24">
-            <ul className="space-y-1 text-sm font-medium">
+            <ul className="space-y-1 text-sm font-medium hidden lg:block">
               {privacy.map((privacy) => (
                 <li key={privacy.id}>
                   <a

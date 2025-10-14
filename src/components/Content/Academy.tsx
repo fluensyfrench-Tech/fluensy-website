@@ -4,14 +4,10 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { cards } from "@/data/content";
+import ScrollSection from "./ScrollSection";
 
 const Academy: React.FC = () => {
-  const headings = [
-    "Fluensy is possible 👍🏾",
-    "Fluensy is possible 👍🏾",
-    "Fluensy is possible 👍🏾",
-    "Fluensy is possible 👍🏾",
-  ];
+
 
   const features = [
     "Free community support",
@@ -63,9 +59,9 @@ const Academy: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
             viewport={{ once: true }}
-            className="bg-[#7DE5F2] flex flex-col justify-center px-8 py-16"
+            className="bg-[#7DE5F2] flex flex-col justify-center px-5 md:px-8 py-14 md:py-16"
           >
-            <ul className="space-y-6">
+            <ul className="space-y-4 md:space-y-6">
               {features.map((item, idx) => (
                 <motion.li
                   key={idx}
@@ -94,26 +90,7 @@ const Academy: React.FC = () => {
         </div>
       </section>
 
-      <section className="bg-white py-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="overflow-hidden whitespace-nowrap scroll-smooth">
-            <div className="inline-flex gap-15 animate-scroll-left">
-              {headings.map((text, idx) => (
-                <motion.h2
-                  key={idx}
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: idx * 0.2 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  className="text-base md:text-xl font-normal inline-block text-center px-12"
-                >
-                  {text}
-                </motion.h2>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+     <ScrollSection />
 
       <section className="bg-[#7148E5] relative z-30 w-full">
         <div className="max-w-6xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -222,7 +199,7 @@ const Academy: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white mb-8">
+      <section className="py-14 md:py-16 px-4 sm:px-6 lg:px-8 bg-white mb-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 max-w-7xl mx-auto">
           {/* Left Image */}
           <img
@@ -258,7 +235,7 @@ const Academy: React.FC = () => {
           <img
             src="/images/academy4.svg"
             alt="Right visual"
-            className="w-full md:w-1/4 h-auto rounded-lg object-cover"
+            className="w-full md:w-1/4 h-auto rounded-lg object-cover mt-8 md:mt-0"
           />
         </div>
       </section>

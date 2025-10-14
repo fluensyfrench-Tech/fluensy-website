@@ -7,11 +7,11 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 
 // Reusable NavLink component with concave underline
-const NavLink: React.FC<{ href: string; children: React.ReactNode; onClick?: () => void }> = ({
-  href,
-  children,
-  onClick,
-}) => (
+const NavLink: React.FC<{
+  href: string;
+  children: React.ReactNode;
+  onClick?: () => void;
+}> = ({ href, children, onClick }) => (
   <Link
     href={href}
     onClick={onClick}
@@ -35,11 +35,9 @@ const NavLink: React.FC<{ href: string; children: React.ReactNode; onClick?: () 
   </Link>
 );
 
-
-
 const AcademyNavbar: React.FC = () => {
   const [open, setOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const logoRef = useRef<HTMLAnchorElement>(null);
   const [logoWidth, setLogoWidth] = useState<number | null>(null);
 
@@ -58,9 +56,12 @@ const AcademyNavbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   return (
-<nav className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${scrolled ? "bg-white shadow-md" : "bg-transparent"}`}>
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
+        scrolled ? "bg-white shadow-md" : "bg-transparent"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Left: fluensyfrench + academy */}
@@ -70,8 +71,12 @@ const AcademyNavbar: React.FC = () => {
               ref={logoRef}
               className="text-base font-bold text-[#181A25]"
             >
-             <img src="/images/academy-logo.svg" alt="FluensyFrench Academy Logo" className="h-14 w-auto"/>
-             </Link>
+              <img
+                src="/images/academy-logo.svg"
+                alt="FluensyFrench Academy Logo"
+                className="h-14 w-auto"
+              />
+            </Link>
           </div>
 
           {/* Right: Desktop Nav */}

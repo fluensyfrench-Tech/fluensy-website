@@ -28,7 +28,7 @@ const TermsOfService: React.FC = () => {
         {/* Main Section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col lg:flex-row gap-10">
           {/* Sidebar Menu */}
-          <nav className="space-y-2 sticky top-24">
+          <nav className="space-y-2 sticky top-24 hidden lg:block">
             <ul className="space-y-1 text-sm font-medium">
               {terms.map((terms) => (
                 <li key={terms.id}>
