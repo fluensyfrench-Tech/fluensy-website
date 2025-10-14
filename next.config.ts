@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   images: {
-    domains: ["res.cloudinary.com"], // Add your image hosting domain
-  }, // <-- comma here
+    domains: ["res.cloudinary.com"],
+    unoptimized: true, // Required for static export
+  },
   webpack(config: any) {
     config.module.rules.push({
       test: /\.svg$/,
