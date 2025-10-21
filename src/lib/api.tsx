@@ -71,3 +71,42 @@ export const getDashboardData = async (
     throw new Error("Unexpected error occurred while fetching dashboard data.");
   }
 };
+
+
+// ---- COURSE MANAGEMENT ----
+export interface Course {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  language: string;
+}
+
+export const getCourses = async (token: string): Promise<Course[]> => {
+  const res = await api.get("/admin/courses", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+export const createCourse = async (
+  token: string,
+  course: Omit<Course, "id">
+): Promise<Course> => {
+  const res = await api.post("/admin/courses", course, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+export const updateCourse = async (
+  token: string,
+  id: number,
+  course: Partial<Course>
+): Promise<Course> => {
+  const res = await api.put(`/admin/courses/${id}`, course, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
