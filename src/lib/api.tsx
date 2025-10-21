@@ -22,7 +22,7 @@ export interface DashboardResponse {
   active_cohorts: number;
 }
 
-// Define error shape if backend uses `detail` or `message`
+
 interface ApiError {
   detail?: string;
   message?: string;
@@ -34,7 +34,7 @@ export const loginAdmin = async (
   password: string
 ): Promise<LoginResponse> => {
   try {
-    const res: AxiosResponse<LoginResponse> = await api.post("/admin/auth/login", {
+    const res: AxiosResponse<LoginResponse> = await api.post("/admin/auth/admin/login", {
       email,
       password,
     });
@@ -72,31 +72,40 @@ export const getDashboardData = async (
   }
 };
 
-
-// ---- COURSE MANAGEMENT ----
 export interface Course {
   id: number;
-  title: string;
-  description: string;
+  name: string;
+  level: string;
   price: number;
-  language: string;
+  duration_months: number;
+  description: string;
 }
 
 export const getCourses = async (token: string): Promise<Course[]> => {
-  const res = await api.get("/admin/courses", {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return res.data;
+  try {
+    const res = await api.get("/admin/courses", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching courses:", error);
+    throw new Error("Failed to fetch courses");
+  }
 };
 
 export const createCourse = async (
   token: string,
   course: Omit<Course, "id">
 ): Promise<Course> => {
-  const res = await api.post("/admin/courses", course, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return res.data;
+  try {
+    const res = await api.post("/admin/courses", course, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Error creating course:", error);
+    throw new Error("Failed to create course");
+  }
 };
 
 export const updateCourse = async (
@@ -104,9 +113,27 @@ export const updateCourse = async (
   id: number,
   course: Partial<Course>
 ): Promise<Course> => {
-  const res = await api.put(`/admin/courses/${id}`, course, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return res.data;
+  try {
+    const res = await api.put(`/admin/courses/${id}`, course, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return res.data;
+  } catch (error) {
+    console.error(`Error updating course ${id}:`, error);
+    throw new Error("Failed to update course");
+  }
 };
 
+export const deleteCourse = async (
+  token: string,
+  id: number
+): Promise<void> => {
+  try {
+    await api.delete(`/admin/courses/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  } catch (error) {
+    console.error(`Error deleting course ${id}:`, error);
+    throw new Error("Failed to delete course");
+  }
+};

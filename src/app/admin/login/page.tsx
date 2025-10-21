@@ -14,25 +14,33 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
 
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
+const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setLoading(true);
 
-try {
-      const data = await loginAdmin(email, password);
-      localStorage.setItem("token", data.access_token);
-      toast.success("Login successful! Redirecting...");
-      setTimeout(() => router.push("/admin/dashboard"), 1000);
-    } catch (err) {
-      if (err instanceof Error) {
-        toast.error(err.message);
-      } else {
-        toast.error("An unexpected error occurred.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    const res = await loginAdmin(email, password);
+
+    // ✅ Store token consistently (sessionStorage or localStorage)
+    sessionStorage.setItem("token", res.access_token);
+
+    toast.success("Login successful! Redirecting...");
+
+    // ✅ Wait a short moment to ensure the token is stored before navigation
+    setTimeout(() => {
+      router.push("/admin/dashboard");
+    }, 800);
+  } catch (error: unknown) {
+    // ✅ More reliable error handling
+    const message =
+      error instanceof Error
+        ? error.message
+        : "Login failed. Please check your credentials.";
+    toast.error(message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white px-4">
