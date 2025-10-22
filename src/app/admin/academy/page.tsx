@@ -184,8 +184,8 @@ export default function AcademyPage(): JSX.Element {
           />
           <input
             name="level"
-            type="text"
-            placeholder="Level (e.g., Level 1)"
+            type="number"
+            placeholder="Level (e.g 1)"
             value={form.level}
             onChange={handleChange}
             required

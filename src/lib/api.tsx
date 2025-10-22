@@ -34,7 +34,7 @@ export const loginAdmin = async (
   password: string
 ): Promise<LoginResponse> => {
   try {
-    const res: AxiosResponse<LoginResponse> = await api.post("/admin/auth/admin/login", {
+    const res: AxiosResponse<LoginResponse> = await api.post("/admin/auth/login", {
       email,
       password,
     });
