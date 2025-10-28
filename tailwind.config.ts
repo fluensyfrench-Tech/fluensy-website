@@ -36,4 +36,3 @@ theme: {
 },
   plugins: [],
 };
-

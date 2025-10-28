@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { loginAdmin } from "@/lib/api";
+import { loginAdmin } from "@/lib/adminapi";
 import Link from "next/link";
 import { Toaster, toast } from "react-hot-toast";
 import { Eye, EyeOff } from "lucide-react";
@@ -49,7 +49,7 @@ const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
 
       {/* Logo ABOVE the card */}
       <div className="text-3xl mb-8">
-        <Link href="/" className="flex items-center gap-1">
+        <Link href="/" className="flex items-center">
           <span className="font-bold">fluensy</span>
           <span className="font-normal text-gray-700">french</span>
         </Link>

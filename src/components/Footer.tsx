@@ -5,6 +5,15 @@ const navLinks = [
   { label: "Privacy Policy", href: "/privacy-policy" },
 ];
 
+const socialLinks = [
+  { label: "X", href: "https://x.com/fluensyfrench" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/fluensyfrench/posts/?feedView=all" },
+  { label: "TikTok", href: "https://www.tiktok.com/@fluensyfrench" },
+  { label: "YouTube", href: "https://www.youtube.com/@fluensyfrench" },
+  { label: "Instagram", href: "https://www.instagram.com/fluensyfrench?igsh=MTFkbGJ0OTY5NndiNQ%3D%3D&utm_source=qr" },
+  { label: "Telegram", href: "https://t.me/+c5zFTQKZjGFmNGRk" },
+];
+
 const Footer = () => {
   return (
     <footer className="bg-[#181A25] text-white py-12">
@@ -27,31 +36,18 @@ const Footer = () => {
             <div className="space-y-2">
               <h4 className="font-normal">Stay connected</h4>
               <ul className="space-y-2 text-base font-normal text-[#C7CAD1]">
-                {[
-                  "X",
-                  {
-                    label: "Linkedin",
-                    href: "https://www.linkedin.com/company/fluensyfrench/posts/?feedView=all",
-                  },
-                  "Tiktok",
-                  "Youtube",
-                  "Instagram",
-                ].map((item, idx) => {
-                  const label = typeof item === "string" ? item : item.label;
-                  const href = typeof item === "string" ? "#" : item.href;
-                  return (
-                    <li key={idx}>
-                      <a
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="transition-all duration-200 hover:text-[#7DE5F2] hover:scale-105 inline-block"
-                      >
-                        {label}
-                      </a>
-                    </li>
-                  );
-                })}
+                {socialLinks.map(({ label, href }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-all duration-200 hover:text-[#7DE5F2] hover:scale-105 inline-block"
+                    >
+                      {label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 

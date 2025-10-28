@@ -6,14 +6,13 @@ import FooterUp from "../FooterUp";
 import ScrollSection from "./ScrollSection";
 
 const Content: React.FC = () => {
-
   return (
     <>
       {/* Waitlist Section */}
-    <FooterUp/>
+      <FooterUp />
 
       {/* Headings Section */}
-<ScrollSection/>
+      <ScrollSection />
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         {/* Learn Anywhere Section */}

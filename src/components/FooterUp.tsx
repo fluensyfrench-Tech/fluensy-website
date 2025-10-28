@@ -1,13 +1,35 @@
+"use client"
 import React, { useState } from "react";
-import { registerEmail } from "../util/register";
 import { motion } from "framer-motion";
+import { addToWaitlist } from "@/lib/api";
+import toast from "react-hot-toast";
 
 function FooterUp() {
   const [email, setEmail] = useState("");
 
-  const onRegisterClick = (e: React.FormEvent) => {
+  const isValidEmail = (email: string): boolean => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const onRegisterClick = async (e: React.FormEvent) => {
     e.preventDefault();
-    registerEmail(email);
+
+    if (!isValidEmail(email)) {
+      toast.error("Please enter a valid email.");
+      return;
+    }
+
+   const date = new Date().toISOString();
+
+    toast.promise(
+      addToWaitlist(email, date),
+      {
+        loading: "Submitting...",
+        success: "🎉 You're on the waitlist!",
+        error: "Something went wrong. Try again later.",
+      }
+    );
+
     setEmail("");
   };
 

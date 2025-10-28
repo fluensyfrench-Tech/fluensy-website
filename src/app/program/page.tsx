@@ -59,12 +59,12 @@ export default function HomePage() {
   return (
     <main className="min-h-screen">
       <Toaster position="top-center" />
-      <AcademyNavbar/>
-      <Program />
-      <FooterUp/>
+      <AcademyNavbar />
+      <div className="min-h-[60vh]">
+        <Program />
+      </div>
+      <FooterUp />
       <Footer />
     </main>
   );
 }
-
-

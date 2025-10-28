@@ -43,6 +43,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`scroll-smooth ${spaceGrotesk.className}`}>
+      <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="alternate icon" type="image/png" href="/favicon.png" />
+      </head>
       <body>
         <Toaster position="top-center" />
         {children}

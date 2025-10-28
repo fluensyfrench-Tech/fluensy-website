@@ -1,14 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import toast from "react-hot-toast";
+import { getNames } from "country-list";
+import Select from "react-select";
+import { registerEnrollment } from "@/lib/api";
 
 interface RegistrationModalProps {
   isOpen: boolean;
   onClose: () => void;
   courseTitle?: string;
   amount?: string;
+  selectedCourseId?: string;
+  selectedCohortId?: string;
 }
 
 const RegistrationModal: React.FC<RegistrationModalProps> = ({
@@ -16,8 +23,17 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
   onClose,
   courseTitle = "",
   amount = "",
+  selectedCourseId,
+  selectedCohortId,
 }) => {
+  const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+
+  const countryOptions = getNames().map((country) => ({
+    value: country,
+    label: country,
+  }));
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -30,6 +46,21 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
     email: "",
     phone: "",
   });
+
+  // Reset form when modal closes
+  useEffect(() => {
+    if (!isOpen) {
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        location: "",
+      });
+      setErrors({ email: "", phone: "" });
+      setSuccess(false);
+    }
+  }, [isOpen]);
 
   // ✅ Validation
   const validate = () => {
@@ -52,12 +83,45 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
     return valid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (validate()) {
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!validate()) return;
+
+  try {
+    setLoading(true);
+
+    const payload = {
+      cohort_id: selectedCohortId,
+      course_id: selectedCourseId,
+      country: formData.location,
+      currency: "NGN",
+      email: formData.email,
+      first_name: formData.firstName,
+      last_name: formData.lastName,
+      phone_number: formData.phone,
+    };
+
+    const response = await registerEnrollment(payload);
+
+    if (response?.authorization_url) {
+      toast.success("Redirecting to payment...");
       setSuccess(true);
+
+      setTimeout(() => {
+        onClose();
+        window.open(response.authorization_url, "_blank");
+      }, 1500);
+    } else {
+      toast.error("Failed to get payment link. Please try again.");
     }
-  };
+  } catch (error: any) {
+    console.error("Enrollment error:", error);
+    toast.error(error.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const inputBase =
     "w-full border border-[#C7CAD1] rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#7148E5] focus:border-[#7148E5] transition-all";
@@ -77,21 +141,16 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
             exit={{ scale: 0.9, opacity: 0 }}
             className="bg-white rounded-xl shadow-lg w-full max-w-xl mx-4 p-6 relative"
           >
-            {/* ✅ Consistent top-right close icon */}
-<button
-  onClick={() => {
-    onClose();
-    setSuccess(false);
-  }}
-  aria-label="Close modal"
-  className="absolute top-4 right-4 text-[#3A3D44] text-2xl font-bold hover:text-[#7148E5] transition-all"
->
-  &times;
-</button>
+            {/* Close Button */}
+            <button
+              onClick={onClose}
+              aria-label="Close modal"
+              className="absolute top-4 right-4 text-[#3A3D44] text-2xl font-bold hover:text-[#7148E5] transition-all"
+            >
+              &times;
+            </button>
 
-
-
-            {/* ✅ Success Modal */}
+            {/* Success message */}
             {success ? (
               <div className="text-center space-y-4 mt-6">
                 <div className="flex justify-center">
@@ -102,24 +161,14 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
                   />
                 </div>
                 <h2 className="text-2xl font-bold text-[#181A25]">
-                  You’re officially enrolled! 🎉
+                  Redirecting to payment 🎉
                 </h2>
                 <p className="text-[#181A25] text-base">
-                  Check your email for next steps. Thank you for trusting us to
-                  guide your French journey.
-                </p>
-                <p className="text-[#181A25] text-base">
-                  You’re part of our first set of learners — the pioneers of{" "}
-                  <strong>fluensyfrench</strong> 🥳
-                </p>
-                <p className="text-[#181A25] text-base">
-                  You’re amazing, and we’re so glad to have you. Get ready to be
-                  fluent — fluensy is possible 👍🏽
+                  Please complete your payment in the new tab.
                 </p>
               </div>
             ) : (
               <>
-                {/* ✅ Header */}
                 <div className="mt-2 mb-4">
                   <h2 className="text-xl font-semibold text-[#181A25]">
                     Start your French journey with {courseTitle}
@@ -132,7 +181,6 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
                   </p>
                 )}
 
-                {/* ✅ Form */}
                 <form
                   onSubmit={handleSubmit}
                   className="space-y-4 text-[#181A25] text-sm"
@@ -140,7 +188,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
                   <div className="flex flex-col sm:flex-row gap-4">
                     <div className="w-full">
                       <label className="block mb-1 font-medium">
-                        Your First Name
+                        First Name
                       </label>
                       <input
                         type="text"
@@ -158,9 +206,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
                     </div>
 
                     <div className="w-full">
-                      <label className="block mb-1 font-medium">
-                        Your Last Name
-                      </label>
+                      <label className="block mb-1 font-medium">Last Name</label>
                       <input
                         type="text"
                         placeholder="Type it here"
@@ -177,11 +223,8 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
                     </div>
                   </div>
 
-                  {/* Email */}
                   <div>
-                    <label className="block mb-1 font-medium">
-                      Your Email Address
-                    </label>
+                    <label className="block mb-1 font-medium">Email</label>
                     <input
                       type="email"
                       placeholder="Type it here"
@@ -201,11 +244,8 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
                     )}
                   </div>
 
-                  {/* Phone */}
                   <div>
-                    <label className="block mb-1 font-medium">
-                      Your Phone Number (WhatsApp)
-                    </label>
+                    <label className="block mb-1 font-medium">Phone</label>
                     <input
                       type="tel"
                       placeholder="Type it here"
@@ -225,35 +265,40 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
                     )}
                   </div>
 
-                  {/* Location */}
+                  {/* 🌍 Searchable Country Dropdown */}
                   <div>
-                    <label className="block mb-1 font-medium">
-                      Where are you based?
-                    </label>
-                    <select
-                      value={formData.location}
-                      onChange={(e) =>
-                        setFormData({ ...formData, location: e.target.value })
+                    <label className="block mb-1 font-medium">Country</label>
+                    <Select
+                      options={countryOptions}
+                      onChange={(option: any) =>
+                        setFormData({
+                          ...formData,
+                          location: option?.value || "",
+                        })
                       }
-                      className={inputBase}
-                      required
-                    >
-                      <option value="">Select country</option>
-                      <option value="Nigeria">Nigeria</option>
-                      <option value="Ghana">Ghana</option>
-                      <option value="Kenya">Kenya</option>
-                      <option value="South Africa">South Africa</option>
-                      <option value="United Kingdom">United Kingdom</option>
-                      <option value="United States">United States</option>
-                      <option value="Other">Other</option>
-                    </select>
+                      placeholder="Search or select your country"
+                      className="text-sm"
+                      styles={{
+                        control: (base) => ({
+                          ...base,
+                          borderRadius: "0.5rem",
+                          borderColor: "#C7CAD1",
+                          padding: "2px",
+                        }),
+                      }}
+                    />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-[80%] mx-auto block px-6 py-3 bg-[#7148E5] text-white rounded-lg font-medium mt-4"
+                    disabled={loading}
+                    className={`w-[80%] mx-auto block px-6 py-3 rounded-lg font-medium mt-4 transition-all ${
+                      loading
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-[#7148E5] hover:bg-[#5a3bc3] text-white"
+                    }`}
                   >
-                    Secure your spot
+                    {loading ? "Processing..." : "Secure your spot"}
                   </button>
                 </form>
               </>
