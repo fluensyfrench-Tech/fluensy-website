@@ -128,22 +128,7 @@ export const getPublicCohortsDetailed = async () => {
 //   }
 // };
 
-// @/lib/api.ts - Add getPaymentOptions
-export const getPaymentOptions = async () => {
-  try {
-    const res = await api.get("/api/enrollment/payment-options");
-    return res.data;
-  } catch (error) {
-    console.error("Error fetching payment options:", error);
-    // Return default options if API fails
-    return {
-      currencies: {
-        NGN: { available: true, symbol: "₦", name: "Nigerian Naira" },
-        USD: { available: false, symbol: "$", name: "US Dollar", note: "Available in production only" },
-      },
-    };
-  }
-};
+
 
 export const registerEnrollment = async (
   payload: EnrollmentPayload

@@ -105,45 +105,30 @@ export const getPublicCohortsDetailed = async () => {
   }
 };
 
-// export const registerEnrollment = async (
-//   payload: EnrollmentPayload
-// ): Promise<EnrollmentResponse> => {
-//   try {
-//     const res = await api.post("/enrollment/register", payload);
-//     return res.data;
-//   } catch (error: any) {
-//     const detail = error.response?.data?.detail;
-
-//     if (Array.isArray(detail)) {
-//       const firstError = detail[0];
-//       const field = firstError?.loc?.[1];
-//       const reason = firstError?.msg || firstError?.ctx?.reason;
-
-//       throw new Error(`${field ? `${field}: ` : ""}${reason}`);
-//     }
-
-//     throw new Error(
-//       error.response?.data?.message || error.message || "Enrollment failed"
-//     );
-//   }
-// };
-
-// @/lib/api.ts - Add getPaymentOptions
-export const getPaymentOptions = async () => {
+export const registerEnrollment = async (
+  payload: EnrollmentPayload
+): Promise<EnrollmentResponse> => {
   try {
-    const res = await api.get("/api/enrollment/payment-options");
+    const res = await api.post("/enrollment/register", payload);
     return res.data;
-  } catch (error) {
-    console.error("Error fetching payment options:", error);
-    // Return default options if API fails
-    return {
-      currencies: {
-        NGN: { available: true, symbol: "₦", name: "Nigerian Naira" },
-        USD: { available: false, symbol: "$", name: "US Dollar", note: "Available in production only" },
-      },
-    };
+  } catch (error: any) {
+    const detail = error.response?.data?.detail;
+
+    if (Array.isArray(detail)) {
+      const firstError = detail[0];
+      const field = firstError?.loc?.[1];
+      const reason = firstError?.msg || firstError?.ctx?.reason;
+
+      throw new Error(`${field ? `${field}: ` : ""}${reason}`);
+    }
+
+    throw new Error(
+      error.response?.data?.message || error.message || "Enrollment failed"
+    );
   }
 };
+
+
 
 export const registerEnrollment = async (
   payload: EnrollmentPayload
