@@ -55,6 +55,25 @@ export interface EnrollmentResponse {
   reference: string;
 }
 
+
+// @/lib/api.ts
+
+// Add this interface
+export interface PaymentVerificationResponse {
+  status: string;
+  message: string;
+  data: {
+    reference: string;
+    amount: number;
+    currency: string;
+    payment_status: string;
+    enrollment_status: string | null;
+    paid_at?: string;
+  };
+}
+
+
+
 interface ApiError {
   detail?: string;
   message?: string;
@@ -105,33 +124,23 @@ export const getPublicCohortsDetailed = async () => {
   }
 };
 
-// export const registerEnrollment = async (
-//   payload: EnrollmentPayload
-// ): Promise<EnrollmentResponse> => {
-//   try {
-//     const res = await api.post("/enrollment/register", payload);
-//     return res.data;
-//   } catch (error: any) {
-//     const detail = error.response?.data?.detail;
-
-//     if (Array.isArray(detail)) {
-//       const firstError = detail[0];
-//       const field = firstError?.loc?.[1];
-//       const reason = firstError?.msg || firstError?.ctx?.reason;
-
-//       throw new Error(`${field ? `${field}: ` : ""}${reason}`);
-//     }
-
-//     throw new Error(
-//       error.response?.data?.message || error.message || "Enrollment failed"
-//     );
-//   }
-// };
+// Add this function
+export const verifyPayment = async (
+  reference: string
+): Promise<PaymentVerificationResponse> => {
+  try {
+    const res = await api.get(`/payment/verify/${reference}`);
+    return res.data;
+  } catch (error: any) {
+    const detail = error.response?.data?.detail;
+    throw new Error(detail || error.message || "Payment verification failed");
+  }
+};
 
 // @/lib/api.ts - Add getPaymentOptions
 export const getPaymentOptions = async () => {
   try {
-    const res = await api.get("/api/enrollment/payment-options");
+    const res = await api.get("/enrollment/payment-options");
     return res.data;
   } catch (error) {
     console.error("Error fetching payment options:", error);
