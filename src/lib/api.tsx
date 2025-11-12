@@ -55,6 +55,25 @@ export interface EnrollmentResponse {
   reference: string;
 }
 
+
+// @/lib/api.ts
+
+// Add this interface
+export interface PaymentVerificationResponse {
+  status: string;
+  message: string;
+  data: {
+    reference: string;
+    amount: number;
+    currency: string;
+    payment_status: string;
+    enrollment_status: string | null;
+    paid_at?: string;
+  };
+}
+
+
+
 interface ApiError {
   detail?: string;
   message?: string;
@@ -105,6 +124,36 @@ export const getPublicCohortsDetailed = async () => {
   }
 };
 
+// Add this function
+export const verifyPayment = async (
+  reference: string
+): Promise<PaymentVerificationResponse> => {
+  try {
+    const res = await api.get(`/payment/verify/${reference}`);
+    return res.data;
+  } catch (error: any) {
+    const detail = error.response?.data?.detail;
+    throw new Error(detail || error.message || "Payment verification failed");
+  }
+};
+
+// @/lib/api.ts - Add getPaymentOptions
+export const getPaymentOptions = async () => {
+  try {
+    const res = await api.get("/enrollment/payment-options");
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching payment options:", error);
+    // Return default options if API fails
+    return {
+      currencies: {
+        NGN: { available: true, symbol: "₦", name: "Nigerian Naira" },
+        USD: { available: false, symbol: "$", name: "US Dollar", note: "Available in production only" },
+      },
+    };
+  }
+};
+
 export const registerEnrollment = async (
   payload: EnrollmentPayload
 ): Promise<EnrollmentResponse> => {
@@ -113,6 +162,18 @@ export const registerEnrollment = async (
     return res.data;
   } catch (error: any) {
     const detail = error.response?.data?.detail;
+
+    // Handle duplicate enrollment error
+    if (error.response?.status === 409 || 
+        (typeof detail === 'string' && detail.includes('already enrolled'))) {
+      throw new Error("You are already enrolled in this cohort. Please check your email or contact support.");
+    }
+
+    // Handle unique constraint violation
+    if (error.response?.status === 400 && 
+        (typeof detail === 'string' && detail.includes('duplicate'))) {
+      throw new Error("You are already enrolled in this cohort. Please check your email or contact support.");
+    }
 
     if (Array.isArray(detail)) {
       const firstError = detail[0];
