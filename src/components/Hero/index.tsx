@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
     <>
       {/* HERO CONTENT */}
       <section className="relative overflow-hidden pb-20">
-        <div className="relative z-20 max-w-3xl mx-auto px-4 text-center mt-28">
+        <div className="relative z-20 max-w-4xl mx-auto px-4 text-center mt-36">
           <motion.h1
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -31,9 +31,8 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-3xl sm:text-5xl lg:text-7xl leading-none md:leading-normal mb-6"
           >
-            <span className="block font-light">With fluensyfrench</span>
             <span className="block mt-2 font-bold">
-              Fluensy is possible
+              Your journey to fluent French starts here
             </span>
           </motion.h1>
 
@@ -43,20 +42,17 @@ const Hero: React.FC = () => {
             transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             className="text-base md:text-lg font-normal mb-6 md:mb-8 max-w-xl mx-auto leading-relaxed"
           >
-            The only path to real fluensy is here
+            We make French learning fun, impactful, and accessible.
           </motion.p>
 
-          <Link href="/academy">
+          <Link href="/academy" className="">
             <motion.button
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-              className="group inline-flex items-center px-8 md:px-12 py-4 md:py-5 mt-3 md:mt-0 text-white
-                       bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base sm:text-xl font-normal 
-                       rounded-lg shadow-lg hover:shadow-xl 
-                       transform hover:scale-105 transition-all duration-300"
+              className="bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base  text-white px-6 py-3.5 h-[66px] w-[378px] rounded-md text-center font-medium hover:opacity-95 transition"
             >
-              Start your French course now
+              Enrol Now
             </motion.button>
           </Link>
         </div>

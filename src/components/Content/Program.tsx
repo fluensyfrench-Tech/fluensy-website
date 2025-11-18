@@ -12,13 +12,13 @@ interface Cohort {
   id: string;
   name: string;
   year: number;
-  is_active: boolean;
-  registration_open_date: string;
+  is_active?: boolean;
+  registration_open_date?: string;
   registration_close_date: string;
   registration_status: string;
   days_until_close: number;
-  program_duration_months: number;
-  max_students: number;
+  program_duration_months?: number;
+  max_students?: number;
   courses: Course[];
 }
 
@@ -32,27 +32,46 @@ const Program = () => {
   const [selectedCohortId, setSelectedCohortId] = useState<string | null>(null);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
-  // ✅ Format date as “October 25, 2025”
-const formatDate = (dateString?: string): string => {
-  if (!dateString) return "-";
+  // ✅ Format date as "October 25, 2025"
+  const formatDate = (dateString?: string): string => {
+    if (!dateString) return "-";
 
-  const date = new Date(dateString);
-  if (isNaN(date.getTime())) return "-"; // Invalid date
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return "-"; // Invalid date
 
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-};
-
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
 
   // ✅ Fetch cohorts
   const fetchCohorts = useCallback(async () => {
     try {
       setLoading(true);
       const data = await getPublicCohortsDetailed();
-      setCohorts(data?.cohorts || []);
+      
+      // ✅ FIX: Handle both single object and array responses
+      if (data) {
+        // If data.cohorts exists (array), use it
+        if (Array.isArray(data.cohorts)) {
+          setCohorts(data.cohorts);
+        } 
+        // If data itself is the cohort object
+        else if (data.id && data.courses) {
+          setCohorts([data]);
+        }
+        // If data is an array directly
+        else if (Array.isArray(data)) {
+          setCohorts(data);
+        }
+        else {
+          setCohorts([]);
+        }
+      } else {
+        setCohorts([]);
+      }
     } catch (err) {
       console.error(err);
       setError("Failed to load programs. Please try again later.");
@@ -71,6 +90,23 @@ const formatDate = (dateString?: string): string => {
     setSelectedCohortId(cohortId);
     setShowModal(true);
     setOpenDropdown(null);
+  };
+
+  // ✅ Calculate program duration from courses if not provided
+  const getProgramDuration = (cohort: Cohort): string => {
+    if (cohort.program_duration_months) {
+      return `${cohort.program_duration_months}-month`;
+    }
+    
+    // Calculate from course dates
+    if (cohort.courses.length > 0) {
+      const firstStart = new Date(cohort.courses[0]?.start_date);
+      const lastEnd = new Date(cohort.courses[cohort.courses.length - 1]?.end_date);
+      const months = Math.round((lastEnd.getTime() - firstStart.getTime()) / (1000 * 60 * 60 * 24 * 30));
+      return `${months}-month`;
+    }
+    
+    return "-";
   };
 
   return (
@@ -95,33 +131,32 @@ const formatDate = (dateString?: string): string => {
             </p>
           </motion.div>
 
-          {/* Loading */}
-     {/* Loading skeleton */}
-{loading && (
-  <div className="animate-pulse space-y-10">
-    {[...Array(2)].map((_, i) => (
-      <div key={i} className="border border-gray-200 rounded-xl p-6">
-        <div className="h-6 w-48 bg-gray-200 rounded mb-4"></div>
-        <div className="space-y-3">
-          <div className="h-4 w-3/4 bg-gray-200 rounded"></div>
-          <div className="h-4 w-2/3 bg-gray-200 rounded"></div>
-          <div className="h-4 w-1/2 bg-gray-200 rounded"></div>
-        </div>
+          {/* Loading skeleton */}
+          {loading && (
+            <div className="animate-pulse space-y-10">
+              {[...Array(2)].map((_, i) => (
+                <div key={i} className="border border-gray-200 rounded-xl p-6">
+                  <div className="h-6 w-48 bg-gray-200 rounded mb-4"></div>
+                  <div className="space-y-3">
+                    <div className="h-4 w-3/4 bg-gray-200 rounded"></div>
+                    <div className="h-4 w-2/3 bg-gray-200 rounded"></div>
+                    <div className="h-4 w-1/2 bg-gray-200 rounded"></div>
+                  </div>
 
-        <div className="grid grid-cols-2 gap-4 mt-6">
-          {[...Array(2)].map((_, j) => (
-            <div key={j} className="border border-gray-200 rounded-xl p-4">
-              <div className="h-5 w-32 bg-gray-200 rounded mb-2"></div>
-              <div className="h-3 w-48 bg-gray-200 rounded mb-3"></div>
-              <div className="h-3 w-1/2 bg-gray-200 rounded"></div>
-              <div className="h-10 w-full bg-gray-200 rounded mt-4"></div>
+                  <div className="grid grid-cols-2 gap-4 mt-6">
+                    {[...Array(2)].map((_, j) => (
+                      <div key={j} className="border border-gray-200 rounded-xl p-4">
+                        <div className="h-5 w-32 bg-gray-200 rounded mb-2"></div>
+                        <div className="h-3 w-48 bg-gray-200 rounded mb-3"></div>
+                        <div className="h-3 w-1/2 bg-gray-200 rounded"></div>
+                        <div className="h-10 w-full bg-gray-200 rounded mt-4"></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
-    ))}
-  </div>
-)}
+          )}
 
           {/* Error */}
           {error && !loading && (
@@ -193,7 +228,7 @@ const formatDate = (dateString?: string): string => {
                         className="w-5 h-5 mt-1"
                       />
                       <span>
-                        {cohort.program_duration_months}-month program duration
+                        {getProgramDuration(cohort)} program duration
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
@@ -310,7 +345,6 @@ const formatDate = (dateString?: string): string => {
       </section>
 
       {/* 🧾 Registration Modal */}
-
       {selectedCourse && selectedCohortId && (
         <RegistrationModal
           isOpen={showModal}

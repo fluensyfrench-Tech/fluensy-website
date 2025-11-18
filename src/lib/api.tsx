@@ -87,7 +87,7 @@ export const addToWaitlist = async (
 
 export const getPublicCourses = async () => {
   try {
-    const res = await api.get("/public/courses");
+    const res = await api.get("api/public/courses");
     return res.data;
   } catch (error) {
     console.error("Error fetching courses:", error);
@@ -97,7 +97,7 @@ export const getPublicCourses = async () => {
 
 export const getPublicCohortsDetailed = async () => {
   try {
-    const res = await api.get("/public/cohorts/detailed");
+    const res = await api.get("api/public/cohorts/detailed");
     return res.data;
   } catch (error) {
     console.error("Error fetching courses:", error);
@@ -109,7 +109,7 @@ export const registerEnrollment = async (
   payload: EnrollmentPayload
 ): Promise<EnrollmentResponse> => {
   try {
-    const res = await api.post("/enrollment/register", payload);
+    const res = await api.post("api/enrollment/register", payload);
     return res.data;
   } catch (error: any) {
     const detail = error.response?.data?.detail;
