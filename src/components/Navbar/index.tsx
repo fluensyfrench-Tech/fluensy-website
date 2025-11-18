@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center space-x-6">
             <NavLink href="/meet-us">Meet us</NavLink>
             <Link
-              href="/enrol"
+              href="/program"
               className="bg-[#7148E5] text-white px-6 py-3.5 h-[52px] w-[221px] rounded-md text-base text-center font-medium hover:opacity-95 transition hover:bg-[#7DE5F2] hover:text-[#181A25]"
             >
               Enrol now
