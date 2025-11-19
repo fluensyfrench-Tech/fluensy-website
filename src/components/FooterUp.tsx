@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { addToWaitlist } from "@/lib/api";
@@ -19,16 +19,13 @@ function FooterUp() {
       return;
     }
 
-   const date = new Date().toISOString();
+    const date = new Date().toISOString();
 
-    toast.promise(
-      addToWaitlist(email, date),
-      {
-        loading: "Submitting...",
-        success: "🎉 You're on the waitlist!",
-        error: "Something went wrong. Try again later.",
-      }
-    );
+    toast.promise(addToWaitlist(email, date), {
+      loading: "Submitting...",
+      success: "🎉 You're on the waitlist!",
+      error: "Something went wrong. Try again later.",
+    });
 
     setEmail("");
   };
@@ -76,6 +73,7 @@ function FooterUp() {
           </div>
         </form>
       </motion.div>
+      <div id="cohort" />
     </section>
   );
 }

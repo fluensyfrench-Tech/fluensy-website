@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { cards } from "../../data/content";
 import { registerEmail } from "../../util/register";
 import Link from "next/link";
+import MotionButton from "../ui/MotionButton";
 
 const Hero: React.FC = () => {
   const illustrations = [
@@ -45,12 +46,12 @@ const Hero: React.FC = () => {
             We make French learning fun, impactful, and accessible.
           </motion.p>
 
-          <Link href="/academy" className="">
+          <Link href="/program">
             <motion.button
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-              className="bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base  text-white px-6 py-3.5 h-[66px] w-[378px] rounded-md text-center font-medium hover:opacity-95 transition"
+              className="bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base  text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-md text-center font-medium hover:opacity-95 transition"
             >
               Enrol Now
             </motion.button>
@@ -103,9 +104,17 @@ const Hero: React.FC = () => {
               <br className="hidden md:block" /> you in our growing learners’
               club
             </h2>
-            <button className="px-14 py-4 md:py-5 text-white bg-[#7148E5] hover:bg-white hover:text-[#181A25] text-base md:text-xl rounded-lg hidden md:block font-normal">
-              Join now for free
-            </button>
+
+            <Link href="/#cohort">
+              <motion.button
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+                className="bg-[#7148E5] hover:bg-[#ffffff] hover:text-[#181A25] text-base  text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-md text-center font-medium hover:opacity-95 transition"
+              >
+                Join now for free
+              </motion.button>
+            </Link>
           </motion.div>
 
           {/* Right Cards */}
@@ -135,7 +144,7 @@ const Hero: React.FC = () => {
             ))}
           </div>
 
-          <button className="w-full mt-2 px-6 py-4 md:py-5 text-white bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base md:text-xl rounded-lg block md:hidden">
+          <button className="w-full max-w-[378px] mt-2 px-6 py-4 md:py-5 text-white bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base md:text-xl rounded-lg block md:hidden">
             Join now for free
           </button>
         </div>

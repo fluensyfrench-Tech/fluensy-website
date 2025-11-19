@@ -15,7 +15,7 @@ const MotionButton: React.FC<MotionButtonProps> = ({
   ...props
 }) => {
   const base =
-    "bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base text-white px-6 py-3.5 h-[66px] w-[378px] rounded-md text-center font-medium hover:opacity-95 transition";
+    "bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-md text-center font-medium hover:opacity-95 transition";
   const classes = `${base} ${className}`.trim();
 
   if (href) {

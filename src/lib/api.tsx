@@ -55,7 +55,6 @@ export interface EnrollmentResponse {
   reference: string;
 }
 
-
 // @/lib/api.ts
 
 // Add this interface
@@ -71,8 +70,6 @@ export interface PaymentVerificationResponse {
     paid_at?: string;
   };
 }
-
-
 
 interface ApiError {
   detail?: string;
@@ -103,7 +100,6 @@ export const addToWaitlist = async (
   }
 };
 
-
 export const getPublicCourses = async () => {
   try {
     const res = await api.get("api/public/courses");
@@ -129,7 +125,7 @@ export const verifyPayment = async (
   reference: string
 ): Promise<PaymentVerificationResponse> => {
   try {
-    const res = await api.get(`/payment/verify/${reference}`);
+    const res = await api.get(`api/payment/verify/${reference}`);
     return res.data;
   } catch (error: any) {
     const detail = error.response?.data?.detail;
@@ -137,21 +133,24 @@ export const verifyPayment = async (
   }
 };
 
-// @/lib/api.ts - Add getPaymentOptions
 export const getPaymentOptions = async () => {
-  try {
-    const res = await api.get("/enrollment/payment-options");
-    return res.data;
-  } catch (error) {
-    console.error("Error fetching payment options:", error);
-    // Return default options if API fails
-    return {
-      currencies: {
-        NGN: { available: true, symbol: "₦", name: "Nigerian Naira" },
-        USD: { available: false, symbol: "$", name: "US Dollar", note: "Available in production only" },
+  // try {
+  //   const res = await api.get("api/enrollment/payment-options");
+  //   return res.data;
+  // } catch (error) {
+  //   console.error("Error fetching payment options:", error);
+  //   // Return default options if API fails
+  return {
+    currencies: {
+      NGN: { available: true, symbol: "₦", name: "Nigerian Naira" },
+      USD: {
+        available: false,
+        symbol: "$",
+        name: "US Dollar",
+        note: "Available in production only",
       },
-    };
-  }
+    },
+  };
 };
 
 export const registerEnrollment = async (
@@ -164,15 +163,24 @@ export const registerEnrollment = async (
     const detail = error.response?.data?.detail;
 
     // Handle duplicate enrollment error
-    if (error.response?.status === 409 || 
-        (typeof detail === 'string' && detail.includes('already enrolled'))) {
-      throw new Error("You are already enrolled in this cohort. Please check your email or contact support.");
+    if (
+      error.response?.status === 409 ||
+      (typeof detail === "string" && detail.includes("already enrolled"))
+    ) {
+      throw new Error(
+        "You are already enrolled in this cohort. Please check your email or contact support."
+      );
     }
 
     // Handle unique constraint violation
-    if (error.response?.status === 400 && 
-        (typeof detail === 'string' && detail.includes('duplicate'))) {
-      throw new Error("You are already enrolled in this cohort. Please check your email or contact support.");
+    if (
+      error.response?.status === 400 &&
+      typeof detail === "string" &&
+      detail.includes("duplicate")
+    ) {
+      throw new Error(
+        "You are already enrolled in this cohort. Please check your email or contact support."
+      );
     }
 
     if (Array.isArray(detail)) {
@@ -188,4 +196,3 @@ export const registerEnrollment = async (
     );
   }
 };
-

@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NavLink: React.FC<{
   href: string;
@@ -19,9 +20,17 @@ const NavLink: React.FC<{
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isActive = mounted && pathname === "/program";
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white z-50 shadow-sm">
+    <nav className="fixed z-50 top-0 left-0 w-full bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-24">
           <Link
@@ -34,19 +43,15 @@ const Navbar: React.FC = () => {
 
           <div className="hidden md:flex items-center space-x-6">
             <NavLink href="/meet-us">Meet us</NavLink>
-            {(() => {
-              const pathname = typeof window !== "undefined" ? window.location.pathname : "";
-              const isActive = pathname === "/program";
-              return (
-                <Link
-                  href="/program"
-                  onClick={() => setOpen(false)}
-                  className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${isActive ? "text-[#7148E5] font-semibold" : ""}`}
-                >
-                  course
-                </Link>
-              );
-            })()}
+            <Link
+              href="/program"
+              onClick={() => setOpen(false)}
+              className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${
+                isActive ? "text-[#8f66ff] font-semibold" : ""
+              }`}
+            >
+              course
+            </Link>
           </div>
 
           <div className="md:hidden">
