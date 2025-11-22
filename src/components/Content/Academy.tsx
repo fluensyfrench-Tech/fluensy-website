@@ -7,8 +7,6 @@ import { cards } from "@/data/content";
 import ScrollSection from "./ScrollSection";
 
 const Academy: React.FC = () => {
-
-
   const features = [
     "Free community support",
     "Science-backed learning methods",
@@ -90,7 +88,7 @@ const Academy: React.FC = () => {
         </div>
       </section>
 
-     <ScrollSection />
+      <ScrollSection />
 
       <section className="bg-[#7148E5] relative z-30 w-full">
         <div className="max-w-6xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">

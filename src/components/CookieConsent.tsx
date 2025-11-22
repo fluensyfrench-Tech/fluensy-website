@@ -31,9 +31,7 @@ export default function CookieConsent() {
       {/* Cookie Banner */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] md:w-[640px] bg-white border border-gray-200 rounded-2xl shadow-xl p-5 md:p-6 z-50 flex flex-col md:flex-row md:items-center justify-between gap-4 animate-fadeIn">
         <p className="text-sm text-[#3A3D44] leading-snug md:w-[70%]">
-          We use cookies to enhance your experience, improve site performance,
-          and understand user behavior. You can choose to accept all cookies, reject non-essential ones, or customize your preferences. 
-          For more details, see our{" "}
+          We use cookies to improve your experience. Learn more in our{" "}
           <Link
             href="/privacy"
             className="text-[#7148E5] font-medium hover:underline"
