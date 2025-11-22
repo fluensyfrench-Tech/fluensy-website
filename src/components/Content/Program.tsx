@@ -104,7 +104,7 @@ const Program = () => {
 
   return (
     <>
-      <section className="w-full mx-auto bg-white py-8 md:py-16 px-4 sm:px-6 lg:px-20">
+      <section className="w-full max-w-[1370px] mx-auto bg-white py-8 md:py-16 px-4 sm:px-6 lg:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <motion.div
@@ -116,11 +116,13 @@ const Program = () => {
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#181A25] mt-6 md:mt-12 mb-3 md:mb-4 pt-3 md:pt-5">
               CEFR-Aligned French Language Courses
             </h2>
-            <p className="text-base md:text-lg lg:text-xl text-[#181A25] mb-8 md:mb-12 max-w-3xl">
+            <p className="text-base md:text-lg lg:text-xl text-[#181A25] mb-8 md:mb-12 max-w-7xl">
               Learn French with courses aligned to the Common European Framework
-              of Reference (CEFR) — a globally recognized standard for measuring
-              language proficiency. Build real-world skills in speaking,
-              listening, reading, and writing.
+              of Reference for Languages (CEFR), a globally recognized standard
+              for measuring language proficiency. Our courses help you build
+              practical skills in speaking, listening, reading, and writing,
+              while guiding you through each CEFR level from beginner to
+              intermediate.
             </p>
           </motion.div>
 
@@ -195,23 +197,23 @@ const Program = () => {
                   viewport={{ once: true }}
                   className="w-full lg:w-[65%] bg-white border border-[#C7CAD1] rounded-xl shadow-sm px-4 sm:px-6 py-6 md:py-8 mb-8 md:mb-10"
                 >
-                  <ul className="space-y-3 md:space-y-4 text-[#181A25] text-sm sm:text-base md:text-lg font-normal">
-                    <li className="flex items-start gap-2 md:gap-3">
+                  <ul className="space-y-3 md:space-y-5 text-[#181A25] text-sm sm:text-base md:text-lg font-normal">
+                    <li className="flex items-center gap-2 md:gap-3">
                       <img
                         src="/images/icons/gray-check.svg"
                         alt=""
-                        className="w-4 h-4 md:w-5 md:h-5 mt-1 flex-shrink-0"
+                        className="w-4 h-4 md:w-7 md:h-7 flex-shrink-0"
                       />
                       <span>
                         <strong>Registration is open</strong> until{" "}
                         {formatDate(cohort.registration_close_date)}
                       </span>
                     </li>
-                    <li className="flex items-start gap-2 md:gap-3">
+                    <li className="flex items-center gap-2 md:gap-3">
                       <img
                         src="/images/icons/gray-check.svg"
                         alt=""
-                        className="w-4 h-4 md:w-5 md:h-5 mt-1 flex-shrink-0"
+                        className="w-4 h-4 md:w-7 md:h-7 flex-shrink-0"
                       />
                       <span>
                         {cohort.program_duration_months || 3}-month program
@@ -219,11 +221,11 @@ const Program = () => {
                       </span>
                     </li>
                     {cohort.courses && cohort.courses.length > 0 && (
-                      <li className="flex items-start gap-2 md:gap-3">
+                      <li className="flex items-center gap-2 md:gap-3">
                         <img
                           src="/images/icons/gray-check.svg"
                           alt=""
-                          className="w-4 h-4 md:w-5 md:h-5 mt-1 flex-shrink-0"
+                          className="w-4 h-4 md:w-7 md:h-7 flex-shrink-0"
                         />
                         <span>
                           Classes run from{" "}
@@ -234,21 +236,29 @@ const Program = () => {
                         </span>
                       </li>
                     )}
-                    <li className="flex items-start gap-2 md:gap-3">
+                    <li className="flex items-center gap-2 md:gap-3">
                       <img
                         src="/images/icons/gray-check.svg"
                         alt=""
-                        className="w-4 h-4 md:w-5 md:h-5 mt-1 flex-shrink-0"
+                        className="w-4 h-4 md:w-7 md:h-7 flex-shrink-0"
                       />
                       <span>4–5 live classes weekly + community support</span>
                     </li>
-                    <li className="flex items-start gap-2 md:gap-3">
+                    <li className="flex items-center gap-2 md:gap-3">
                       <img
                         src="/images/icons/gray-check.svg"
                         alt=""
-                        className="w-4 h-4 md:w-5 md:h-5 mt-1 flex-shrink-0"
+                        className="w-4 h-4 md:w-7 md:h-7 flex-shrink-0"
                       />
                       <span>Zoom/Meet, 100% online</span>
+                    </li>
+                    <li className="flex items-center gap-2 md:gap-3">
+                      <img
+                        src="/images/icons/gray-check.svg"
+                        alt=""
+                        className="w-4 h-4 md:w-7 md:h-7 flex-shrink-0"
+                      />
+                      <span>We stay connected on Telegram</span>
                     </li>
                   </ul>
                 </motion.div>
@@ -259,25 +269,24 @@ const Program = () => {
                     {cohort.courses.map((course) => (
                       <motion.div
                         key={course.id}
-                        whileHover={{ scale: 1.02 }}
                         transition={{ type: "spring", stiffness: 300 }}
-                        className="bg-white rounded-xl border border-[#C7CAD1] shadow-sm p-4 md:p-6 flex flex-col"
+                        className="bg-white rounded-lg border border-[#C7CAD1] shadow-sm p-4 md:p-6 flex flex-col"
                       >
                         {/* Price tags at top */}
                         <div className="flex items-center gap-2 mb-3 md:mb-4 flex-wrap">
-                          <span className="bg-[#E6E6FA] text-[#181A25] rounded-lg px-2 md:px-3 py-1 text-xs md:text-sm font-semibold">
+                          <span className="bg-[#7DE5F2] text-[#3A3D44] rounded-lg px-2 md:px-3 py-1 text-xs md:text-sm font-semibold">
                             ₦{course.price_ngn.toLocaleString()}
                           </span>
-                          <span className="bg-[#E6E6FA] text-[#181A25] rounded-lg px-2 md:px-3 py-1 text-xs md:text-sm font-semibold">
+                          <span className="bg-[#7DE5F2] text-[#3A3D44] rounded-lg px-2 md:px-3 py-1 text-xs md:text-sm font-medium">
                             ${course.price_usd}
                           </span>
                         </div>
 
                         {/* Title and Level */}
-                        <div className="mb-3">
+                        <div className="mb-1">
                           <h3 className="text-base md:text-lg text-[#181A25]">
-                            <span className="font-normal">{course.title}</span>{" "}
-                            <span className="font-bold">{`{${course.level}}`}</span>
+                            <span className="font-bold">{course.title}</span>{" "}
+                            <span className="font-bold">{`(${course.level})`}</span>
                           </h3>
                         </div>
 
@@ -288,18 +297,18 @@ const Program = () => {
 
                         {/* Learning outcomes */}
                         <div className="mb-4">
-                          <h4 className="text-xs md:text-sm font-semibold text-[#3A3D44] mb-2">
+                          <h4 className="text-sm md:text-base font-medium text-[#3A3D44] mb-2">
                             Learning outcomes
                           </h4>
-                          <ul className="space-y-1.5">
+                          <ul className="space-y-2">
                             {course.learning_outcomes &&
                             course.learning_outcomes.length > 0 ? (
                               course.learning_outcomes.map((item, i) => (
-                                <li key={i} className="flex items-start gap-2">
+                                <li key={i} className="flex items-center gap-2">
                                   <img
                                     src="/images/icons/gray-check.svg"
                                     alt=""
-                                    className="w-3 h-3 md:w-4 md:h-4 mt-0.5 flex-shrink-0"
+                                    className="w-3 h-3 md:w-6 md:h-6 mt-0.5 flex-shrink-0"
                                   />
                                   <span className="font-light text-xs md:text-sm text-[#181A1D] leading-snug">
                                     {item}
@@ -322,7 +331,7 @@ const Program = () => {
                                 openDropdown === course.id ? null : course.id
                               )
                             }
-                            className="w-full flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-white text-xs md:text-sm font-medium rounded-lg transition-all"
+                            className="w-full flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-white text-sm md:text-base font-medium rounded-[12px] transition-all"
                           >
                             Register Now{" "}
                             <ArrowDown className="w-3 h-3 md:w-4 md:h-4" />
@@ -370,12 +379,10 @@ const Program = () => {
               </section>
             ))}
 
-          {/* Full program highlight */}
           <section className="mt-8 md:mt-12">
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 md:mb-8">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-medium mb-6 md:mb-8">
               A1 to B2 full-level program
             </h3>
-
             <div className="grid md:p-0 p-3 gap-6 md:gap-8 grid-cols-1 lg:grid-cols-2 border border-[#C7CAD1] rounded-xl overflow-hidden">
               <div className="bg-white p-6 md:p-8">
                 <ul className="space-y-3 md:space-y-4 text-[#181A25] text-sm sm:text-base md:text-lg font-normal">
@@ -460,7 +467,7 @@ const Program = () => {
                         <img
                           src="/images/icons/gray-check.svg"
                           alt=""
-                          className="w-3 h-3 md:w-4 md:h-4 mt-0.5 flex-shrink-0"
+                          className="w-3 h-3 md:w-6 md:h-6 mt-0.5 flex-shrink-0"
                         />
                         <span>
                           Gain fluency from beginner to intermediate and develop
@@ -468,24 +475,24 @@ const Program = () => {
                           skills
                         </span>
                       </li>
-                      <li className="flex items-start gap-2">
+                      {/* <li className="flex items-start gap-2">
                         <img
                           src="/images/icons/gray-check.svg"
                           alt=""
                           className="w-3 h-3 md:w-4 md:h-4 mt-0.5 flex-shrink-0"
                         />
                         <span>Prepare confidently for DELF exam</span>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 </div>
 
                 <div className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4">
                   <button className="flex-1 bg-[#7148E5] text-white py-2.5 md:py-3 rounded-lg text-sm md:text-base font-medium opacity-70 cursor-not-allowed transition">
-                    coming soon
+                    Register (USD)
                   </button>
                   <button className="flex-1 bg-[#7DE5F2] text-[#181A25] py-2.5 md:py-3 rounded-lg text-sm md:text-base font-medium opacity-70 cursor-not-allowed transition">
-                    coming soon
+                    Register (Naira)
                   </button>
                 </div>
               </div>
@@ -493,7 +500,7 @@ const Program = () => {
           </section>
 
           <div className="text-center py-12 md:py-16 px-4">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-[#181A25] mb-2">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium !leading-[1.3] text-[#181A25] mb-2">
               More programs coming soon. <br className="hidden sm:block" /> Stay
               tuned
             </h3>

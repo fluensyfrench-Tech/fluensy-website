@@ -9,7 +9,7 @@ const MeetUs: React.FC = () => {
         <motion.div
           className="w-full md:w-3/5 text-[#181A25] text-left flex flex-col justify-center max-w-2xl space-y-4"
           initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
         >
@@ -36,14 +36,15 @@ const MeetUs: React.FC = () => {
             encourage, and celebrate every step of their journey.
           </p>
           <p className="text-lg md:text-xl font-medium">
-            Remember, with fluensyfrench, <strong>fluensy is possible 👍🏾</strong>
+            Remember, with fluensyfrench,{" "}
+            <strong>fluensy is possible 👍🏾</strong>
           </p>
         </motion.div>
 
         <motion.div
           className="w-full md:w-2/5 flex justify-end items-center p-2 md:p-8"
           initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           viewport={{ once: true }}
         >
