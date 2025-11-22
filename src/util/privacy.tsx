@@ -5,7 +5,7 @@ export const privacy = [
     content: [
       {
         description: `At fluensyfrench, your privacy matters. We are committed to protecting your personal information and ensuring that it is collected, used, and stored responsibly.<br />
-        This Privacy Policy explains the information we collect, how we use it, when we share it, and the choices available to you across our services—including our website, fluensyfrench Academy, and mobile app waitlist.<br />
+        This Privacy Policy explains the information we collect, how we use it, when we share it, and the choices available to you across our services—including our website, and mobile app waitlist.<br /><br />
         By using our services, you agree to the practices described in this Privacy Policy. If you do not agree, you should discontinue using fluensyfrench services.`,
       },
     ],
@@ -22,6 +22,7 @@ export const privacy = [
           <li>Email address</li>
           <li>Phone number</li>
           <li>Payment information (processed securely via third-party providers; we do not store your full payment details)</li>
+          <li>Country of residence.</li>
         </ul><br />
         <strong>Mobile App Waitlist:</strong><br />
         <ul class="list-disc list-inside">
@@ -66,19 +67,23 @@ export const privacy = [
     label: "Cookies and Tracking Technologies",
     content: [
       {
-        description: `fluensyfrench uses cookies and similar tracking technologies to improve your experience, analyze performance, and deliver personalized content.<br /><br />
-        <strong>Types of Cookies We Use:</strong><br />
-        <ul class="list-disc list-inside">
-          <li><strong>Essential Cookies:</strong> Necessary for the basic operation of our website and services (e.g., course access).</li>
-          <li><strong>Analytics Cookies:</strong> Help us understand how learners interact with our platform so we can improve functionality and usability.</li>
-          <li><strong>Personalization Cookies:</strong> Enable us to tailor recommendations, course suggestions, and communications to your preferences.</li>
-          <li><strong>Advertising and Third-Party Cookies (if applicable):</strong> May be used to deliver relevant ads or measure the effectiveness of promotional campaigns.</li>
-        </ul><br />
-        <strong>Managing Cookies:</strong><br />
-        Most browsers allow you to block, delete, or disable cookies through their settings. Please note that disabling cookies may limit some features of our services.<br /><br />
-        <strong>Third-Party Analytics:</strong><br />
-        We may work with analytics providers (such as Google Analytics) that use cookies and tracking scripts to help us measure traffic and usage trends. These providers have their own privacy policies governing their data practices.<br /><br />
-        By using fluensyfrench, you consent to the use of cookies and tracking technologies as described in this Privacy Policy.`,
+        description: `fluensyfrench uses cookies and similar tracking technologies to ensure our website works properly, improve site performance, and understand how visitors use our pages. <br /> <br />
+
+Types of Cookies We Use: <br />
+<ul>
+<li>
+Essential Cookies: Enable core site functions such as registration, payments, and secure access.
+</li>
+<li>
+Analytics Cookies: Help us understand how visitors use our website so we can improve usability and performance.
+</li>
+</ul>
+<br />
+Managing Cookies: <br />You can accept or reject cookies when prompted on our site. Most browsers also allow you to block or delete cookies through their settings. Please note that disabling cookies may affect how some parts of our website function.
+<br /><br />
+Third-Party Analytics: <br />We may use trusted analytics tools (such as Google Analytics) to collect anonymous data on site traffic and usage. These providers have their own privacy policies describing how they handle data.
+<br /><br />
+By using fluensyfrench, you consent to the use of cookies as described in this policy.`,
       },
     ],
   },

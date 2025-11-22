@@ -4,9 +4,9 @@ export const terms = [
     label: "Introduction",
     content: [
       {
-        description: `Welcome to fluensyfrench, an online platform designed to help you learn French through fluensyfrench Academy, Telegram community and our mobile application.<br />
-        These Terms of Service (“Terms”) form a legal agreement between you and fluensyfrench. They explain how our services work, what you can expect from us, and what we expect from you when you use our learning tools and resources.<br />
-        By accessing or using fluensyfrench, you agree to comply with these Terms and any other policies or guidelines we make available. If you do not agree, you should not use our services.`,
+        description: `Welcome to fluensyfrench, an online platform designed to help you learn French through our courses, Telegram community and mobile application. <br /><br />
+ These Terms of Service (“Terms”) form a legal agreement between you and fluensyfrench. They explain how our services work, what you can expect from us, and what we expect from you when you use our learning tools and resources. <br /><br />
+ By accessing or using fluensyfrench, you agree to comply with these Terms and any other policies or guidelines we make available. If you do not agree, you should not use our services.`,
       },
     ],
   },
@@ -47,17 +47,19 @@ export const terms = [
     label: "Your Content and Use of Services",
     content: [
       {
-        description: `When using fluensyfrench, you interact with a variety of learning materials, including videos, lessons, practice exercises, flashcards, and other educational resources.<br /><br />
-        <strong>Ownership:</strong> All course content provided by fluensyfrench or licensed partners remains the intellectual property of its creators. Access does not transfer ownership.<br />
-        <strong>Usage Rights:</strong> You receive a limited, personal, non-exclusive, non-transferable license to use course materials solely for your educational purposes within our platform.<br />
-        <strong>Restrictions:</strong>
+        description: `When using fluensyfrench, you interact with a variety of learning materials, including flashcards, lessons, practice exercises, and other educational resources.<br /><br /></li>
         <ul class="list-disc pl-5 mt-2">
+        <li>Ownership:All course content provided by fluensyfrench or licensed partners remains the intellectual property of its creators. Access does not transfer ownership.<br />
+        <li>Usage Rights: You receive a limited, personal, non-exclusive, non-transferable license to use course materials solely for your educational purposes within our platform.<br /></li>
+        Restrictions:
           <li>You may not reproduce, distribute, sell, share, or publicly display content from fluensyfrench without prior written permission, unless allowed by law.</li>
           <li>Sharing login credentials or using methods to bypass access restrictions is strictly prohibited.</li>
+        <li>User Content: If you upload or submit content (e.g., comments, assignments, posts), you retain ownership of your contributions but grant fluensyfrench a worldwide, royalty-free license to host, display, and use them for educational and service improvement purposes.<br /></li>
+        <li>Responsibility: You are solely responsible for content you contribute and must not infringe on intellectual property rights, privacy rights, or applicable laws.<br />
+        </li> <br />
+        We may remove or restrict access to content if it violates these Terms or applicable law.
         </ul>
-        <strong>User Content:</strong> If you upload or submit content (e.g., comments, assignments, posts), you retain ownership of your contributions but grant fluensyfrench a worldwide, royalty-free license to host, display, and use them for educational and service improvement purposes.<br />
-        <strong>Responsibility:</strong> You are solely responsible for content you contribute and must not infringe on intellectual property rights, privacy rights, or applicable laws.<br />
-        We may remove or restrict access to content if it violates these Terms or applicable law.`,
+        `,
       },
     ],
   },

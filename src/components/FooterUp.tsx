@@ -5,6 +5,7 @@ import { addToWaitlist } from "@/lib/api";
 import toast from "react-hot-toast";
 import { CustomModal } from "./CustomModal";
 import { useModal } from "./CustomModal";
+
 function FooterUp() {
   const [email, setEmail] = useState("");
   const { openModal, closeModal, isOpen } = useModal();
@@ -73,7 +74,7 @@ function FooterUp() {
 
             <button
               type="submit"
-              className="mt-2 w-full bg-[#7DE5F2] text-black font-semibold font-light px-4 py-3 my-2 mr-2 rounded-md hover:bg-[#7DE5F2] hover:text-black transition-colors duration-200 flex items-center justify-center text-center min-[400px]:hidden"
+              className="mt-2 w-full bg-[#7DE5F2] text-black font-semibold font-light px-4 py-4 my-2 mr-2 rounded-md hover:bg-[#7DE5F2] hover:text-black transition-colors duration-200 flex items-center justify-center text-center min-[400px]:hidden"
             >
               Join the waitlist
             </button>
@@ -86,6 +87,9 @@ function FooterUp() {
         message=""
         actionMessage="Join our Telegram community"
         action={true}
+        onActionClick={() =>
+          window.open("https://t.me/+C8yZjKbPA8FiYmU0", "_blank")
+        }
       />
     </section>
   );
