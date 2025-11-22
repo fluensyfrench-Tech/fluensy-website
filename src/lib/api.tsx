@@ -120,12 +120,26 @@ export const getPublicCohortsDetailed = async () => {
   }
 };
 
-// Add this function
+// // Add this function
+// export const verifyPayment = async (
+//   reference: string
+// ): Promise<PaymentVerificationResponse> => {
+//   try {
+//     const res = await api.get(`api/payment/verify/${reference}`);
+//     return res.data;
+//   } catch (error: any) {
+//     const detail = error.response?.data?.detail;
+//     throw new Error(detail || error.message || "Payment verification failed");
+//   }
+// };
+
+
+
 export const verifyPayment = async (
   reference: string
 ): Promise<PaymentVerificationResponse> => {
   try {
-    const res = await api.get(`api/payment/verify/${reference}`);
+    const res = await api.get(`/api/payment/verify/${reference}`);  // Add leading slash
     return res.data;
   } catch (error: any) {
     const detail = error.response?.data?.detail;
