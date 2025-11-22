@@ -196,7 +196,7 @@ const Content: React.FC = () => {
         </div>
       </section>
 
-      <section className="max-w-full bg-[#7DE5F2] my-[50px]">
+      <section className="max-w-full bg-[#7DE5F2] my-0 md:my-[50px]">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -216,13 +216,13 @@ const Content: React.FC = () => {
         </motion.div>
       </section>
 
-      <section className="max-w-7xl m-0 sm:mx-auto px-0 sm:px-6 lg:px-8 py-8 md:py-10 lg:py-14">
+      <section className="max-w-7xl m-0 sm:mx-auto px-0 md:px-8 py-0 md:py-10 lg:py-14">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="bg-[#7148E5] rounded-none sm:rounded-3xl px-4 sm:px-6 py-8 flex flex-col-reverse md:flex-row md:items-center gap-6"
+          className="bg-[#7148E5] rounded-none md:rounded-3xl px-4 sm:px-6 py-8 flex flex-col-reverse md:flex-row md:items-center gap-6"
         >
           <div className="flex justify-center md:justify-start items-end w-full md:w-1/3">
             <img
@@ -233,7 +233,8 @@ const Content: React.FC = () => {
           </div>
           <div className="text-white flex flex-col justify-center w-full md:w-2/3 p-0 md:p-4">
             <h2 className="text-xl min-[300px]:text-3xl lg:text-4xl xl:text-5xl font-medium !leading-[1.3] mb-3">
-              Did you know learning a new language can improve memory and focus?
+              Did you know learning a new language can boost your memory and
+              overall brainpower?
             </h2>
             <p className="text-lg min-[300px]:text-xl md:text-2xl lg:text-3xl font-normal mt-2 sm:mt-4">
               Train your brain, learn French

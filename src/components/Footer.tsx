@@ -83,12 +83,9 @@ const Footer = () => {
             <ul className="space-y-2 text-base font-normal text-[#C7CAD1]">
               {contactLinks.map(({ href, label }) => (
                 <li key={label}>
-                  <a
-                    href={href}
-                    className="inline-block transition-all duration-200 hover:text-[#7DE5F2] hover:scale-105"
-                  >
+                  <span className="inline-block transition-all duration-200 hover:text-[#7DE5F2] hover:scale-105">
                     {href}
-                  </a>
+                  </span>
                 </li>
               ))}
             </ul>

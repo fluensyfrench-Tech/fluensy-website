@@ -104,7 +104,7 @@ const Program = () => {
 
   return (
     <>
-      <section className="w-full max-w-[1370px] mx-auto bg-white py-8 md:py-16 px-4 sm:px-6 lg:px-20">
+      <section className="w-full max-w-[1370px] mx-auto bg-white py-8 md:py-16 px-4 sm:px-6 lg:px-20 mt-16 md:mt-0">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <motion.div
@@ -274,10 +274,10 @@ const Program = () => {
                       >
                         {/* Price tags at top */}
                         <div className="flex items-center gap-2 mb-3 md:mb-4 flex-wrap">
-                          <span className="bg-[#7DE5F2] text-[#3A3D44] rounded-lg px-2 md:px-3 py-1 text-xs md:text-sm font-semibold">
+                          <span className="bg-[#7DE5F2] text-[#3A3D44] rounded-lg px-2 md:px-3 py-1 text-sm md:text-base font-semibold">
                             ₦{course.price_ngn.toLocaleString()}
                           </span>
-                          <span className="bg-[#7DE5F2] text-[#3A3D44] rounded-lg px-2 md:px-3 py-1 text-xs md:text-sm font-medium">
+                          <span className="bg-[#7DE5F2] text-[#3A3D44] rounded-lg px-2 md:px-3 py-1 text-sm md:text-base font-medium">
                             ${course.price_usd}
                           </span>
                         </div>
