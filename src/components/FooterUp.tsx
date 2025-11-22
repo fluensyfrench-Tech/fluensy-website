@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { addToWaitlist } from "@/lib/api";
 import toast from "react-hot-toast";
-
+import { CustomModal } from "./CustomModal";
+import { useModal } from "./CustomModal";
 function FooterUp() {
   const [email, setEmail] = useState("");
+  const { openModal, closeModal, isOpen } = useModal();
 
   const isValidEmail = (email: string): boolean => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -21,17 +23,22 @@ function FooterUp() {
 
     const date = new Date().toISOString();
 
-    toast.promise(addToWaitlist(email, date), {
-      loading: "Submitting...",
-      success: "🎉 You're on the waitlist!",
-      error: "Something went wrong. Try again later.",
-    });
+    toast
+      .promise(addToWaitlist(email, date), {
+        loading: "Submitting...",
+        // success: "🎉 You're on the waitlist!",
+        error: "Something went wrong. Try again later.",
+      })
+      .then(() => {
+        openModal();
+        setEmail("");
+      });
 
     setEmail("");
   };
 
   return (
-    <section className="bg-[#7148E5] text-white py-20">
+    <section className="bg-[#7148E5] text-white py-20 scroll-mt-60" id="cohort">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -53,27 +60,33 @@ function FooterUp() {
               placeholder="Type your email here"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
-              className="w-full px-4 py-4 md:py-5 pr-40 rounded-lg text-[#181A25] placeholder-gray-500 focus:outline-none"
+              className="w-full px-4 py-4 md:py-5 min-[400px]:pr-40 rounded-lg text-[#181A25] placeholder-gray-500 focus:outline-none"
               required
             />
 
             <button
               type="submit"
-              className="absolute right-1 top-1 bottom-1 bg-[#7148E5] text-white font-light px-4 py-4 md:py-5 my-2 mr-2 rounded-md hover:bg-white hover:text-black transition-colors duration-200 hidden md:flex items-center justify-center text-center"
+              className="absolute right-1 top-1 bottom-1 bg-[#7148E5] text-white font-light px-4 py-4 md:py-5 my-2 mr-2 rounded-[12px] hover:bg-[#7DE5F2] hover:text-black transition-colors duration-200 hidden min-[400px]:flex items-center justify-center text-center"
             >
               Join the waitlist
             </button>
 
             <button
               type="submit"
-              className="mt-2 w-full bg-[#7148E5] text-white font-light px-4 py-4 md:py-5 my-2 mr-2 rounded-md hover:bg-white hover:text-black transition-colors duration-200 flex items-center justify-center text-center md:hidden"
+              className="mt-2 w-full bg-[#7DE5F2] text-black font-semibold font-light px-4 py-3 my-2 mr-2 rounded-md hover:bg-[#7DE5F2] hover:text-black transition-colors duration-200 flex items-center justify-center text-center min-[400px]:hidden"
             >
               Join the waitlist
             </button>
           </div>
         </form>
       </motion.div>
-      <div id="cohort" />
+      <CustomModal
+        onClose={closeModal}
+        isOpen={isOpen}
+        message=""
+        actionMessage="Join our Telegram community"
+        action={true}
+      />
     </section>
   );
 }

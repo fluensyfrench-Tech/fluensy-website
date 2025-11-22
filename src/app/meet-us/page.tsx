@@ -56,14 +56,13 @@ export default function HomePage() {
   }, []);
 
   return (
-   <main className="h-screen flex flex-col">
-  <Toaster position="top-center" />
-  <Navbar />
-  <div className="flex-grow">
-    <Meetus />
-  </div>
-  <Footer />
-</main>
-
+    <main className="h-screen flex flex-col">
+      <Toaster position="top-center" />
+      <Navbar />
+      <div className="flex-grow">
+        <Meetus />
+      </div>
+      <Footer />
+    </main>
   );
 }

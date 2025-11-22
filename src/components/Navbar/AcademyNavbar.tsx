@@ -47,10 +47,10 @@ const Navbar: React.FC = () => {
               href="/program"
               onClick={() => setOpen(false)}
               className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${
-                isActive ? "text-[#8f66ff] font-semibold" : ""
+                isActive ? "text-[#7148e5] font-semibold" : ""
               }`}
             >
-              course
+              Courses
             </Link>
           </div>
 
@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {open && (
-        <div className="fixed inset-0 border bg-white z-40 flex flex-col items-center justify-center space-y-6 text-lg px-6">
+        <div className="fixed inset-0 border bg-[#7DE5F2] z-40 flex flex-col space-y-6 text-lg px-6">
           <button
             onClick={() => setOpen(false)}
             className="absolute top-6 right-6 text-[#7148E5] focus:outline-none"
@@ -75,12 +75,28 @@ const Navbar: React.FC = () => {
           >
             <X className="h-6 w-6" />
           </button>
-          <NavLink href="/meet-us" onClick={() => setOpen(false)}>
-            Meet us
-          </NavLink>
-          <NavLink href="/program" onClick={() => setOpen(false)}>
-            course
-          </NavLink>
+          <Link href="/">
+            <span className="font-bold">fluensy</span>
+            <span className="font-normal text-gray-700">french</span>
+          </Link>
+          <div className="pt-20 flex flex-col items-center gap-[20px]">
+            <Link
+              href="/meet-us"
+              onClick={() => setOpen(false)}
+              className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${
+                isActive ? "text-[#8f66ff] font-semibold" : ""
+              }`}
+            >
+              Meet Us
+            </Link>
+            <Link
+              href="/program"
+              onClick={() => setOpen(false)}
+              className="bg-[#7148E5] text-white px-6 py-3.5 rounded-md text-base font-medium"
+            >
+              Start Your French Course
+            </Link>
+          </div>
         </div>
       )}
     </nav>

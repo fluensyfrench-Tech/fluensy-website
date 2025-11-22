@@ -8,11 +8,12 @@ const NavLink: React.FC<{
   href: string;
   children: React.ReactNode;
   onClick?: () => void;
-}> = ({ href, children, onClick }) => (
+  pathname: string;
+}> = ({ href, children, onClick, pathname }) => (
   <Link
     href={href}
     onClick={onClick}
-    className="text-gray-700 hover:text-gray-900 transition-colors px-2 py-1"
+    className={`transition-colors px-2 py-1 ${href === pathname ? "text-[#7148e5]" : "text-gray-700 hover:text-gray-900 "}`}
   >
     {children}
   </Link>
@@ -41,10 +42,12 @@ const Navbar: React.FC = () => {
           </Link>
 
           <div className="hidden md:flex items-center space-x-6">
-            <NavLink href="/meet-us">Meet us</NavLink>
+            <NavLink href="/meet-us" pathname={pathname}>
+              Meet us
+            </NavLink>
             <Link
               href="/program"
-              className="bg-[#7148E5] text-white px-6 py-3.5 h-[52px] w-[221px] rounded-md text-base text-center font-medium hover:opacity-95 transition hover:bg-[#7DE5F2] hover:text-[#181A25]"
+              className="bg-[#7148E5] text-white px-6 py-3.5 h-[52px] w-[221px] rounded-[12px] text-base text-center font-medium hover:opacity-95 transition hover:bg-[#7DE5F2] hover:text-[#181A25]"
             >
               Enrol now
             </Link>
@@ -63,7 +66,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {open && (
-        <div className="fixed inset-0 border bg-white z-40 flex flex-col items-center justify-center space-y-6 text-lg px-6">
+        <div className="fixed inset-0 border bg-[#7DE5F2] z-40 flex flex-col justify-start space-y-6 text-lg px-6">
           <button
             onClick={() => setOpen(false)}
             className="absolute top-6 right-6 text-[#7148E5] focus:outline-none"
@@ -74,22 +77,28 @@ const Navbar: React.FC = () => {
           {/* <NavLink href="/meet-us" onClick={() => setOpen(false)}>
             Meet us
           </NavLink> */}
-          <Link
-            href="/meet-us"
-            onClick={() => setOpen(false)}
-            className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${
-              isActive ? "text-[#8f66ff] font-semibold" : ""
-            }`}
-          >
-            course
+          <Link href="/">
+            <span className="font-bold">fluensy</span>
+            <span className="font-normal text-gray-700">french</span>
           </Link>
-          <Link
-            href="/enrol"
-            onClick={() => setOpen(false)}
-            className="bg-[#7148E5] text-white px-6 py-3.5 rounded-md text-base font-medium"
-          >
-            Enrol now
-          </Link>
+          <div className="pt-20 flex flex-col items-center gap-[20px]">
+            <Link
+              href="/meet-us"
+              onClick={() => setOpen(false)}
+              className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${
+                isActive ? "text-[#8f66ff] font-semibold" : ""
+              }`}
+            >
+              Meet Us
+            </Link>
+            <Link
+              href="/program"
+              onClick={() => setOpen(false)}
+              className="bg-[#7148E5] text-white px-6 py-3.5 rounded-md text-base font-medium"
+            >
+              Start Your French Course
+            </Link>
+          </div>
         </div>
       )}
     </nav>
