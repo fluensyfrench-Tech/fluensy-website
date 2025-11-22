@@ -46,8 +46,10 @@ const Navbar: React.FC = () => {
             <Link
               href="/program"
               onClick={() => setOpen(false)}
-              className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${
-                isActive ? "text-[#7148e5] font-semibold" : ""
+              className={`transition-colors px-2 py-1 ${
+                isActive
+                  ? "text-[#7148e5] font-semibold"
+                  : "text-gray-700 hover:text-gray-900"
               }`}
             >
               Courses

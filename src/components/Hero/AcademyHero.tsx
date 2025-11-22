@@ -4,7 +4,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { registerEmail } from "../../util/register";
+// import { registerEmail } from "../../util/register";
 import Link from "next/link";
 
 const AcademyHero: React.FC = () => {
