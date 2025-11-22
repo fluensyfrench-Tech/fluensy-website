@@ -17,8 +17,8 @@ const MeetUs: React.FC = () => {
             Meet fluensyfrench
           </h2>
           <p className="text-lg md:text-xl">
-            At fluensyfrench, fluensy is the goal. We make French learning fun,
-            impactful, and accessible.
+            At fluensyfrench, we make French learning fun, impactful, and
+            accessible.
           </p>
           <p className="text-lg md:text-xl">
             Our goal is to guide learners from their first words all the way to

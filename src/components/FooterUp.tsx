@@ -5,6 +5,7 @@ import { addToWaitlist } from "@/lib/api";
 import toast from "react-hot-toast";
 import { CustomModal } from "./CustomModal";
 import { useModal } from "./CustomModal";
+
 function FooterUp() {
   const [email, setEmail] = useState("");
   const { openModal, closeModal, isOpen } = useModal();
@@ -86,6 +87,9 @@ function FooterUp() {
         message=""
         actionMessage="Join our Telegram community"
         action={true}
+        onActionClick={() =>
+          window.open("https://t.me/+C8yZjKbPA8FiYmU0", "_blank")
+        }
       />
     </section>
   );
