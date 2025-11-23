@@ -15,7 +15,7 @@ const socialLinks = [
   { label: "YouTube", href: "https://www.youtube.com/@fluensyfrench" },
   {
     label: "Instagram",
-    href: "https://www.instagram.com/fluensyfrench?igsh=MTFkbGJ0OTY5NndiNQ%3D%3D&utm_source=qr",
+    href: "https://www.instagram.com/fluensyfrench_?igsh=aWZ6dnlna3hmc3B5&utm_source=qr",
   },
   // { label: "Telegram", href: "https://t.me/+c5zFTQKZjGFmNGRk" },
 ];
