@@ -26,7 +26,7 @@ export default function CookieConsent() {
   return (
     <>
       {/* Overlay blur */}
-      <div className="fixed inset-0 bg-black/20 backdrop-blur-[3px] z-40"></div>
+      <div className="fixed inset-0 bg-black/20 z-40"></div>
 
       {/* Cookie Banner */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] md:w-[640px] bg-white border border-gray-200 rounded-2xl shadow-xl p-5 md:p-6 z-50 flex flex-col md:flex-row md:items-center justify-between gap-4 animate-fadeIn">
