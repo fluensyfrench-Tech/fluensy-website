@@ -67,14 +67,14 @@ function FooterUp() {
 
             <button
               type="submit"
-              className="absolute right-1 top-1 bottom-1 bg-[#7148E5] text-white font-light px-4 py-4 md:py-5 my-2 mr-2 rounded-[12px] hover:bg-[#7DE5F2] hover:text-black transition-colors duration-200 hidden min-[400px]:flex items-center justify-center text-center"
+              className="absolute right-1 top-1 bottom-1 bg-[#7148E5] text-white font-light px-4 py-4 md:py-5 my-2 mr-2 rounded-[12px] hover:bg-[#7DE5F2] hover:text-black transition-colors duration-200 hidden sm:flex items-center justify-center text-center"
             >
               Join the waitlist
             </button>
 
             <button
               type="submit"
-              className="mt-2 w-full bg-[#7DE5F2] text-black font-semibold font-light px-4 py-4 my-2 mr-2 rounded-md hover:bg-[#7DE5F2] hover:text-black transition-colors duration-200 flex items-center justify-center text-center min-[400px]:hidden"
+              className="mt-2 w-full bg-[#7DE5F2] text-black font-semibold font-light px-4 py-4 my-2 mr-2 rounded-md hover:bg-[#7DE5F2] hover:text-black transition-colors duration-200 flex items-center justify-center text-center sm:hidden"
             >
               Join the waitlist
             </button>
