@@ -365,7 +365,7 @@ const Program = () => {
                                 {!paymentOptions?.currencies?.USD
                                   ?.available && (
                                   <span className="block text-[10px] md:text-xs text-gray-500 mt-1">
-                                    Available in production only
+                                    Coming Soon
                                   </span>
                                 )}
                               </li>
