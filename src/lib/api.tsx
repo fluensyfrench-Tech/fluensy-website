@@ -102,7 +102,7 @@ export const addToWaitlist = async (
 
 export const getPublicCourses = async () => {
   try {
-    const res = await api.get("api/public/courses");
+    const res = await api.get("/api/public/courses");
     return res.data;
   } catch (error) {
     console.error("Error fetching courses:", error);
@@ -112,7 +112,7 @@ export const getPublicCourses = async () => {
 
 export const getPublicCohortsDetailed = async () => {
   try {
-    const res = await api.get("api/public/cohorts/detailed");
+    const res = await api.get("/api/public/cohorts/detailed");
     return res.data;
   } catch (error) {
     console.error("Error fetching courses:", error);
@@ -120,12 +120,15 @@ export const getPublicCohortsDetailed = async () => {
   }
 };
 
-// Add this function
+
+
+
+
 export const verifyPayment = async (
   reference: string
 ): Promise<PaymentVerificationResponse> => {
   try {
-    const res = await api.get(`api/payment/verify/${reference}`);
+    const res = await api.get(`/api/payment/verify/${reference}`);  // Add leading slash
     return res.data;
   } catch (error: any) {
     const detail = error.response?.data?.detail;
@@ -147,7 +150,7 @@ export const getPaymentOptions = async () => {
         available: false,
         symbol: "$",
         name: "US Dollar",
-        note: "Available in production only",
+        note: "Coming Soon",
       },
     },
   };
@@ -157,7 +160,7 @@ export const registerEnrollment = async (
   payload: EnrollmentPayload
 ): Promise<EnrollmentResponse> => {
   try {
-    const res = await api.post("api/enrollment/register", payload);
+    const res = await api.post("/api/enrollment/register", payload);
     return res.data;
   } catch (error: any) {
     const detail = error.response?.data?.detail;
