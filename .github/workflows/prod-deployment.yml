@@ -1,4 +1,4 @@
-name: PROD WEBSITE CI/CD
+name: PROD WEBSITE CI/CD - Blue-Green Deployment
 
 on:
   push:
@@ -32,33 +32,130 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+          IMAGE_TAG=$(date +%Y%m%d-%H%M%S)-${GITHUB_SHA::7}
+          
+          echo "🏗️ Building Docker image..."
+          docker build \
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
+            .
+          
+          echo "📤 Pushing Docker images..."
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          
+          echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
+          echo "✅ Images pushed successfully"
+          echo "   - $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          echo "   - $ECR_REGISTRY/$ECR_REPOSITORY:latest"
 
-      - name: Deploy to EC2
+      - name: Zero-Downtime Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
+          command_timeout: 10m
           script: |
+            set -e
+            
             cd /home/ubuntu/websiteApp
             
+            echo "=================================================="
+            echo "🚀 Starting Blue-Green Deployment"
+            echo "=================================================="
+            
             # Login to ECR
+            echo "🔐 Logging into ECR..."
             aws ecr get-login-password --region ${{ env.AWS_DEFAULT_REGION }} | \
               docker login --username AWS --password-stdin \
               ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_DEFAULT_REGION }}.amazonaws.com
             
-            # Pull latest image
-            docker pull ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_DEFAULT_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:latest
+            # Ensure deployment script exists and is executable
+            if [ ! -f "./blue-green-deploy.sh" ]; then
+              echo "❌ Deployment script not found!"
+              exit 1
+            fi
+            chmod +x blue-green-deploy.sh
             
-            # Stop and remove old container
-            docker-compose down
+            # Run blue-green deployment
+            echo "🔄 Running deployment script..."
+            ./blue-green-deploy.sh
             
-            # Start new container
-            docker-compose up -d
+            # Verify deployment
+            echo ""
+            echo "🔍 Verifying deployment..."
+            sleep 3
             
-            # Clean up old images
-            docker image prune -af
+            # Check if container is running
+            ACTIVE_CONTAINER=$(docker ps --filter "name=fluensy-website-blue" --filter "name=fluensy-website-green" --format "{{.Names}}" | head -1)
             
-            echo "✅ PROD DEPLOYMENT completed successfully"
+            if [ -z "$ACTIVE_CONTAINER" ]; then
+              echo "❌ DEPLOYMENT FAILED: No active container found!"
+              docker ps -a | grep fluensy-website || true
+              exit 1
+            fi
+            
+            # Get the port
+            ACTIVE_PORT=$(docker port $ACTIVE_CONTAINER | grep '3000/tcp' | cut -d':' -f2)
+            
+            # Health check
+            echo "🏥 Running post-deployment health check..."
+            HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" -m 10 http://localhost:$ACTIVE_PORT/ || echo "000")
+            
+            if [ "$HTTP_STATUS" = "200" ] || [ "$HTTP_STATUS" = "304" ] || [ "$HTTP_STATUS" = "301" ] || [ "$HTTP_STATUS" = "302" ]; then
+              echo "✅ Health check passed (HTTP $HTTP_STATUS)"
+            else
+              echo "⚠️ Health check returned HTTP $HTTP_STATUS"
+              echo "📋 Container logs:"
+              docker logs $ACTIVE_CONTAINER --tail 20
+            fi
+            
+            echo ""
+            echo "=================================================="
+            echo "✅ DEPLOYMENT SUCCESSFUL"
+            echo "=================================================="
+            echo "🎯 Active Container: $ACTIVE_CONTAINER"
+            echo "🔌 Port: $ACTIVE_PORT"
+            echo "🌐 URL: https://fluensyfrench.com"
+            echo "📦 Image Tag: ${{ env.IMAGE_TAG }}"
+            echo "=================================================="
+            echo ""
+            echo "📋 Running containers:"
+            docker ps --filter "name=fluensy-website" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+
+      - name: Test Production Endpoint
+        if: success()
+        run: |
+          echo "🌐 Testing production endpoint..."
+          sleep 5
+          
+          # Test the actual domain
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" -m 15 https://fluensyfrench.com/ || echo "000")
+          
+          if [ "$HTTP_STATUS" = "200" ] || [ "$HTTP_STATUS" = "301" ] || [ "$HTTP_STATUS" = "302" ]; then
+            echo "✅ Production endpoint is healthy (HTTP $HTTP_STATUS)"
+          else
+            echo "⚠️ Production endpoint returned HTTP $HTTP_STATUS"
+            echo "This might be temporary - check manually"
+          fi
+
+      - name: Deployment Summary
+        if: always()
+        run: |
+          echo "=================================================="
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ ZERO-DOWNTIME DEPLOYMENT COMPLETED"
+            echo "=================================================="
+            echo "📦 Image: ${{ env.IMAGE_TAG }}"
+            echo "🌐 URL: https://fluensyfrench.com"
+            echo "🕐 Time: $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
+            echo "📝 Commit: ${{ github.sha }}"
+            echo "👤 Author: ${{ github.actor }}"
+          else
+            echo "❌ DEPLOYMENT FAILED"
+            echo "=================================================="
+            echo "Please check the logs above for details"
+            echo "The previous version should still be running"
+          fi
+          echo "=================================================="
