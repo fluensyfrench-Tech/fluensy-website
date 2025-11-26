@@ -118,7 +118,38 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
       }
     } catch (error: any) {
       console.error("Enrollment error:", error);
-      toast.error(error.message || "An error occurred. Please try again.");
+      
+      // Extract error message from backend response
+      let errorMessage = "An error occurred. Please try again.";
+      
+      const responseData = error?.response?.data;
+      
+      if (responseData) {
+        // Check for detail field (FastAPI standard)
+        if (responseData.detail) {
+          errorMessage = typeof responseData.detail === 'string' 
+            ? responseData.detail 
+            : JSON.stringify(responseData.detail);
+        }
+        // Check for message field
+        else if (responseData.message) {
+          errorMessage = responseData.message;
+        }
+        // Check for error field
+        else if (responseData.error) {
+          errorMessage = responseData.error;
+        }
+        // If data itself is a string
+        else if (typeof responseData === 'string') {
+          errorMessage = responseData;
+        }
+      }
+      // Fallback to error message property but avoid generic axios messages
+      else if (error?.message && !error?.message.includes("status code")) {
+        errorMessage = error.message;
+      }
+      
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
