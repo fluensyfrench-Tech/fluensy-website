@@ -81,7 +81,7 @@ export const addToWaitlist = async (
   date: string
 ): Promise<boolean> => {
   try {
-    const url = `https://script.google.com/macros/s/AKfycbwv6aE_0d9QP2EfNb2GuI7ffIVsPdsTry8phCjMj0CTnkhC92YMj_q9fTJVJLwgOzT5/exec?email=${encodeURIComponent(
+    const url = `https://script.google.com/macros/s/AKfycbwZ6j8E-YIbZ73EJIob-RHCjV4sRh2hthin37zYo1mPXsmOvumpJb6EWJETvTbpYIJJ/exec?email=${encodeURIComponent(
       email
     )}&date=${encodeURIComponent(date)}`;
 
