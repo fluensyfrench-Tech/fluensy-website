@@ -109,7 +109,7 @@ export const getPublicCourses = async () => {
     return res.data;
   } catch (error) {
     console.error("Error fetching courses:", error);
-    throw new Error("Failed to fetch courses");
+    throw error;
   }
 };
 
@@ -118,8 +118,8 @@ export const getPublicCohortsDetailed = async () => {
     const res = await api.get("/api/public/cohorts/detailed");
     return res.data;
   } catch (error) {
-    console.error("Error fetching courses:", error);
-    throw new Error("Failed to fetch courses");
+    console.error("Error fetching cohorts:", error);
+    throw error;
   }
 };
 
@@ -131,11 +131,12 @@ export const verifyPayment = async (
   reference: string
 ): Promise<PaymentVerificationResponse> => {
   try {
-    const res = await api.get(`/api/payment/verify/${reference}`);  // Add leading slash
+    const res = await api.get(`/api/payment/verify/${reference}`);
     return res.data;
   } catch (error: any) {
-    const detail = error.response?.data?.detail;
-    throw new Error(detail || error.message || "Payment verification failed");
+    // Re-throw the original error with all its data intact
+    // The frontend will handle extracting the appropriate message
+    throw error;
   }
 };
 
@@ -166,39 +167,8 @@ export const registerEnrollment = async (
     const res = await api.post("/api/enrollment/register", payload);
     return res.data;
   } catch (error: any) {
-    const detail = error.response?.data?.detail;
-
-    // Handle duplicate enrollment error
-    if (
-      error.response?.status === 409 ||
-      (typeof detail === "string" && detail.includes("already enrolled"))
-    ) {
-      throw new Error(
-        "You are already enrolled in this cohort. Please check your email or contact support."
-      );
-    }
-
-    // Handle unique constraint violation
-    if (
-      error.response?.status === 400 &&
-      typeof detail === "string" &&
-      detail.includes("duplicate")
-    ) {
-      throw new Error(
-        "You are already enrolled in this cohort. Please check your email or contact support."
-      );
-    }
-
-    if (Array.isArray(detail)) {
-      const firstError = detail[0];
-      const field = firstError?.loc?.[1];
-      const reason = firstError?.msg || firstError?.ctx?.reason;
-
-      throw new Error(`${field ? `${field}: ` : ""}${reason}`);
-    }
-
-    throw new Error(
-      error.response?.data?.message || error.message || "Enrollment failed"
-    );
+    // Re-throw the original error with all its data intact
+    // The frontend will handle extracting the appropriate message
+    throw error;
   }
 };
