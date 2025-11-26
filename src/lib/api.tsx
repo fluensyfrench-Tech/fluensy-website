@@ -76,6 +76,8 @@ interface ApiError {
   message?: string;
 }
 
+
+
 export const addToWaitlist = async (
   email: string,
   date: string
@@ -92,8 +94,9 @@ export const addToWaitlist = async (
       return false;
     }
 
-    console.log("Successfully submitted:", await response.text());
-    return true;
+    const result = await response.json();
+    console.log("Successfully submitted:", result);
+    return result.success || false;
   } catch (error) {
     console.error("Fetch error submitting to Google Sheet:", error);
     return false;
