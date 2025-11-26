@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import RegistrationModal from "../Modal/RegistrationModal";
-import { Course, getPublicCohortsDetailed, getPaymentOptions } from "@/lib/api";
+import { Course, getPublicCohortsDetailed } from "@/lib/api";
 
 // Types
 interface Cohort {
@@ -63,12 +63,7 @@ const Program = () => {
     staleTime: 5 * 60 * 1000, // Data stays fresh for 5 minutes
   });
 
-  // ✅ Fetch payment options with React Query
-  const { data: paymentOptions } = useQuery({
-    queryKey: ["paymentOptions"],
-    queryFn: getPaymentOptions,
-    staleTime: 10 * 60 * 1000, // Data stays fresh for 10 minutes
-  });
+
 
   const cohorts = cohortsData || [];
 
