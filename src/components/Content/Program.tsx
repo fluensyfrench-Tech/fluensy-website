@@ -348,26 +348,10 @@ const Program = () => {
                                 Pay in ₦ Naira
                               </li>
                               <li
-                                className={`px-3 md:px-4 py-2.5 md:py-3 text-xs md:text-sm border-t border-gray-100 ${
-                                  paymentOptions?.currencies?.USD?.available
-                                    ? "hover:bg-[#F3F0FF] cursor-pointer"
-                                    : "opacity-50 cursor-not-allowed"
-                                }`}
-                                onClick={() => {
-                                  if (
-                                    paymentOptions?.currencies?.USD?.available
-                                  ) {
-                                    handleOpenModal(cohort.id, course, "USD");
-                                  }
-                                }}
+                                className="px-3 md:px-4 py-2.5 md:py-3 hover:bg-[#F3F0FF] cursor-pointer text-xs md:text-sm border-t border-gray-100"
+                                onClick={() => handleOpenModal(cohort.id, course, "USD")}
                               >
-                                Pay in $ Dollar
-                                {!paymentOptions?.currencies?.USD
-                                  ?.available && (
-                                  <span className="block text-[10px] md:text-xs text-gray-500 mt-1">
-                                    Coming Soon
-                                  </span>
-                                )}
+                                 Pay in $ Dollar
                               </li>
                             </ul>
                           )}
