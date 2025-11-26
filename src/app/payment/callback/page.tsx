@@ -57,8 +57,39 @@ function PaymentCallbackContent() {
         }
       } catch (err: any) {
         console.error("Verification error:", err);
-        setError(err.message || "Failed to verify payment");
-        toast.error(err.message || "Failed to verify payment");
+        
+        // Extract error message from backend response
+        let errorMessage = "Failed to verify payment";
+        
+        const responseData = err?.response?.data;
+        
+        if (responseData) {
+          // Check for detail field (FastAPI standard)
+          if (responseData.detail) {
+            errorMessage = typeof responseData.detail === 'string' 
+              ? responseData.detail 
+              : JSON.stringify(responseData.detail);
+          }
+          // Check for message field
+          else if (responseData.message) {
+            errorMessage = responseData.message;
+          }
+          // Check for error field
+          else if (responseData.error) {
+            errorMessage = responseData.error;
+          }
+          // If data itself is a string
+          else if (typeof responseData === 'string') {
+            errorMessage = responseData;
+          }
+        }
+        // Fallback to error message property but avoid generic axios messages
+        else if (err?.message && !err?.message.includes("status code")) {
+          errorMessage = err.message;
+        }
+        
+        setError(errorMessage);
+        toast.error(errorMessage);
       } finally {
         setVerifying(false);
       }

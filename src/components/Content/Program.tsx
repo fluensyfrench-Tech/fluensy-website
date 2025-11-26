@@ -42,6 +42,8 @@ const Program = () => {
     data: cohortsData,
     isLoading,
     isError,
+    error,
+    refetch,
   } = useQuery({
     queryKey: ["cohorts"],
     queryFn: async () => {
@@ -61,6 +63,7 @@ const Program = () => {
       return cohorts;
     },
     staleTime: 5 * 60 * 1000, // Data stays fresh for 5 minutes
+    retry: 2,
   });
 
 
@@ -93,8 +96,104 @@ const Program = () => {
     setOpenDropdown(null);
   };
 
+  // ✅ Extract error message from backend response
+  const getErrorMessage = (error: any): string => {
+    // Check for axios error response
+    if (error?.response?.data) {
+      const data = error.response.data;
+      
+      // Check for detail field (FastAPI standard)
+      if (data.detail) {
+        return typeof data.detail === 'string' ? data.detail : JSON.stringify(data.detail);
+      }
+      
+      // Check for message field
+      if (data.message) {
+        return data.message;
+      }
+      
+      // Check for error field
+      if (data.error) {
+        return data.error;
+      }
+      
+      // If data itself is a string
+      if (typeof data === 'string') {
+        return data;
+      }
+    }
+    
+    // Check for error message property
+    if (error?.message) {
+      return error.message;
+    }
+    
+    // Fallback
+    return "An unexpected error occurred. Please try again.";
+  };
+
   if (!hasMounted) {
     return null;
+  }
+
+  // Show loading state until data is fetched
+  if (isLoading) {
+    return (
+      <section className="w-full max-w-[1370px] mx-auto bg-white py-8 md:py-16 px-4 sm:px-6 lg:px-20 mt-16 md:mt-0">
+        <div className="max-w-7xl mx-auto">
+          {/* Header - Always show */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-left"
+          >
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#181A25] mt-6 md:mt-12 mb-3 md:mb-4 pt-3 md:pt-5">
+              CEFR-Aligned French Language Courses
+            </h2>
+            <p className="text-base md:text-lg lg:text-xl text-[#181A25] mb-8 md:mb-12 max-w-7xl">
+              Learn French with courses aligned to the Common European Framework
+              of Reference for Languages (CEFR), a globally recognized standard
+              for measuring language proficiency. Our courses help you build
+              practical skills in speaking, listening, reading, and writing,
+              while guiding you through each CEFR level from beginner to
+              intermediate.
+            </p>
+          </motion.div>
+
+          {/* Loading skeleton */}
+          <div className="animate-pulse space-y-10">
+            {[...Array(1)].map((_, i) => (
+              <div
+                key={i}
+                className="border border-gray-200 rounded-xl p-4 md:p-6"
+              >
+                <div className="h-6 w-48 bg-gray-200 rounded mb-4"></div>
+                <div className="space-y-3">
+                  <div className="h-4 w-3/4 bg-gray-200 rounded"></div>
+                  <div className="h-4 w-2/3 bg-gray-200 rounded"></div>
+                  <div className="h-4 w-1/2 bg-gray-200 rounded"></div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 mt-6">
+                  {[...Array(4)].map((_, j) => (
+                    <div
+                      key={j}
+                      className="border border-gray-200 rounded-xl p-4"
+                    >
+                      <div className="h-5 w-32 bg-gray-200 rounded mb-2"></div>
+                      <div className="h-3 w-full bg-gray-200 rounded mb-3"></div>
+                      <div className="h-3 w-1/2 bg-gray-200 rounded"></div>
+                      <div className="h-10 w-full bg-gray-200 rounded mt-4"></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (
@@ -121,36 +220,41 @@ const Program = () => {
             </p>
           </motion.div>
 
-          {/* Loading skeleton */}
-          {isLoading && (
-            <div className="animate-pulse space-y-10">
-              {[...Array(2)].map((_, i) => (
-                <div
-                  key={i}
-                  className="border border-gray-200 rounded-xl p-4 md:p-6"
-                >
-                  <div className="h-6 w-48 bg-gray-200 rounded mb-4"></div>
-                  <div className="space-y-3">
-                    <div className="h-4 w-3/4 bg-gray-200 rounded"></div>
-                    <div className="h-4 w-2/3 bg-gray-200 rounded"></div>
-                    <div className="h-4 w-1/2 bg-gray-200 rounded"></div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 mt-6">
-                    {[...Array(4)].map((_, j) => (
-                      <div
-                        key={j}
-                        className="border border-gray-200 rounded-xl p-4"
-                      >
-                        <div className="h-5 w-32 bg-gray-200 rounded mb-2"></div>
-                        <div className="h-3 w-full bg-gray-200 rounded mb-3"></div>
-                        <div className="h-3 w-1/2 bg-gray-200 rounded"></div>
-                        <div className="h-10 w-full bg-gray-200 rounded mt-4"></div>
-                      </div>
-                    ))}
-                  </div>
+          {/* Error State - Display backend message */}
+          {isError && (
+            <div className="flex flex-col items-center justify-center text-center py-12 md:py-20 px-4">
+              <div className="mb-6 relative">
+                <div className="w-20 h-20 md:w-24 md:h-24 bg-red-100 rounded-full flex items-center justify-center">
+                  <svg 
+                    className="w-10 h-10 md:w-12 md:h-12 text-red-500" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" 
+                    />
+                  </svg>
                 </div>
-              ))}
+              </div>
+              
+              <h3 className="text-xl md:text-2xl font-bold text-[#181A25] mb-3">
+                Something went wrong
+              </h3>
+              
+              <p className="text-base md:text-lg text-gray-600 mb-6 max-w-md">
+                {getErrorMessage(error)}
+              </p>
+              
+              <button
+                onClick={() => refetch()}
+                className="bg-[#7148E5] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#5e36c2] transition-all shadow-sm"
+              >
+                Try Again
+              </button>
             </div>
           )}
 

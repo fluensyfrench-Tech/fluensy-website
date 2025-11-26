@@ -12,12 +12,16 @@ export default function CookieConsent() {
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem("cookieConsent", "true");
+    localStorage.setItem("cookieConsent", "accepted");
+    // Set cookie so backend can read it
+    document.cookie = "cookieConsent=accepted; path=/; max-age=31536000; SameSite=Lax"; // 1 year
     setShowBanner(false);
   };
 
   const handleReject = () => {
-    // Does nothing functional yet — just closes the banner
+    localStorage.setItem("cookieConsent", "rejected");
+    // Set cookie so backend knows user rejected
+    document.cookie = "cookieConsent=rejected; path=/; max-age=31536000; SameSite=Lax"; // 1 year
     setShowBanner(false);
   };
 
@@ -25,10 +29,7 @@ export default function CookieConsent() {
 
   return (
     <>
-      {/* Overlay blur */}
-      <div className="fixed inset-0 z-40"></div>
-
-      {/* Cookie Banner */}
+      {/* Cookie Banner - Non-blocking */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] md:w-[640px] bg-white border border-gray-200 rounded-2xl shadow-xl p-5 md:p-6 z-50 flex flex-col md:flex-row md:items-center justify-between gap-4 animate-fadeIn">
         <p className="text-sm text-[#3A3D44] leading-snug md:w-[70%]">
           We use cookies to improve your experience. Learn more in our{" "}
