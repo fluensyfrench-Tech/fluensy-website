@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Fluensyfrench",
     description:
-      "Learn French the fun and easy way.Master the French language with interactive lessons, pronunciation practice, and personalized learning powered by AI.",
+      "Learn French the fun and easy way.",
     url: "https://fluensyfrench.com",
     siteName: "Fluensy French",
     locale: "en_US",
