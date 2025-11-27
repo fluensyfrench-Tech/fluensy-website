@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     "AI French tutor",
     "Fluensy French app",
   ],
-  authors: [{ name: "Fluensy Team" }],
+  authors: [{ name: "Fluensyfrench" }],
   openGraph: {
-    title: "Fluensy French — Learn French Fluently",
+    title: "Fluensyfrench — Learn French the fun and easy way",
     description:
       "Master the French language with interactive lessons, pronunciation practice, and personalized learning powered by AI.",
     url: "https://fluensyfrench.com",
