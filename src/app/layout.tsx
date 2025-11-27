@@ -17,7 +17,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Fluensy French",
   description:
-    "Fluensy French helps you learn and speak French fluently through engaging lessons, real-world practice, and AI-powered conversation tools.",
+    "Fluensy French helps you learn French the fun and easy way.",
   keywords: [
     "learn French",
     "French lessons",
