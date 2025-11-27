@@ -1,10 +1,9 @@
-
 import type { Metadata } from "next";
 import { Providers } from "./providers";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import CookieConsent from "@/components/CookieConsent";
-
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 import { Space_Grotesk } from "next/font/google";
 
@@ -55,6 +54,9 @@ export default function RootLayout({
           {children}
           <CookieConsent />
         </Providers>
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+        )}
       </body>
     </html>
   );
