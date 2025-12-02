@@ -35,6 +35,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.jpg", type: "image/jpeg", sizes: "32x32" },
+      { url: "/favicon.jpg", type: "image/jpeg", sizes: "192x192" },
+    ],
+    apple: [{ url: "/favicon.jpg", type: "image/jpeg", sizes: "180x180" }],
+  },
 };
 
 export default function RootLayout({
@@ -45,8 +52,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`scroll-smooth ${spaceGrotesk.className}`} suppressHydrationWarning>
       <head>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="alternate icon" type="image/png" href="/favicon.png" />
+        <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
+        <link rel="apple-touch-icon" type="image/jpeg" href="/favicon.jpg" />
       </head>
       <body suppressHydrationWarning>
         <Providers>
