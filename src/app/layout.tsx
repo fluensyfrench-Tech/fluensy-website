@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import CookieConsent from "@/components/CookieConsent";
 import { GoogleAnalytics } from '@next/third-parties/google';
+import favicon from "./faviconnn.jpg";
 
 import { Space_Grotesk } from "next/font/google";
 
@@ -37,10 +38,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.jpg", type: "image/jpeg", sizes: "32x32" },
-      { url: "/favicon.jpg", type: "image/jpeg", sizes: "192x192" },
+      { url: favicon.src, type: "image/jpeg", sizes: "32x32" },
+      { url: favicon.src, type: "image/jpeg", sizes: "192x192" },
     ],
-    apple: [{ url: "/favicon.jpg", type: "image/jpeg", sizes: "180x180" }],
+    apple: [{ url: favicon.src, type: "image/jpeg", sizes: "180x180" }],
   },
 };
 
@@ -52,8 +53,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`scroll-smooth ${spaceGrotesk.className}`} suppressHydrationWarning>
       <head>
-        <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
-        <link rel="apple-touch-icon" type="image/jpeg" href="/favicon.jpg" />
+        <link rel="icon" type="image/jpeg" href={favicon.src} />
+        <link rel="apple-touch-icon" type="image/jpeg" href={favicon.src} />
       </head>
       <body suppressHydrationWarning>
         <Providers>
