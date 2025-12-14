@@ -61,31 +61,56 @@ function PaymentCallbackContent() {
         // Extract error message from backend response
         let errorMessage = "Failed to verify payment";
         
-        const responseData = err?.response?.data;
-        
-        if (responseData) {
-          // Check for detail field (FastAPI standard)
-          if (responseData.detail) {
-            errorMessage = typeof responseData.detail === 'string' 
-              ? responseData.detail 
-              : JSON.stringify(responseData.detail);
-          }
-          // Check for message field
-          else if (responseData.message) {
-            errorMessage = responseData.message;
-          }
-          // Check for error field
-          else if (responseData.error) {
-            errorMessage = responseData.error;
-          }
-          // If data itself is a string
-          else if (typeof responseData === 'string') {
-            errorMessage = responseData;
-          }
+        // Network error (backend is down)
+        if (err?.code === 'ERR_NETWORK' || err?.message?.includes('Network Error')) {
+          errorMessage = "Unable to connect to the server. Please contact support with your payment reference.";
         }
-        // Fallback to error message property but avoid generic axios messages
-        else if (err?.message && !err?.message.includes("status code")) {
-          errorMessage = err.message;
+        // Connection refused (backend not running)
+        else if (err?.message?.includes('ECONNREFUSED') || err?.message?.includes('Failed to fetch')) {
+          errorMessage = "The service is temporarily unavailable. Please contact support if payment was deducted.";
+        }
+        // Timeout error
+        else if (err?.code === 'ECONNABORTED' || err?.message?.includes('timeout')) {
+          errorMessage = "Payment verification is taking too long. Please contact support.";
+        }
+        else {
+          const responseData = err?.response?.data;
+          
+          if (responseData) {
+            // Detect HTML error pages
+            if (typeof responseData === 'string' && responseData.trim().startsWith('<!DOCTYPE')) {
+              errorMessage = "Service unavailable. Please contact support if payment was deducted.";
+            }
+            // Check for detail field (FastAPI standard)
+            else if (responseData.detail) {
+              errorMessage = typeof responseData.detail === 'string' 
+                ? responseData.detail 
+                : JSON.stringify(responseData.detail);
+            }
+            // Check for message field
+            else if (responseData.message) {
+              errorMessage = responseData.message;
+            }
+            // Check for error field
+            else if (responseData.error) {
+              errorMessage = responseData.error;
+            }
+            // If data itself is a string (not HTML)
+            else if (typeof responseData === 'string' && responseData.length < 200) {
+              errorMessage = responseData;
+            }
+          }
+          // HTTP status errors
+          else if (err?.response?.status) {
+            const status = err.response.status;
+            if (status === 500) errorMessage = "Server error. Please contact support.";
+            else if (status === 502 || status === 503) errorMessage = "Service unavailable. Please try again later.";
+            else if (status === 504) errorMessage = "Request timeout. Please try again or contact support.";
+          }
+          // Fallback to error message property but avoid generic axios messages
+          else if (err?.message && !err?.message.includes("status code")) {
+            errorMessage = err.message;
+          }
         }
         
         setError(errorMessage);
