@@ -98,9 +98,29 @@ const Program = () => {
 
   // ✅ Extract error message from backend response
   const getErrorMessage = (error: any): string => {
+    // Network error (backend is down or unreachable)
+    if (error?.code === 'ERR_NETWORK' || error?.message?.includes('Network Error')) {
+      return "Unable to connect to the server. Please check your internet connection or try again later.";
+    }
+    
+    // CORS or connection refused
+    if (error?.message?.includes('ECONNREFUSED') || error?.message?.includes('Failed to fetch')) {
+      return "The service is temporarily unavailable. Our team has been notified. Please try again in a few minutes.";
+    }
+    
+    // Timeout error
+    if (error?.code === 'ECONNABORTED' || error?.message?.includes('timeout')) {
+      return "The request took too long to respond. Please try again.";
+    }
+    
     // Check for axios error response
     if (error?.response?.data) {
       const data = error.response.data;
+      
+      // Detect HTML error pages (nginx/server errors)
+      if (typeof data === 'string' && data.trim().startsWith('<!DOCTYPE')) {
+        return "The service is temporarily unavailable. Please try again in a few minutes.";
+      }
       
       // Check for detail field (FastAPI standard)
       if (data.detail) {
@@ -117,19 +137,28 @@ const Program = () => {
         return data.error;
       }
       
-      // If data itself is a string
-      if (typeof data === 'string') {
+      // If data itself is a string (not HTML)
+      if (typeof data === 'string' && data.length < 200) {
         return data;
       }
     }
     
+    // HTTP status errors
+    if (error?.response?.status) {
+      const status = error.response.status;
+      if (status === 500) return "Internal server error. Our team has been notified.";
+      if (status === 502 || status === 503) return "The service is temporarily unavailable. Please try again shortly.";
+      if (status === 504) return "The server is taking too long to respond. Please try again.";
+      if (status === 404) return "The requested resource was not found.";
+    }
+    
     // Check for error message property
-    if (error?.message) {
+    if (error?.message && !error.message.includes('Request failed')) {
       return error.message;
     }
     
     // Fallback
-    return "An unexpected error occurred. Please try again.";
+    return "Unable to load programs at this time. Please try again later.";
   };
 
   if (!hasMounted) {

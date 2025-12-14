@@ -7,6 +7,8 @@ const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 export const api = axios.create({
   baseURL: API_BASE,
   headers: { "Content-Type": "application/json" },
+  timeout: 15000, // 15 second timeout
+  validateStatus: (status) => status < 500, // Don't throw on 4xx errors
 });
 
 export interface Cohort {

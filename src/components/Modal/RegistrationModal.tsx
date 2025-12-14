@@ -122,31 +122,56 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
       // Extract error message from backend response
       let errorMessage = "An error occurred. Please try again.";
       
-      const responseData = error?.response?.data;
-      
-      if (responseData) {
-        // Check for detail field (FastAPI standard)
-        if (responseData.detail) {
-          errorMessage = typeof responseData.detail === 'string' 
-            ? responseData.detail 
-            : JSON.stringify(responseData.detail);
-        }
-        // Check for message field
-        else if (responseData.message) {
-          errorMessage = responseData.message;
-        }
-        // Check for error field
-        else if (responseData.error) {
-          errorMessage = responseData.error;
-        }
-        // If data itself is a string
-        else if (typeof responseData === 'string') {
-          errorMessage = responseData;
-        }
+      // Network error (backend is down)
+      if (error?.code === 'ERR_NETWORK' || error?.message?.includes('Network Error')) {
+        errorMessage = "Unable to connect to the server. Please check your internet connection.";
       }
-      // Fallback to error message property but avoid generic axios messages
-      else if (error?.message && !error?.message.includes("status code")) {
-        errorMessage = error.message;
+      // Connection refused (backend not running)
+      else if (error?.message?.includes('ECONNREFUSED') || error?.message?.includes('Failed to fetch')) {
+        errorMessage = "The service is temporarily unavailable. Please try again in a few minutes.";
+      }
+      // Timeout error
+      else if (error?.code === 'ECONNABORTED' || error?.message?.includes('timeout')) {
+        errorMessage = "The request took too long. Please try again.";
+      }
+      else {
+        const responseData = error?.response?.data;
+        
+        if (responseData) {
+          // Detect HTML error pages
+          if (typeof responseData === 'string' && responseData.trim().startsWith('<!DOCTYPE')) {
+            errorMessage = "The service is temporarily unavailable. Please try again later.";
+          }
+          // Check for detail field (FastAPI standard)
+          else if (responseData.detail) {
+            errorMessage = typeof responseData.detail === 'string' 
+              ? responseData.detail 
+              : JSON.stringify(responseData.detail);
+          }
+          // Check for message field
+          else if (responseData.message) {
+            errorMessage = responseData.message;
+          }
+          // Check for error field
+          else if (responseData.error) {
+            errorMessage = responseData.error;
+          }
+          // If data itself is a string (not HTML)
+          else if (typeof responseData === 'string' && responseData.length < 200) {
+            errorMessage = responseData;
+          }
+        }
+        // HTTP status errors
+        else if (error?.response?.status) {
+          const status = error.response.status;
+          if (status === 500) errorMessage = "Server error. Our team has been notified.";
+          else if (status === 502 || status === 503) errorMessage = "Service temporarily unavailable.";
+          else if (status === 504) errorMessage = "Request timeout. Please try again.";
+        }
+        // Fallback to error message property but avoid generic axios messages
+        else if (error?.message && !error?.message.includes("status code")) {
+          errorMessage = error.message;
+        }
       }
       
       toast.error(errorMessage);
