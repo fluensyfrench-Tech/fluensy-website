@@ -71,6 +71,12 @@ jobs:
               docker login --username AWS --password-stdin \
               ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_DEFAULT_REGION }}.amazonaws.com
             
+            # Clean up Docker resources to free storage
+            echo "🧹 Cleaning up Docker resources..."
+            docker system prune -af --volumes || true
+            echo "✅ Docker cleanup completed"
+            df -h /var/lib/docker | grep -E 'Filesystem|docker' || df -h / | head -2
+            
             # Ensure deployment script exists and is executable
             if [ ! -f "./blue-green-deploy.sh" ]; then
               echo "❌ Deployment script not found!"

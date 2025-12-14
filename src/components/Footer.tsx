@@ -6,12 +6,12 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { label: "X", href: "https://x.com/fluensyfrench" },
+  { label: "X", href: "https://x.com/fluensyfrench?s=21" },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/company/fluensyfrench/posts/?feedView=all",
   },
-  { label: "TikTok", href: "https://www.tiktok.com/@fluensyfrench" },
+  { label: "TikTok", href: "https://www.tiktok.com/@fluensyfrenchh?_r=1&_t=ZS-92CDkNsQdme" },
   { label: "YouTube", href: "https://www.youtube.com/@fluensyfrench" },
   {
     label: "Instagram",
