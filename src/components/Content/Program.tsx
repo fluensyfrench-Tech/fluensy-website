@@ -605,7 +605,8 @@ const Program = () => {
 
           <div className="text-center py-12 md:py-16 px-4">
             <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium !leading-[1.3] text-[#181A25] mb-2">
-              Interested in private lessons? Send us an email. 
+              Interested in private lessons? <br className="hidden sm:block" /> 
+              Send us an email.
               
             </h3>
           </div>
