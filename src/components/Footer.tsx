@@ -11,7 +11,7 @@ const socialLinks = [
     label: "LinkedIn",
     href: "https://www.linkedin.com/company/fluensyfrench/posts/?feedView=all",
   },
-  { label: "TikTok", href: "https://www.tiktok.com/@fluensyfrenchh?_r=1&_t=ZS-92CDkNsQdme" },
+  { label: "TikTok", href: "https://www.tiktok.com/@fluensyfrench" },
   { label: "YouTube", href: "https://www.youtube.com/@fluensyfrench" },
   {
     label: "Instagram",
