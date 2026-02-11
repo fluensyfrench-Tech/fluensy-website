@@ -19,7 +19,7 @@ const Content: React.FC = () => {
     "Free community support",
     "Science-backed learning methods",
     "Learn from proven experts",
-    "Certificate of completion",
+    // "Certificate of completion",
     "Learn from anywhere",
   ];
   return (

@@ -11,7 +11,7 @@ const Academy: React.FC = () => {
     "Free community support",
     "Science-backed learning methods",
     "Learn from proven experts",
-    "Certificate of completion",
+    // "Certificate of completion",
     "Real-world French you will use",
     "Learn from anywhere",
   ];
