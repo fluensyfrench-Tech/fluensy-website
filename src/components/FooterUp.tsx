@@ -88,7 +88,7 @@ function FooterUp() {
         actionMessage="Join our Telegram community"
         action={true}
         onActionClick={() =>
-          window.open("https://t.me/+C8yZjKbPA8FiYmU0", "_blank")
+          window.open("https://t.me/+X0pcxeenFHwyYzNk", "_blank")
         }
       />
     </section>
