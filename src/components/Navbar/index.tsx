@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const NavLink: React.FC<{
   href: string;
@@ -13,7 +14,7 @@ const NavLink: React.FC<{
   <Link
     href={href}
     onClick={onClick}
-    className={`transition-colors px-2 py-1 ${href === pathname ? "text-[#7148e5]" : "text-gray-700 hover:text-gray-900 "}`}
+    className={`transition-colors px-2 py-1 ${href === pathname ? "text-secondary-1 font-bold" : "text-primary hover:text-gray-900 "}`}
   >
     {children}
   </Link>
@@ -31,7 +32,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="fixed z-50 top-0 left-0 w-full bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1250px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-24">
           <Link
             href="/"
@@ -41,15 +42,36 @@ const Navbar: React.FC = () => {
             <span className="font-normal">french</span>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-6">
-            <NavLink href="/meet-us" pathname={pathname}>
-              Meet us
+          <div className="hidden md:flex items-center space-x-7">
+            <NavLink href="/academy" pathname={pathname}>
+              Academy
             </NavLink>
+
+            <NavLink href="/about-us" pathname={pathname}>
+              About us
+            </NavLink>
+          </div>
+
+
+          <div className="hidden md:flex items-center space-x-7">
+            <div className="flex items-center space-x-5">
+              <button>
+              <Image src="/images/icons/play-store.svg" alt="Play Store" width={35} height={35} />
+            </button>
+            <button>
+              <Image src="/images/icons/app-store.svg" alt="App Store" width={35} height={35} />
+            </button>
+
+            </div>
+            
+            {/* <NavLink href="/meet-us" pathname={pathname}>
+              Meet us
+            </NavLink> */}
             <Link
               href="/program"
-              className="bg-[#7148E5] text-white px-6 py-3.5 h-[52px] w-[221px] rounded-[12px] text-base text-center font-medium hover:opacity-95 transition hover:bg-[#7DE5F2] hover:text-[#181A25]"
+              className="bg-secondary-1 text-white px-5 h-[45px]  rounded-[12px] text-base text-center font-normal hover:opacity-95 transition hover:bg-[#7DE5F2] hover:text-[#181A25] grid place-items-center"
             >
-              Enrol now
+              Download app
             </Link>
           </div>
 
@@ -85,9 +107,8 @@ const Navbar: React.FC = () => {
             <Link
               href="/meet-us"
               onClick={() => setOpen(false)}
-              className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${
-                isActive ? "text-[#8f66ff] font-semibold" : ""
-              }`}
+              className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${isActive ? "text-[#8f66ff] font-semibold" : ""
+                }`}
             >
               Meet Us
             </Link>

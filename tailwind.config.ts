@@ -1,12 +1,25 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     extend: {
       fontFamily: {
+        space: ["Space Grotesk", "sans-serif"],
         lexend: ["Lexend", "sans-serif"],
         handlee: ["Handlee", "sans-serif"],
+      },
+      colors: {
+        primary: "#181A25",
+        "secondary-1": "#643BD8",
+        "secondary-2": "#7DE5F2",
+        "secondary-3": "#F76015",
+        "grey-200": "#C7CAD1",
+        "grey-600": "#3A3D44"
       },
       boxShadow: {
         custom: "0 4px 20px rgba(0, 0, 0, 0.1)",
@@ -16,23 +29,12 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
-};
-export default config;
-
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  plugins: [
+    function({ addVariant }: { addVariant: any }) {
+      addVariant("child", "& > *");
+      addVariant("child-button", "& > button");
+    }
   ],
-theme: {
-  extend: {
-    fontFamily: {
-      grotesk: ['"Space Grotesk"', 'sans-serif'],
-    },
-  },
-},
-  plugins: [],
 };
+
+export default config;

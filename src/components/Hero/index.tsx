@@ -7,13 +7,16 @@ import { cards } from "../../data/content";
 import { registerEmail } from "../../util/register";
 import Link from "next/link";
 import MotionButton from "../ui/MotionButton";
+import Image from "next/image";
+import { PiGooglePlayLogoLight } from "react-icons/pi";
+import { TbBrandApple } from "react-icons/tb";
 
 const Hero: React.FC = () => {
   const illustrations = [
-    "/images/hero-img1.svg",
-    "/images/hero-img2.svg",
-    "/images/hero-img3.svg",
-    "/images/hero-img4.svg",
+    "/images/hero-img-1.svg",
+    "/images/hero-img-2.svg",
+    "/images/hero-img-3.svg",
+    "/images/hero-img-4.svg",
   ];
 
   const onRegisterClick = (email: string) => {
@@ -24,45 +27,61 @@ const Hero: React.FC = () => {
     <>
       {/* HERO CONTENT */}
       <section className="relative overflow-hidden pb-20">
-        <div className="relative z-20 max-w-4xl mx-auto px-4 text-center mt-24 sm:mt-36">
+        <div className="relative z-20 max-w-4xl mx-auto px-4 text-center mt-24 sm:mt-36 lg:mt-28">
           <motion.h1
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-3xl sm:text-5xl lg:text-7xl mb-6"
+            className="text-3xl sm:text-5xl lg:text-6xl mb-0 max-w-2xl mx-auto"
           >
-            <span className="block mt-2 font-bold leading-[1.3]">
-              Your journey to fluent French starts here
-            </span>
+            <p className=" font-bold leading-[1.3]">
+              Your journey to <span className="text-secondary-1">fluent French </span> starts now
+            </p>
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-            className="text-base md:text-lg font-normal mb-6 md:mb-8 max-w-xl mx-auto leading-relaxed"
-          >
-            We make French learning fun, impactful, and accessible.
-          </motion.p>
+          <div className="mt-6 space-y-4 px-[20px] md:hidden">
+            <button
+              className="bg-secondary-1 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-white"
+            >
+              <PiGooglePlayLogoLight size={32} fill="white" />
+              Download on Google Play
+            </button>
 
-          <Link href="/program">
-            <motion.button
+            <button
+              className="bg-secondary-2 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-black"
+            >
+              <TbBrandApple size={32} />
+              Download on App Store
+            </button>
+          </div>
+
+          <div className="hidden md:block">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+              className="max-w-xl mx-auto w-fit"
+            >
+              <Image src={'/images/qrcode.svg'} alt="QR Code" width={211} height={211} />
+            </motion.div>
+
+            <motion.span
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-              className="bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base sm:text-[20px] text-white px-6 py-[10px] sm:py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-normal hover:opacity-95 transition"
+              className="text-primary text-sm"
             >
-              Enrol now
-            </motion.button>
-          </Link>
+              Scan now to download app
+            </motion.span>
+          </div>
         </div>
       </section>
 
       {/* IMAGE ROW */}
       <section className="relative z-10 bg-white">
         <div className="max-w-[1600px] mx-auto">
-          <div className="flex flex-nowrap justify-center items-start gap-3 -mt-5 xl:mt-0 w-full px-4">
+          <div className="flex flex-nowrap justify-between items-start gap-3 -mt-5 xl:mt-0 w-full">
             {illustrations.map((src, idx) => (
               <motion.div
                 key={idx}
@@ -74,9 +93,7 @@ const Hero: React.FC = () => {
                   delay: idx * 0.2,
                 }}
                 viewport={{ once: true }}
-                className={
-                  idx === 0 ? "flex-[1.1]" : idx === 1 ? "flex-[1.5]" : "flex-1"
-                }
+               
               >
                 <img
                   src={src}
@@ -91,7 +108,7 @@ const Hero: React.FC = () => {
 
       {/* BLUE SECTION FULL WIDTH */}
       <section className="bg-[#7DE5F2] relative z-30 -mt-5 md:-mt-10 xl:-mt-16 w-full">
-        <div className="max-w-[1250px] mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-[1250px] mx-auto px-7 py-10 md:py-[98px] flex flex-col md:flex-row gap-12 items-center">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -110,9 +127,9 @@ const Hero: React.FC = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-                className="bg-[#7148E5] hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg  text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-medium hover:opacity-95 transition"
+                className="bg-[#7148E5] hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg  text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-regular hover:opacity-95 transition"
               >
-                Join now for free
+                Download app
               </motion.button>
             </Link>
           </motion.div>
@@ -130,28 +147,28 @@ const Hero: React.FC = () => {
                   delay: idx * 0.2,
                 }}
                 viewport={{ once: true }}
-                className="bg-white p-6 rounded-lg shadow-md flex flex-col gap-3"
+                className="bg-white py-4 px-6 rounded-lg shadow-md flex flex-col gap-3"
               >
                 <img
                   src={card.icon} // Make sure card.icon points to /images/...
                   alt={`Icon ${idx + 1}`}
-                  className="w-10 h-10 object-contain"
+                  className="w-[30px] h-[30px] md:w-[35px] md:h-[35px] object-contain"
                 />
-                <p className="text-gray-800 text-base md:text-xl font-normal">
+                <p className="text-primary text-base md:text-xl font-normal">
                   {card.text}
                 </p>
               </motion.div>
             ))}
           </div>
 
-          <Link href="/#cohort">
+          <Link className="w-full block md:hidden" href="/#cohort">
             <motion.button
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-              className="bg-[#7148E5] block md:hidden hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg  text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-medium hover:opacity-95 transition"
+              className="bg-[#7148E5]  hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg  text-white px-6 h-[66px] w-full rounded-[12px] text-center font-regular hover:opacity-95 transition"
             >
-              Join now for free
+              Download app
             </motion.button>
           </Link>
         </div>
