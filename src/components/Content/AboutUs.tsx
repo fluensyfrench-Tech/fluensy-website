@@ -2,10 +2,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const MeetUs: React.FC = () => {
+const AboutUs: React.FC = () => {
   return (
-    <section className="bg-[#7DE5F2] h-full">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-start px-4 sm:px-6 lg:px-8 pt-32 pb-28 h-full">
+    <section className="h-full">
+      <div className="max-w-[1250px] mx-auto flex flex-col md:flex-row items-center justify-start md:justify-between px-4 sm:px-6 lg:px-8 pt-32 pb-28 h-full">
         <motion.div
           className="w-full md:w-3/5 text-[#181A25] text-left flex flex-col justify-center max-w-2xl space-y-4"
           initial={{ opacity: 0, y: 50 }}
@@ -14,30 +14,28 @@ const MeetUs: React.FC = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-5xl mb-3 font-bold leading-tight">
-            Meet fluensyfrench
+            About fluensyfrench
           </h2>
           <p className="text-lg md:text-xl">
-            At fluensyfrench, we make French learning fun, impactful, and
-            accessible.
+            We help French learners <strong>gain fluency</strong> through proven,
+            science-backed learning methods. 
+            Our goal is to guide them at every step, 
+            all the way to fluency, with lessons designed to be engaging, 
+            practical, and easy to follow.
           </p>
           <p className="text-lg md:text-xl">
-            Our goal is to guide learners from their first words all the way to
-            fluensy, with lessons designed to be engaging, practical, and easy
-            to follow.
+           Our lessons are designed with how people naturally learn, 
+           <strong>using proven, science-backed methods</strong> to make learning 
+           effective and enjoyable.
           </p>
           <p className="text-lg md:text-xl">
-            Our lessons are designed with how people naturally learn, using
-            proven, <strong>science-backed methods</strong> to make learning
-            effective and enjoyable.
+            We believe learning is more fun and effective when people
+            are supported, so our <strong>community</strong> is here to motivate, encourage, 
+            and celebrate every step of their journey.
           </p>
           <p className="text-lg md:text-xl">
-            We believe learning is more fun and effective when people are
-            supported, so <strong>our community</strong> is here to motivate,
-            encourage, and celebrate every step of their journey.
-          </p>
-          <p className="text-lg md:text-xl font-medium">
             Remember, with fluensyfrench,{" "}
-            <strong>fluensy is possible 👍🏾</strong>
+            fluensy is possible 👍🏾
           </p>
         </motion.div>
 
@@ -59,4 +57,4 @@ const MeetUs: React.FC = () => {
   );
 };
 
-export default MeetUs;
+export default AboutUs;

@@ -2,15 +2,22 @@ import Image from "next/image"
 
 const ScrollingPhones = () => {
     const mobilePhones = [
-        { id: 1, phone: '/images/scrolling-phone-1.svg' },
-        { id: 2, phone: '/images/scrolling-phone-2.svg' },
-        { id: 3, phone: '/images/scrolling-phone-3.svg' },
-        { id: 4, phone: '/images/scrolling-phone-4.svg' },
-        { id: 5, phone: '/images/scrolling-phone-5.svg' },
+        { id: 1, phone: '/images/scrolling-phone-2.svg' },
+        { id: 2, phone: '/images/scrolling-phone-3.svg' },
+        { id: 3, phone: '/images/scrolling-phone-4.svg' },
+        { id: 4, phone: '/images/scrolling-phone-2.svg' },
+        { id: 5, phone: '/images/scrolling-phone-3.svg' },
+        { id: 6, phone: '/images/scrolling-phone-4.svg' },
+        { id: 7, phone: '/images/scrolling-phone-2.svg' },
+        { id: 8, phone: '/images/scrolling-phone-3.svg' },
+        { id: 9, phone: '/images/scrolling-phone-4.svg' },
+        { id: 10, phone: '/images/scrolling-phone-2.svg' },
+        { id: 11, phone: '/images/scrolling-phone-3.svg' },
+        { id: 12, phone: '/images/scrolling-phone-4.svg' },
     ]
 
     const GAP = '-2rem'       // spacing between images within a set
-    const SEAM_GAP = '3rem'  // spacing at the loop seam — tweak independently
+    const SEAM_GAP = '-2rem'  // spacing at the loop seam — tweak independently
 
     return (
         <section className="bg-secondary-1 py-[90px] overflow-hidden">
@@ -23,7 +30,7 @@ const ScrollingPhones = () => {
                     display: flex;
                     align-items: flex-end;
                     width: max-content;
-                    animation: seamless-scroll 15s linear infinite;
+                    animation: seamless-scroll 25s linear infinite;
                 }
                 .phone-scroll-track img {
                     width: auto !important;

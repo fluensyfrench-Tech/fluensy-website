@@ -7,6 +7,8 @@ import AcademyHero from "@/components/Hero/AcademyHero";
 import Academy from "@/components/Content/Academy";
 import FooterUp from "@/components/FooterUp";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import { CourseDetails } from "@/components/Academy";
 
 export default function HomePage() {
   useEffect(() => {
@@ -60,10 +62,12 @@ export default function HomePage() {
   return (
     <main className="min-h-screen">
       <Toaster position="top-center" />
-      <AcademyNavbar />
+      <Navbar />
+      {/* <AcademyNavbar /> */}
       <AcademyHero />
-      <Academy />
-      <FooterUp/>
+      <CourseDetails />
+      {/* <Academy /> */}
+      {/* <FooterUp/> */}
       <Footer />
     </main>
   );

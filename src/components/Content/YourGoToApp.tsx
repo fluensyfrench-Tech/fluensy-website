@@ -43,28 +43,46 @@ const YourGoToApp = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                         {
-                            highlights.map((highlight) => (
-                                <div
+                            highlights.map((highlight, idx) => (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 50 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{
+                                        duration: 0.8,
+                                        ease: "easeOut",
+                                        delay: idx * 0.2,
+                                    }}
+                                    viewport={{ once: true }}
                                     key={highlight.id}
                                     className="flex items-center gap-4 bg-white py-5 md:py-[30px] px-9 rounded-[10px] shadow-lg"
                                 >
                                     <img src={highlight.icon} alt={highlight.highlight} className="w-8 h-8" />
                                     <p className="text-primary text-lg">{highlight.highlight}</p>
-                                </div>
+                                </motion.div>
                             ))
                         }
                     </div>
                 </div>
 
-                <div className='-mb-16 hidden md:block'>
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    viewport={{ once: true }}
+                    className='-mb-16 hidden md:block'>
                     <img src="/images/your-go-to-app-desktop.png" />
 
-                </div>
+                </motion.div>
 
 
-                <div className="-mb-11 mt-12 z-[0] relative md:hidden">
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    viewport={{ once: true }}
+                    className="-mb-11 mt-12 z-[0] relative md:hidden">
                     <img src="/images/your-go-to-app.svg" />
-                </div>
+                </motion.div>
 
 
 

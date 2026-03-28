@@ -10,6 +10,7 @@ import MotionButton from "../ui/MotionButton";
 import Image from "next/image";
 import { PiGooglePlayLogoLight } from "react-icons/pi";
 import { TbBrandApple } from "react-icons/tb";
+import AppleFooterIcon from "../icons/AppleFooterIcon";
 
 const Hero: React.FC = () => {
   const illustrations = [
@@ -40,21 +41,33 @@ const Hero: React.FC = () => {
             </p>
           </motion.h1>
 
-          <div className="mt-6 space-y-4 px-[20px] md:hidden">
-            <button
+          <motion.div 
+            className="mt-6 space-y-4 px-[20px] md:hidden"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+          >
+            <motion.button
               className="bg-secondary-1 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-white"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <PiGooglePlayLogoLight size={32} fill="white" />
               Download on Google Play
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
               className="bg-secondary-2 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-black"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <TbBrandApple size={32} />
+              <AppleFooterIcon isHovered={false}/>
               Download on App Store
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
 
           <div className="hidden md:block">
             <motion.div

@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
-import Meetus from "@/components/Content/Meetus";
+import AboutUs from "@/components/Content/AboutUs";
 import Footer from "@/components/Footer";
 
 export default function HomePage() {
@@ -60,7 +60,7 @@ export default function HomePage() {
       <Toaster position="top-center" />
       <Navbar />
       <div className="flex-grow">
-        <Meetus />
+        <AboutUs />
       </div>
       <Footer />
     </main>

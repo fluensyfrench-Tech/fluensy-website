@@ -10,11 +10,11 @@ export const cards = [
     text: "Get support and stay motivated",
   },
   {
-    icon: "/images/icons/icon3.svg",
+    icon: "/images/icons/blue-section-icon-3.svg",
     text: "Ask questions and correct your mistakes.",
   },
   {
-    icon: "/images/icons/icon4.svg",
+    icon: "/images/icons/blue-section-icon-4.svg",
     text: "Access exclusive content and resources.",
   },
 ];

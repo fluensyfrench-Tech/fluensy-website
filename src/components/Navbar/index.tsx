@@ -4,6 +4,8 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import PlayStoreIcon from "../icons/PlayStoreIcon";
+import AppStoreIcon from "../icons/AppStoreIcon";
 
 const NavLink: React.FC<{
   href: string;
@@ -14,9 +16,30 @@ const NavLink: React.FC<{
   <Link
     href={href}
     onClick={onClick}
-    className={`transition-colors px-2 py-1 ${href === pathname ? "text-secondary-1 font-bold" : "text-primary hover:text-gray-900 "}`}
+    className={`relative transition-colors px-2 py-1 group ${href === pathname
+        ? "text-secondary-1 font-bold"
+        : "text-primary hover:text-gray-900"
+      }`}
   >
     {children}
+    {href !== pathname && (
+      <span className="absolute left-0 -bottom-2 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-[10px]">
+        <svg
+          width="100%"
+          height="6"
+          viewBox="0 0 67 6"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0.485596 4.35548C13.1523 0.0221491 43.4856 1.1131 66.4856 4.35548"
+            stroke="#643BD8"
+            strokeWidth="3"
+          />
+        </svg>
+      </span>
+    )}
   </Link>
 );
 
@@ -24,6 +47,7 @@ const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -34,6 +58,7 @@ const Navbar: React.FC = () => {
     <nav className="fixed z-50 top-0 left-0 w-full bg-white">
       <div className="max-w-[1250px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-24">
+          {/* Logo */}
           <Link
             href="/"
             className="flex-shrink-0 text-xl leading-[100%] tracking-[0]"
@@ -42,39 +67,38 @@ const Navbar: React.FC = () => {
             <span className="font-normal">french</span>
           </Link>
 
+          {/* Desktop Center Links */}
           <div className="hidden md:flex items-center space-x-7">
             <NavLink href="/academy" pathname={pathname}>
               Academy
             </NavLink>
-
             <NavLink href="/about-us" pathname={pathname}>
               About us
             </NavLink>
           </div>
 
-
+          {/* Desktop Right Actions */}
           <div className="hidden md:flex items-center space-x-7">
             <div className="flex items-center space-x-5">
-              <button>
-              <Image src="/images/icons/play-store.svg" alt="Play Store" width={35} height={35} />
-            </button>
-            <button>
-              <Image src="/images/icons/app-store.svg" alt="App Store" width={35} height={35} />
-            </button>
-
+              <button className="transition-opacity">
+                <PlayStoreIcon />
+              </button>
+              <button className="transition-opacity">
+                <AppStoreIcon />
+              </button>
             </div>
-            
-            {/* <NavLink href="/meet-us" pathname={pathname}>
-              Meet us
-            </NavLink> */}
-            <Link
-              href="/program"
-              className="bg-secondary-1 text-white px-5 h-[45px]  rounded-[12px] text-base text-center font-normal hover:opacity-95 transition hover:bg-[#7DE5F2] hover:text-[#181A25] grid place-items-center"
+            <button
+              onClick={() => {
+                const footer = document.querySelector('footer');
+                footer?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="bg-secondary-1 text-white px-5 h-[45px] rounded-[12px] text-base text-center font-normal hover:opacity-95 transition hover:bg-[#7DE5F2] hover:text-[#181A25] grid place-items-center"
             >
               Download app
-            </Link>
+            </button>
           </div>
 
+          {/* Mobile Hamburger */}
           <div className="md:hidden">
             <button
               onClick={() => setOpen(!open)}
@@ -87,6 +111,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       {open && (
         <div className="fixed inset-0 border bg-[#7DE5F2] z-40 flex flex-col justify-start space-y-6 text-lg px-6">
           <button
@@ -96,29 +121,39 @@ const Navbar: React.FC = () => {
           >
             <X className="h-6 w-6" />
           </button>
-          {/* <NavLink href="/meet-us" onClick={() => setOpen(false)}>
-            Meet us
-          </NavLink> */}
+
           <Link href="/">
             <span className="font-bold">fluensy</span>
             <span className="font-normal text-gray-700">french</span>
           </Link>
+
           <div className="pt-20 flex flex-col items-center gap-[20px]">
             <Link
-              href="/meet-us"
+              href="/academy"
               onClick={() => setOpen(false)}
               className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${isActive ? "text-[#8f66ff] font-semibold" : ""
                 }`}
             >
-              Meet Us
+              Academy
             </Link>
             <Link
-              href="/program"
+              href="/about-us"
               onClick={() => setOpen(false)}
-              className="bg-[#7148E5] text-white px-6 py-3.5 rounded-md text-base font-medium"
+              className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${isActive ? "text-[#8f66ff] font-semibold" : ""
+                }`}
             >
-              Start Your French Course
+              About us
             </Link>
+            <button
+              onClick={() => {
+                setOpen(false);
+                const footer = document.querySelector('footer');
+                footer?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="bg-[#7148E5] text-white px-6 py-3.5 rounded-md text-base font-medium w-full"
+            >
+              Download app
+            </button>
           </div>
         </div>
       )}

@@ -18,6 +18,7 @@ const config: Config = {
         "secondary-1": "#643BD8",
         "secondary-2": "#7DE5F2",
         "secondary-3": "#F76015",
+        "grey-100": "#E4E6EB",
         "grey-200": "#C7CAD1",
         "grey-600": "#3A3D44"
       },
