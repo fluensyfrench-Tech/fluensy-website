@@ -4,8 +4,8 @@ export const privacy = [
     label: "Introduction",
     content: [
       {
-        description: `At fluensyfrench, your privacy matters. We are committed to protecting your personal information and ensuring that it is collected, used, and stored responsibly.<br />
-        This Privacy Policy explains the information we collect, how we use it, when we share it, and the choices available to you across our services—including our website, and mobile app waitlist.<br /><br />
+        description: `At fluensyfrench, your privacy matters. We are committed to protecting your personal information and ensuring that it is collected, used, and stored responsibly.
+        This Privacy Policy explains the information we collect, how we use it, when we share it, and the choices available to you across our services—including our website, and mobile app.<br /><br />
         By using our services, you agree to the practices described in this Privacy Policy. If you do not agree, you should discontinue using fluensyfrench services.`,
       },
     ],
@@ -16,16 +16,17 @@ export const privacy = [
     content: [
       {
         description: `We collect information in different ways depending on how you interact with us:<br /><br />
-        <strong>Academy Students (Website Registration):</strong><br />
+        <strong>Course Registration:</strong><br />
         <ul class="list-disc list-inside">
           <li>Full name</li>
           <li>Email address</li>
           <li>Phone number</li>
-          <li>Payment information (processed securely via third-party providers; we do not store your full payment details)</li>
+          <li>Payment information (processed securely via third-party providers; we do not store your full payment details) </li>
           <li>Country of residence.</li>
         </ul><br />
-        <strong>Mobile App Waitlist:</strong><br />
+        <strong>Mobile App:</strong><br />
         <ul class="list-disc list-inside">
+          <li>Full name</li>
           <li>Email address</li>
         </ul><br />
         We do not intentionally collect sensitive categories of data such as financial account numbers, medical records, or government-issued identification unless required for compliance with applicable law.`,
@@ -44,7 +45,7 @@ export const privacy = [
           <li>Personalize your learning experience and communication</li>
           <li>Communicate with you about courses, applications, updates, and policy changes</li>
           <li>Maintain platform security, prevent fraud, and monitor misuse</li>
-          <li>Manage the mobile app waitlist and onboarding</li>
+          <li>Manage the mobile app and onboarding</li>
         </ul>`,
       },
     ],
