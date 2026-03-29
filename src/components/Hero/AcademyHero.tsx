@@ -49,7 +49,7 @@ const AcademyHero: React.FC = () => {
           child-button:rounded-[10px]
           child-button:transition-all
           child-button:duration-200
-          mt-12 md:mt-16 flex gap-4 md:gap-8
+          mt-12 md:mt-16 flex flex-col min-[400px]:flex-row gap-4 md:gap-8
         ">
           <button
             onClick={() => handleSelect("adults")}

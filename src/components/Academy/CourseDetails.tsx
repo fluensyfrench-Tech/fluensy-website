@@ -355,7 +355,7 @@ export const CourseDetails = () => {
                     Prefer private lessons tailored <br />to your {courseType === "kids" ? "child's" : ""} goals?
                 </motion.h3>
                 <motion.button 
-                    className="mt-4 px-6 py-3 bg-secondary-1 text-white rounded-lg hover:bg-secondary-2 hover:text-primary transition-colors w-[378px] h-[66px]"
+                    className="mt-4 px-6 py-3 bg-secondary-1 text-white rounded-lg hover:bg-secondary-2 hover:text-primary transition-colors md:w-[378px] h-[66px]"
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                     Send us a mail
