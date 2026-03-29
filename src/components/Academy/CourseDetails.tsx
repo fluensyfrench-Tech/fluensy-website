@@ -2,6 +2,7 @@
 import { useSearchParams } from "next/navigation"
 import { Check, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export const CourseDetails = () => {
     const searchParams = useSearchParams()
@@ -336,6 +337,31 @@ export const CourseDetails = () => {
     return (
         <div className="px-4 sm:px-6 lg:px-8 max-w-[1250px] mx-auto pb-[76px]">
             {renderCourseDetails()}
+            {courseType && (
+            <motion.div 
+                className="text-center py-12 md:py-16 px-4"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            >
+                <motion.h3 
+                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium !leading-[1.3] text-[#181A25] mb-2"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+                >
+                    Prefer private lessons tailored <br />to your {courseType === "kids" ? "child's" : ""} goals?
+                </motion.h3>
+                <motion.button 
+                    className="mt-4 px-6 py-3 bg-secondary-1 text-white rounded-lg hover:bg-secondary-2 hover:text-primary transition-colors w-[378px] h-[66px]"
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                    Send us a mail
+                </motion.button>
+            </motion.div>
+        )}
         </div>
     )
 }

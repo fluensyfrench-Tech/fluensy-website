@@ -9,8 +9,11 @@ import FooterUp from "@/components/FooterUp";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { CourseDetails } from "@/components/Academy";
+import { useSearchParams } from "next/navigation";
 
 export default function HomePage() {
+  const searchParams = useSearchParams()
+  const courseType = searchParams.get("course_type")
   useEffect(() => {
     // Delay scroll behavior until after hydration
     const initScrollBehavior = () => {
