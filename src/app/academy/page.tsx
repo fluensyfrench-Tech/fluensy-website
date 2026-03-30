@@ -4,16 +4,13 @@ import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import AcademyNavbar from "@/components/Navbar/AcademyNavbar";
 import AcademyHero from "@/components/Hero/AcademyHero";
-import Academy from "@/components/Content/Academy";
-import FooterUp from "@/components/FooterUp";
+// import Academy from "@/components/Content/Academy";
+// import FooterUp from "@/components/FooterUp";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { CourseDetails } from "@/components/Academy";
-import { useSearchParams } from "next/navigation";
 
 export default function HomePage() {
-  const searchParams = useSearchParams()
-  const courseType = searchParams.get("course_type")
   useEffect(() => {
     // Delay scroll behavior until after hydration
     const initScrollBehavior = () => {
