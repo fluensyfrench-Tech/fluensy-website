@@ -130,11 +130,11 @@ const Footer = () => {
       </section>
 
       <footer className="bg-[#181A25] text-white py-12 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
           {/* Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
             {/* Column 1 */}
-            <div className="md:space-y-8 flex flex-row items-center md:flex-col gap-4">
+            <div className="md:space-y-8 flex flex-row items-center md:flex-col md:items-start gap-4">
               <p className="text-2xl font-bold md:-mb-5">
                 Fluensy is possible
               </p>

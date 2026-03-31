@@ -28,7 +28,7 @@ const Content: React.FC = () => {
   return (
     <>
       <ScrollingPhones />
-      <section className="max-w-[1250px] mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14 mb-[30px]">
+      <section className="max-w-[1250px] mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-0 mb-[30px]">
         {/* Learn Anywhere Section */}
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-start">
           <motion.div
@@ -38,7 +38,7 @@ const Content: React.FC = () => {
             viewport={{ once: true, amount: 0.2 }}
             className="w-full md:w-[60%]"
           >
-            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium !leading-[1.3] mb-6">
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium !leading-[1.3] mb-6">
               Why go to a classroom when you can learn French from home, the
               beach, or anywhere you like?
             </h3>
@@ -71,7 +71,7 @@ const Content: React.FC = () => {
       </section>
       <ScrollSection />
 
-      <section className="max-w-7xl mx-auto px-0 !mt-10 sm:px-6 lg:px-8 py-8 md:py-12">
+      <section className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 py-8 md:py-0 md:pb-12">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

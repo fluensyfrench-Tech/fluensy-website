@@ -26,10 +26,7 @@ const AcademyHero: React.FC = () => {
 
   return (
       <section className="w-full pt-[100px] pb-12 px-4 sm:px-6 lg:px-8 max-w-[1250px] mx-auto">
-        <button onClick={() => router.back()}>
-          <img src="/images/icons/arrow-back.svg" />
-        </button>
-        <h1 className="text-[40px] md:text-[48px] font-bold text-primary">fluensyfrench Academy</h1>
+        <h1 className="text-[40px] md:text-[48px] font-bold text-primary">fluensyfrench Online Academy</h1>
         <div className="mt-[10px] text-primary text-[20px]">
           <p>
             Learn French with courses aligned to the Common European Framework of Reference for Languages (CEFR), a globally recognized standard for measuring language proficiency.

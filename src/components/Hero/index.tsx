@@ -34,10 +34,10 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-3xl sm:text-5xl lg:text-6xl mb-0 max-w-2xl mx-auto"
+            className="text-4xl sm:text-5xl lg:text-6xl mb-0 max-w-3xl mx-auto"
           >
-            <p className=" font-bold leading-[1.3]">
-              Your journey to <span className="text-secondary-1">fluent French </span> starts now
+            <p className="font-bold leading-[1.3]">
+              Your journey <br className="md:hidden" /> to <span className="text-secondary-1">fluensy French </span> starts <span className="hidden md:inline">now</span> <span className="md:hidden">here</span>
             </p>
           </motion.h1>
 

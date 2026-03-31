@@ -9,7 +9,7 @@ function ScrollSection() {
   ];
 
   return (
-    <section className="bg-white py-8">
+    <section className="bg-white md:mt-[60px]">
       <div className="max-w-[1200px] mx-auto">
         <div className="overflow-hidden whitespace-nowrap">
           <div className="inline-flex animate-scroll-left">
