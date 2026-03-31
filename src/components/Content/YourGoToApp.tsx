@@ -28,7 +28,7 @@ const YourGoToApp = () => {
     ]
     return (
         <section className="mt-[107px] max-w-[1250px] mx-auto md:px-8">
-            <div className=" bg-secondary-3  px-7 md:px-0 md:pr-16 pt-10  flex flex-col md:flex-row-reverse md:items-center md:rounded-3xl">
+            <div className=" bg-secondary-3  px-7 md:px-0 md:pr-16 pt-10  flex flex-col justify-between md:flex-row-reverse md:items-center md:rounded-3xl">
                 <div>
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
@@ -80,7 +80,7 @@ const YourGoToApp = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    className="-mb-11 mt-12 z-[0] relative md:hidden">
+                    className="-mb-10 mt-12 z-[0] relative md:hidden">
                     <img src="/images/your-go-to-app.svg" />
                 </motion.div>
 
