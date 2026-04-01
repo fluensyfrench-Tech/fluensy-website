@@ -47,15 +47,14 @@ const ScrollingPhones = () => {
             `}</style>
 
             <div className="phone-scroll-track">
-                {[...(typeof window !== 'undefined' && window.innerWidth <= 768 ? mobilePhonesMobile : mobilePhones), ...(typeof window !== 'undefined' && window.innerWidth <= 768 ? mobilePhonesMobile : mobilePhones)].map((mobilePhone, index) => (
-                    <Image
+                {mobilePhones.map((mobilePhone, index) => (
+                    <img
                         key={index}
                         src={mobilePhone.phone}
                         alt="mobile phone"
                         width={0}
                         height={0}
                         sizes="100vw"
-                        unoptimized
                     />
                 ))}
             </div>
