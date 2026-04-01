@@ -80,8 +80,8 @@ const YourGoToApp = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    className="-mb-10 mt-12 z-[0] relative md:hidden">
-                    <img src="/images/your-go-to-app-desktop.png" />
+                    className="-mb-[2px] mt-[69px] z-[0] relative md:hidden">
+                    <img className="rounded-t-[40px] w-[282px] h-[342px] mx-auto" src="/images/your-go-to-app-desktop_test.png" />
                 </motion.div>
 
 
