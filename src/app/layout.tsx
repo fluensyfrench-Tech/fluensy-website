@@ -7,7 +7,6 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import favicon from "./faviconnn.jpg";
 
 import { Space_Grotesk } from "next/font/google";
-import { Suspense } from "react";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -60,9 +59,7 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <Providers>
           <Toaster position="top-center" />
-          <Suspense>
             {children}
-          </Suspense>
           <CookieConsent />
         </Providers>
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
