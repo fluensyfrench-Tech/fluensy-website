@@ -81,7 +81,7 @@ const YourGoToApp = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ once: true }}
                     className="-mb-10 mt-12 z-[0] relative md:hidden">
-                    <img src="/images/your-go-to-app.svg" />
+                    <img src="/images/your-go-to-app-desktop.png" />
                 </motion.div>
 
 

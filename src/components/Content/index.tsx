@@ -82,7 +82,7 @@ const Content: React.FC = () => {
           <div className="flex flex-col md:flex-row">
             <div className="w-full bg-secondary-1 px-[30px] md:px-[60px] lg:px-[80px] py-10 md:py-16 text-white">
               <p className="text-[16px] font-normal mb-5">Why fluensyfrench</p>
-              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-[48px] font-medium !leading-tight mb-5">
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium !leading-tight mb-5">
                 Redefining the way you learn French
               </h3>
               <p className="text-base md:text-lg max-w-xl">

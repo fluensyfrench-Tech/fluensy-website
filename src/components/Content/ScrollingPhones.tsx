@@ -9,6 +9,14 @@ const ScrollingPhones = () => {
         { id: 5, phone: '/images/scrolling-phone-4.svg' },
     ]
 
+    const mobilePhonesMobile = [
+        { id: 1, phone: '/images/scrolling-phone-2.webp' },
+        { id: 2, phone: '/images/scrolling-phone-1.webp' },
+        { id: 3, phone: '/images/scrolling-phone-3.webp' },
+        { id: 4, phone: '/images/scrolling-phone-5.webp' },
+        { id: 5, phone: '/images/scrolling-phone-4.webp' },
+    ]
+
     const GAP = '-2rem'       // spacing between images within a set
     const SEAM_GAP = '-2rem'  // spacing at the loop seam — tweak independently
 
@@ -39,7 +47,7 @@ const ScrollingPhones = () => {
             `}</style>
 
             <div className="phone-scroll-track">
-                {[...mobilePhones, ...mobilePhones].map((mobilePhone, index) => (
+                {[...(typeof window !== 'undefined' && window.innerWidth <= 768 ? mobilePhonesMobile : mobilePhones), ...(typeof window !== 'undefined' && window.innerWidth <= 768 ? mobilePhonesMobile : mobilePhones)].map((mobilePhone, index) => (
                     <Image
                         key={index}
                         src={mobilePhone.phone}
