@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { useEffect, useState } from "react"
 
 const ScrollingPhones = () => {
     const mobilePhones = [
@@ -17,37 +18,51 @@ const ScrollingPhones = () => {
         { id: 5, phone: '/images/scrolling-phone-4.webp' },
     ]
 
-    const GAP = '-2rem'       // spacing between images within a set
-    const SEAM_GAP = '-2rem'  // spacing at the loop seam — tweak independently
+    const [isMobile, setIsMobile] = useState(false)
+
+    useEffect(() => {
+        const mq = window.matchMedia('(max-width: 768px)')
+        setIsMobile(mq.matches)
+        const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+        mq.addEventListener('change', handler)
+        return () => mq.removeEventListener('change', handler)
+    }, [])
+
+    const phones = isMobile ? mobilePhonesMobile : mobilePhones
+    const doubled = [...phones, ...phones]
 
     return (
         <section className="bg-secondary-1 py-[90px] overflow-hidden">
             <style>{`
                 @keyframes seamless-scroll {
-                    0%   { transform: translateX(0); }
-                    100% { transform: translateX(-50%); }
+                    0%   { transform: translate3d(0, 0, 0); }
+                    100% { transform: translate3d(-50%, 0, 0); }
                 }
                 .phone-scroll-track {
                     display: flex;
                     align-items: flex-end;
                     width: max-content;
+                    gap: 0; /* use padding on images instead */
+                    will-change: transform;
+                    transform: translate3d(0, 0, 0);     /* force compositing layer immediately */
+                    -webkit-transform: translate3d(0, 0, 0);
+                    backface-visibility: hidden;          /* prevents iOS flickering */
+                    -webkit-backface-visibility: hidden;
                     animation: seamless-scroll 25s linear infinite;
+                    -webkit-animation: seamless-scroll 25s linear infinite;
                 }
                 .phone-scroll-track img {
                     width: auto !important;
                     height: auto !important;
                     max-height: 662px;
                     flex-shrink: 0;
-                    margin-right: ${GAP};
-                }
-                .phone-scroll-track img:nth-child(5),
-                .phone-scroll-track img:nth-child(10) {
-                    margin-right: ${SEAM_GAP};
+                    padding-right: 1rem; /* padding instead of margin — stays in composite layer */
+                    display: block;
                 }
             `}</style>
 
             <div className="phone-scroll-track">
-                {[...(typeof window !== 'undefined' && window.innerWidth <= 768 ? mobilePhonesMobile : mobilePhones), ...(typeof window !== 'undefined' && window.innerWidth <= 768 ? mobilePhonesMobile : mobilePhones)].map((mobilePhone, index) => (
+                {doubled.map((mobilePhone, index) => (
                     <Image
                         key={index}
                         src={mobilePhone.phone}
