@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const ScrollingPhones = () => {
     const mobilePhones = [
@@ -19,6 +19,10 @@ const ScrollingPhones = () => {
     ]
 
     const [isMobile, setIsMobile] = useState(false)
+    const [isReady, setIsReady] = useState(false)
+    const loadedCount = useRef(0)
+    const phones = isMobile ? mobilePhonesMobile : mobilePhones
+    const doubled = [...phones, ...phones]
 
     useEffect(() => {
         const mq = window.matchMedia('(max-width: 768px)')
@@ -28,8 +32,38 @@ const ScrollingPhones = () => {
         return () => mq.removeEventListener('change', handler)
     }, [])
 
-    const phones = isMobile ? mobilePhonesMobile : mobilePhones
-    const doubled = [...phones, ...phones]
+    // Preload images imperatively before the component even renders them into DOM
+    useEffect(() => {
+        const sources = isMobile ? mobilePhonesMobile : mobilePhones
+        loadedCount.current = 0
+        setIsReady(false)
+
+        const imgs = sources.map(src => {
+            const img = new window.Image()
+            img.src = src.phone
+            img.onload = () => {
+                loadedCount.current += 1
+                if (loadedCount.current === sources.length) {
+                    setIsReady(true)
+                }
+            }
+            img.onerror = () => {
+                // Don't block animation on broken images
+                loadedCount.current += 1
+                if (loadedCount.current === sources.length) {
+                    setIsReady(true)
+                }
+            }
+            return img
+        })
+
+        return () => {
+            imgs.forEach(img => {
+                img.onload = null
+                img.onerror = null
+            })
+        }
+    }, [isMobile])
 
     return (
         <section className="bg-secondary-1 py-[90px] overflow-hidden">
@@ -42,26 +76,41 @@ const ScrollingPhones = () => {
                     display: flex;
                     align-items: flex-end;
                     width: max-content;
-                    gap: 0; /* use padding on images instead */
                     will-change: transform;
-                    transform: translate3d(0, 0, 0);     /* force compositing layer immediately */
+                    transform: translate3d(0, 0, 0);
                     -webkit-transform: translate3d(0, 0, 0);
-                    backface-visibility: hidden;          /* prevents iOS flickering */
+                    backface-visibility: hidden;
                     -webkit-backface-visibility: hidden;
-                    animation: seamless-scroll 25s linear infinite;
-                    -webkit-animation: seamless-scroll 25s linear infinite;
+                    /* animation only runs once isReady */
+                    animation-name: seamless-scroll;
+                    animation-duration: 25s;
+                    animation-timing-function: linear;
+                    animation-iteration-count: infinite;
+                    animation-play-state: paused;
+                    -webkit-animation-name: seamless-scroll;
+                    -webkit-animation-duration: 25s;
+                    -webkit-animation-timing-function: linear;
+                    -webkit-animation-iteration-count: infinite;
+                    -webkit-animation-play-state: paused;
+                    opacity: 0;
+                    transition: opacity 0.4s ease;
+                }
+                .phone-scroll-track.ready {
+                    animation-play-state: running;
+                    -webkit-animation-play-state: running;
+                    opacity: 1;
                 }
                 .phone-scroll-track img {
                     width: auto !important;
                     height: auto !important;
                     max-height: 662px;
                     flex-shrink: 0;
-                    padding-right: 1rem; /* padding instead of margin — stays in composite layer */
+                    padding-right: 0rem;
                     display: block;
                 }
             `}</style>
 
-            <div className="phone-scroll-track">
+            <div className={`phone-scroll-track${isReady ? ' ready' : ''}`}>
                 {doubled.map((mobilePhone, index) => (
                     <Image
                         key={index}
@@ -70,6 +119,9 @@ const ScrollingPhones = () => {
                         width={0}
                         height={0}
                         sizes="100vw"
+                        // @ts-ignore — valid HTML attr, Next.js passes it through
+                        fetchpriority="high"
+                        loading="eager"
                         unoptimized
                     />
                 ))}

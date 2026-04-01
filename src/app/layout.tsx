@@ -56,6 +56,17 @@ export default function RootLayout({
       <head>
         <link rel="icon" type="image/jpeg" href={favicon.src} />
         <link rel="apple-touch-icon" type="image/jpeg" href={favicon.src} />
+        <link rel="preload" as="image" href="/images/scrolling-phone-1.svg" />
+        <link rel="preload" as="image" href="/images/scrolling-phone-2.svg" />
+        <link rel="preload" as="image" href="/images/scrolling-phone-3.svg" />
+        <link rel="preload" as="image" href="/images/scrolling-phone-4.svg" />
+        <link rel="preload" as="image" href="/images/scrolling-phone-5.svg" />
+
+        <link rel="preload" as="image" href="/images/scrolling-phone-1.webp" media="(max-width: 768px)" />
+        <link rel="preload" as="image" href="/images/scrolling-phone-2.webp" media="(max-width: 768px)" />
+        <link rel="preload" as="image" href="/images/scrolling-phone-3.webp" media="(max-width: 768px)" />
+        <link rel="preload" as="image" href="/images/scrolling-phone-4.webp" media="(max-width: 768px)" />
+        <link rel="preload" as="image" href="/images/scrolling-phone-5.webp" media="(max-width: 768px)" />
       </head>
       <body suppressHydrationWarning>
         <Providers>
