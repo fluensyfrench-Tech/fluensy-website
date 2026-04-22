@@ -2,10 +2,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios, { AxiosError, AxiosResponse } from "axios";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
+const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/api\/v1\/?$/, "");
+const API_V1 = `${API_BASE}/api/v1`;
 
 export const apiFetch = (path: string, init?: RequestInit) =>
-  fetch(`${API_BASE}${path}`, init);
+  fetch(`${API_V1}${path}`, init);
 
 export const api = axios.create({
   baseURL: API_BASE,
