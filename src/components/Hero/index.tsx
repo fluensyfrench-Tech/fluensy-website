@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
             </motion.button>
 
             <motion.button
-              className="bg-secondary-2 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-black"
+              className="bg-grey-300 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-black"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}

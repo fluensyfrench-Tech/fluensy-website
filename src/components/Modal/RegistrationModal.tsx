@@ -15,6 +15,7 @@ interface RegistrationModalProps {
   courseTitle?: string;
   amount?: string;
   selectedCourseId?: string;
+  selectedCohortId?: string;
   currency?: "NGN" | "USD";
 }
 
@@ -24,6 +25,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
   courseTitle = "",
   amount = "",
   selectedCourseId = "",
+  selectedCohortId = "",
   currency = "NGN",
 }) => {
   const { mutate: enrol, isPending } = useCourseEnrol();
