@@ -84,7 +84,7 @@ const Navbar: React.FC = () => {
                 <PlayStoreIcon />
               </button>
               <button className="transition-opacity">
-                <AppStoreIcon />
+                <AppStoreIcon disabled />
               </button>
             </div>
             <button

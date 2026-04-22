@@ -113,11 +113,8 @@ const Footer = () => {
             </motion.button>
 
             <motion.button
-              className={`flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] md:min-w-[320px] transition ${
-                isAppStoreHovered 
-                  ? "bg-white text-secondary-1" 
-                  : "bg-secondary-2 text-black"
-              }`}
+              className={`flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] md:min-w-[320px] transition bg-grey-300`}
+              disabled
               onMouseEnter={() => setIsAppStoreHovered(true)}
               onMouseLeave={() => setIsAppStoreHovered(false)}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}

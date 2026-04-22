@@ -32,6 +32,14 @@
    Custom Utilities
 ----------------------------- */
 @layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }

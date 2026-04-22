@@ -18,9 +18,12 @@ const config: Config = {
         "secondary-1": "#643BD8",
         "secondary-2": "#7DE5F2",
         "secondary-3": "#F76015",
+        "grey-50": "#F1F1F1",
         "grey-100": "#E4E6EB",
+        "grey-300": "#A1A4AD",
         "grey-200": "#C7CAD1",
-        "grey-600": "#3A3D44"
+        "grey-400": "#7A7D88",
+        "grey-600": "#3A3D44",
       },
       boxShadow: {
         custom: "0 4px 20px rgba(0, 0, 0, 0.1)",
