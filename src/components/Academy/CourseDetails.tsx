@@ -112,7 +112,7 @@ export const CourseDetails = () => {
 
                 <div>
                     <h1 className="text-[35px] font-medium text-primary">Single-level course <span>(May cohort)</span></h1>
-                    <div className="bg-secondary-2 rounded-lg px-4 py-9 mt-5">
+                    <div className="bg-secondary-2 rounded-lg px-4 py-8 mt-5">
                         <ul className="space-y-2">
                             {singleLevelGeneralCourseInfo.map((info, idx) => (
                                 <li key={idx} className="flex items-start space-x-3">
@@ -126,7 +126,7 @@ export const CourseDetails = () => {
 
                         <div className="mt-[30px] flex flex-col md:flex-row gap-4">
                             {isLoading && <SingleLevelCourseSkeleton />}
-                            {isError && <p className="text-red-500">Failed to load courses.</p>}
+                            {isError && <p className="text-red-500 text-sm">Failed to load courses.</p>}
                             {singleLevelCourses.map(course => {
                                 const staticInfo = COURSE_STATIC[course.courseKey]
                                 return (
@@ -172,7 +172,7 @@ export const CourseDetails = () => {
                 </div>
 
                 <h1 className="text-[35px] font-medium text-primary mt-[67px]">Beginner to intermediate <span>(May cohort)</span></h1>
-                <div className="bg-secondary-2 rounded-lg px-4 py-8 md:pb-8 mt-5 flex flex-col md:flex-row items-center">
+                <div className="bg-secondary-2 rounded-lg px-4  mt-5 py-8 flex flex-col md:flex-row items-center">
                     <ul className="space-y-6 flex-1">
                         {beginnerToIntermediateGeneralCOurseInfo.map((info, idx) => (
                             <li key={idx} className="flex items-start space-x-3">
@@ -184,7 +184,7 @@ export const CourseDetails = () => {
                         ))}
                     </ul>
 
-                    <div className="mt-[30px] flex gap-4 flex-1">
+                    <div className=" flex gap-4 flex-1">
                         {isLoading && <BundledCourseSkeleton />}
                         {isError && (
                             <div className="flex items-center justify-center flex-1 py-6">
@@ -230,7 +230,7 @@ export const CourseDetails = () => {
         if (courseType == 'kids') return (
             <div>
                 <h1 className="text-[35px] font-medium text-primary">Beginner french for kids <span>(May cohort)</span></h1>
-                <div className="bg-secondary-2 rounded-lg px-4 py-8 md:py-0 md:pb-8 mt-5 flex flex-col md:flex-row items-center">
+                <div className="bg-secondary-2 rounded-lg px-4 py-8 mt-5 flex flex-col md:flex-row items-center">
                     <ul className="space-y-6 flex-1">
                         {kidsGeneralCourseInfo.map((info, idx) => (
                             <li key={idx} className="flex items-start space-x-3">
