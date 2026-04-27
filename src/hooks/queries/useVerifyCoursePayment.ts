@@ -18,10 +18,7 @@ const verifyCoursePayment = async (payload: VerifyCoursePaymentPayload): Promise
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
-  if (!response.ok) {
-    throw new Error(`Payment verification failed: ${response.statusText}`);
-  }
-  return response.json();
+  return response.json() as Promise<VerifyCoursePaymentResponse>;
 };
 
 export const useVerifyCoursePayment = (reference: string) => {

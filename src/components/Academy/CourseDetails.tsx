@@ -172,7 +172,7 @@ export const CourseDetails = () => {
                 </div>
 
                 <h1 className="text-[35px] font-medium text-primary mt-[67px]">Beginner to intermediate <span>(May cohort)</span></h1>
-                <div className="bg-secondary-2 rounded-lg px-4 py-8 md:py-0 md:pb-8 mt-5 flex flex-col md:flex-row items-center">
+                <div className="bg-secondary-2 rounded-lg px-4 py-8 md:pb-8 mt-5 flex flex-col md:flex-row items-center">
                     <ul className="space-y-6 flex-1">
                         {beginnerToIntermediateGeneralCOurseInfo.map((info, idx) => (
                             <li key={idx} className="flex items-start space-x-3">
@@ -187,7 +187,7 @@ export const CourseDetails = () => {
                     <div className="mt-[30px] flex gap-4 flex-1">
                         {isLoading && <BundledCourseSkeleton />}
                         {isError && (
-                            <div className="rounded-lg bg-white px-5 py-6 flex items-center justify-center flex-1">
+                            <div className="flex items-center justify-center flex-1 py-6">
                                 <p className="text-red-500 text-sm">Failed to load courses.</p>
                             </div>
                         )}
@@ -245,7 +245,7 @@ export const CourseDetails = () => {
                     <div className="mt-[30px] flex gap-4 flex-1 w-full">
                         {isLoading && <BundledCourseSkeleton />}
                         {isError && (
-                            <div className="rounded-lg bg-white px-5 py-6 flex items-center justify-center flex-1">
+                            <div className="flex items-center justify-center flex-1 py-6">
                                 <p className="text-red-500 text-sm">Failed to load courses.</p>
                             </div>
                         )}

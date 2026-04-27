@@ -14,7 +14,7 @@ export const COURSES_QUERY_KEY = ["courses"] as const;
 
 const fetchCourses = async ({type}: {type: string}) => {
   const response = await apiFetch(`/courses?type=${type}`);
-  return response.json();
+  return response.json() as Promise<Course[]>;
 };
 
 export const useFetchCourses = (type: string) => {
