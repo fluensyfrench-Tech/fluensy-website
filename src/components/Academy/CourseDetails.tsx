@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { useFetchCourses, Course } from "@/hooks/queries/useFetchCourses";
 import { BundledCourseSkeleton, SingleLevelCourseSkeleton } from "./CourseCardSkeleton";
 import RegistrationModal from "@/components/Modal/RegistrationModal";
+import Image from "next/image";
 
 const COURSE_STATIC: Record<string, { subtitle: string; description: string }> = {
     BEGINNER_A1: {
@@ -62,17 +63,17 @@ export const CourseDetails = () => {
     const singleLevelGeneralCourseInfo = [
         "Registration is ongoing",
         "Class starts in May 23, 2026",
-        "2-3 months program (Classes hold 3 days a week)",
+        "2-3 months program",
         "Prepare for DELF exam (optional)",
-        "Live online classes"
+        "Live online classes + Telegram community"
     ]
 
     const beginnerToIntermediateGeneralCOurseInfo = [
         "Registration is ongoing",
         "Class starts in May 23, 2026",
-        "8-9 months program (Classes hold 3 days a week)",
+        "8-9 months program",
         "Prepare for DELF, TCF, or TEF exams (optional)",
-        "Live online classes"
+        "Live online classes + Telegram community"
     ]
 
     const kidsGeneralCourseInfo = [
@@ -116,7 +117,7 @@ export const CourseDetails = () => {
                         <ul className="space-y-2">
                             {singleLevelGeneralCourseInfo.map((info, idx) => (
                                 <li key={idx} className="flex items-start space-x-3">
-                                    <img src="/images/icons/check.svg" alt="Check Icon" className="w-8 h-8" />
+                                    <Image src="/images/icons/check.svg" alt="Check Icon" className="w-8 h-8" width={32} height={32} />
                                     <span className={`text-primary text-xl ${idx == 0 ? 'font-bold' : 'font-normal'}`}>
                                         {info}
                                     </span>
@@ -176,7 +177,7 @@ export const CourseDetails = () => {
                     <ul className="space-y-6 flex-1">
                         {beginnerToIntermediateGeneralCOurseInfo.map((info, idx) => (
                             <li key={idx} className="flex items-start space-x-3">
-                                <img src="/images/icons/check.svg" alt="Check Icon" className="w-8 h-8" />
+                                <Image src="/images/icons/check.svg" alt="Check Icon" className="w-8 h-8" width={32} height={32} />
                                 <span className={`text-primary text-xl ${idx == 0 ? 'font-bold' : 'font-normal'}`}>
                                     {info}
                                 </span>
@@ -234,7 +235,7 @@ export const CourseDetails = () => {
                     <ul className="space-y-6 flex-1">
                         {kidsGeneralCourseInfo.map((info, idx) => (
                             <li key={idx} className="flex items-start space-x-3">
-                                <img src="/images/icons/check.svg" alt="Check Icon" className="w-8 h-8" />
+                                <Image src="/images/icons/check.svg" alt="Check Icon" className="w-8 h-8" width={32} height={32} />
                                 <span className={`text-primary text-xl ${idx === 0 ? 'font-bold' : 'font-normal'}`}>
                                     {info}
                                 </span>
@@ -242,7 +243,7 @@ export const CourseDetails = () => {
                         ))}
                     </ul>
 
-                    <div className="mt-[30px] flex gap-4 flex-1 w-full">
+                    <div className="mt-[30px] md:mt-0 flex gap-4 flex-1 w-full">
                         {isLoading && <BundledCourseSkeleton />}
                         {isError && (
                             <div className="flex items-center justify-center flex-1 py-6">

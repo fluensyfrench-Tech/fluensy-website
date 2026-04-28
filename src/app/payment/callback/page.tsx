@@ -44,7 +44,7 @@ function PaymentCallbackContent() {
           <p className="text-[#3A3D44]">{error?.message}</p>
           <div className="space-y-3 mt-6">
             <button
-              onClick={() => router.push("/program")}
+              onClick={() => router.push("/academy")}
               className="w-full px-6 py-3 bg-[#7148E5] text-white rounded-lg hover:bg-[#5e36c2] transition-all"
             >
               Back to Courses
@@ -63,7 +63,7 @@ function PaymentCallbackContent() {
       <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4">
         <div className="bg-white rounded-2xl shadow-2xl w-full max-w-[573px] p-8 relative">
           <button
-            onClick={() => router.push("/program")}
+            onClick={() => router.push("/academy")}
             className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-normal leading-none transition-colors"
           >
             ×
@@ -116,7 +116,7 @@ function PaymentCallbackContent() {
           We could not confirm your payment. If you were charged, please contact support.
         </p>
         <button
-          onClick={() => router.push("/program")}
+          onClick={() => router.push("/academy")}
           className="w-full px-6 py-3 bg-[#7148E5] text-white rounded-lg hover:bg-[#5e36c2] transition-all"
         >
           Back to Courses

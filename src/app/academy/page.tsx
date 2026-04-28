@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 // import AcademyNavbar from "@/components/Navbar/AcademyNavbar";
 import AcademyHero from "@/components/Hero/AcademyHero";
-// import Academy from "@/components/Content/Academy";
 // import FooterUp from "@/components/FooterUp";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
