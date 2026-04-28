@@ -15,27 +15,62 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Fluensy French",
+  url: "https://fluensyfrench.com",
+  logo: "https://fluensyfrench.com/favicon.jpg",
+  sameAs: [
+    "https://www.youtube.com/@fluensyfrench",
+    "https://x.com/fluensyfrench",
+    "https://www.linkedin.com/company/fluensyfrench",
+    "https://www.tiktok.com/@fluensyfrench",
+    "https://www.instagram.com/fluensyfrench",
+  ],
+};
+
 export const metadata: Metadata = {
-  title: "Fluensy French",
+  metadataBase: new URL("https://fluensyfrench.com"),
+  title: {
+    default: "Fluensy French – Learn French Online the Fun Way",
+    template: "%s | Fluensy French",
+  },
   description:
-    "Fluensy French helps you learn French the fun and easy way.",
+    "AI-powered French courses for adults and kids. Science-backed methods, live classes, and a supportive community. Download the app and go from A1 to B2 at your own pace.",
   keywords: [
-    "learn French",
+    "learn French online",
+    "online French course",
+    "French language course online",
+    "French course for beginners",
+    "learn French in Nigeria",
+    "French courses Nigeria",
+    "online French academy",
     "French lessons",
     "speak French fluently",
-    "online French course",
     "AI French tutor",
     "Fluensy French app",
   ],
-  authors: [{ name: "Fluensyfrench" }],
+  authors: [{ name: "Fluensy French" }],
+  alternates: {
+    canonical: "https://fluensyfrench.com",
+  },
   openGraph: {
-    title: "Fluensyfrench",
+    title: "Fluensy French – Learn French Online the Fun Way",
     description:
-      "Learn French the fun and easy way.",
+      "AI-powered French courses for adults and kids. Download the app and go from A1 to B2 at your own pace.",
     url: "https://fluensyfrench.com",
     siteName: "Fluensy French",
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@fluensyfrench",
+    title: "Fluensy French – Learn French Online the Fun Way",
+    description:
+      "AI-powered French courses for adults and kids. Download the app and go from A1 to B2 at your own pace.",
+    images: ["/opengraph-image"],
   },
   icons: {
     icon: [
@@ -67,6 +102,10 @@ export default function RootLayout({
         <link rel="preload" as="image" href="/images/scrolling-phone-3.webp" media="(max-width: 768px)" />
         <link rel="preload" as="image" href="/images/scrolling-phone-4.webp" media="(max-width: 768px)" />
         <link rel="preload" as="image" href="/images/scrolling-phone-5.webp" media="(max-width: 768px)" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
       </head>
       <body suppressHydrationWarning>
         <Providers>
