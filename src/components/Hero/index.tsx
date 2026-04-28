@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
@@ -14,10 +13,10 @@ import AppleFooterIcon from "../icons/AppleFooterIcon";
 
 const Hero: React.FC = () => {
   const illustrations = [
-    "/images/hero-img-1.svg",
-    "/images/hero-img-2.svg",
-    "/images/hero-img-3.svg",
-    "/images/hero-img-4.svg",
+    { src: "/images/hero-img-1.svg", alt: "Student learning French on their phone" },
+    { src: "/images/hero-img-2.svg", alt: "Fluensy French interactive lesson screen" },
+    { src: "/images/hero-img-3.svg", alt: "French chat practice in the Fluensy app" },
+    { src: "/images/hero-img-4.svg", alt: "French vocabulary quiz in the Fluensy app" },
   ];
 
   const onRegisterClick = (email: string) => {
@@ -95,7 +94,7 @@ const Hero: React.FC = () => {
       <section className="relative z-10 bg-white">
         <div className="max-w-[1600px] mx-auto">
           <div className="flex flex-nowrap justify-between items-start gap-3 -mt-5 xl:mt-0 w-full">
-            {illustrations.map((src, idx) => (
+            {illustrations.map(({ src, alt }, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 50 }}
@@ -106,11 +105,14 @@ const Hero: React.FC = () => {
                   delay: idx * 0.2,
                 }}
                 viewport={{ once: true }}
-               
+
               >
-                <img
+                <Image
                   src={src}
-                  alt={`Illustration ${idx + 1}`}
+                  alt={alt}
+                  width={0}
+                  height={0}
+                  sizes="25vw"
                   className="w-full max-h-[320px] md:max-h-[340px] 2xl:max-h-[450px] object-contain transition-transform duration-300"
                 />
               </motion.div>
@@ -162,10 +164,12 @@ const Hero: React.FC = () => {
                 viewport={{ once: true }}
                 className="bg-white py-4 px-6 rounded-lg shadow-md flex flex-col gap-3"
               >
-                <img
-                  src={card.icon} // Make sure card.icon points to /images/...
-                  alt={`Icon ${idx + 1}`}
+                <Image
+                  src={card.icon}
+                  alt={card.text}
                   className="w-[30px] h-[30px] md:w-[35px] md:h-[35px] object-contain"
+                  width={35}
+                  height={35}
                 />
                 <p className="text-primary text-base md:text-xl font-normal">
                   {card.text}

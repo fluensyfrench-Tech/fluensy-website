@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import FooterUp from "../FooterUp";
 import ScrollSection from "./ScrollSection";
@@ -61,9 +61,12 @@ const Content: React.FC = () => {
             viewport={{ once: true, amount: 0.2 }}
             className="w-full md:w-[40%] md:order-last order-first"
           >
-            <img
+            <Image
               src="/images/academy.svg"
               alt="Learn anywhere"
+              width={0}
+              height={0}
+              sizes="(max-width: 768px) 100vw, 40vw"
               className="w-full max-w-md mx-auto"
             />
           </motion.div>
@@ -135,9 +138,12 @@ const Content: React.FC = () => {
             <h3 className="text-3xl md:text-4xl lg:text-5xl text-start font-medium mb-6 max-w-[400px] m-auto !leading-[1.3]">
               Why you&apos;ll love learning French
             </h3>
-            <img
+            <Image
               src="/images/hero-img-2.svg"
-              alt="learning illustration"
+              alt="Student enjoying online French learning"
+              width={0}
+              height={0}
+              sizes="300px"
               className="w-full max-w-[300px] m-auto mb-6 lg:mb-0"
             />
           </motion.div>

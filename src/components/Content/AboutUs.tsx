@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const AboutUs: React.FC = () => {
@@ -46,9 +46,12 @@ const AboutUs: React.FC = () => {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <img
+          <Image
             src="/images/meet-us.svg"
             alt="Our Team"
+            width={0}
+            height={0}
+            sizes="(max-width: 768px) 100vw, 40vw"
             className="w-full max-w-sm md:max-w-md object-contain"
           />
         </motion.div>

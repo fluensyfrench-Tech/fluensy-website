@@ -1,6 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
-
 import { motion } from "framer-motion"
+import Image from "next/image"
 import { ImGlass } from "react-icons/im"
 
 const YourGoToApp = () => {
@@ -56,7 +55,7 @@ const YourGoToApp = () => {
                                     key={highlight.id}
                                     className="flex items-center gap-4 bg-white py-5 md:py-[30px] px-9 rounded-[10px] shadow-lg"
                                 >
-                                    <img src={highlight.icon} alt={highlight.highlight} className="w-8 h-8" />
+                                    <Image src={highlight.icon} alt={highlight.highlight} className="w-8 h-8" width={32} height={32} />
                                     <p className="text-primary text-lg">{highlight.highlight}</p>
                                 </motion.div>
                             ))
@@ -70,7 +69,7 @@ const YourGoToApp = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ once: true }}
                     className='-mb-16 hidden md:block'>
-                    <img src="/images/your-go-to-app-desktop.png" />
+                    <Image src="/images/your-go-to-app-desktop.png" alt="Fluensy French app on mobile — learn French on the go" width={532} height={617} />
 
                 </motion.div>
 
@@ -81,7 +80,7 @@ const YourGoToApp = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ once: true }}
                     className="-mb-[2px] mt-[69px] z-[0] relative md:hidden">
-                    <img className="rounded-t-[40px] w-[282px] h-[342px] mx-auto" src="/images/your-go-to-app-desktop_test.png" />
+                    <Image className="rounded-t-[40px] w-[282px] h-[342px] mx-auto" src="/images/your-go-to-app-desktop_test.png" alt="Fluensy French mobile app screen" width={282} height={342} />
                 </motion.div>
 
 

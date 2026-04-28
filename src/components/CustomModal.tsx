@@ -84,7 +84,7 @@ export function CustomModal({
                 <div className="flex items-center justify-center relative h-[130px]">
                   <Image
                     src={"/gif/confetti.gif"}
-                    alt=""
+                    alt="Confetti celebration animation"
                     width={200}
                     height={200}
                     className="absolute -top-[50px]"
