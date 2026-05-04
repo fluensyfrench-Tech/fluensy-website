@@ -2,9 +2,7 @@
 
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-// import AcademyNavbar from "@/components/Navbar/AcademyNavbar";
 import AcademyHero from "@/components/Hero/AcademyHero";
-// import FooterUp from "@/components/FooterUp";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { CourseDetails } from "@/components/Academy";
@@ -62,11 +60,8 @@ export default function HomePage() {
     <main className="min-h-screen">
       <Toaster position="top-center" />
       <Navbar />
-      {/* <AcademyNavbar /> */}
       <AcademyHero />
       <CourseDetails />
-      {/* <Academy /> */}
-      {/* <FooterUp/> */}
       <Footer />
     </main>
   );
