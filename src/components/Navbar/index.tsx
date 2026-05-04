@@ -42,14 +42,14 @@ const Navbar: React.FC = () => {
           </Link>
 
           <div className="hidden md:flex items-center space-x-6">
-            <NavLink href="/meet-us" pathname={pathname}>
-              Meet us
+            <NavLink href="/about-us" pathname={pathname}>
+              About us
             </NavLink>
             <Link
-              href="/program"
+              href="/academy"
               className="bg-[#7148E5] text-white px-6 py-3.5 h-[52px] w-[221px] rounded-[12px] text-base text-center font-medium hover:opacity-95 transition hover:bg-[#7DE5F2] hover:text-[#181A25]"
             >
-              Enrol now
+              Browse courses
             </Link>
           </div>
 

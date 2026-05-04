@@ -5,9 +5,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
-import { getNames } from "country-list";
-import Select from "react-select";
-import { registerEnrollment } from "@/lib/api";
+import { useCourseEnrol } from "@/hooks/mutations/useCourseEnrol";
 
 interface RegistrationModalProps {
   isOpen: boolean;
@@ -17,6 +15,7 @@ interface RegistrationModalProps {
   selectedCourseId?: string;
   selectedCohortId?: string;
   currency?: "NGN" | "USD";
+  isKids?: boolean;
 }
 
 const RegistrationModal: React.FC<RegistrationModalProps> = ({
@@ -24,50 +23,45 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
   onClose,
   courseTitle = "",
   amount = "",
-  selectedCourseId,
-  selectedCohortId,
+  selectedCourseId = "",
+  selectedCohortId = "",
   currency = "NGN",
+  isKids = false,
 }) => {
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-
-  const countryOptions = getNames().map((country) => ({
-    value: country,
-    label: country,
-  }));
+  const { mutate: enrol, isPending } = useCourseEnrol();
 
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    fullName: "",
     email: "",
     phone: "",
-    location: "",
+    childName: "",
+    childAge: "",
   });
 
   const [errors, setErrors] = useState({
+    fullName: "",
     email: "",
     phone: "",
+    childName: "",
+    childAge: "",
   });
 
-  // Reset form when modal closes
   useEffect(() => {
     if (!isOpen) {
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        location: "",
-      });
-      setErrors({ email: "", phone: "" });
-      setSuccess(false);
+      setFormData({ fullName: "", email: "", phone: "", childName: "", childAge: "" });
+      setErrors({ fullName: "", email: "", phone: "", childName: "", childAge: "" });
     }
   }, [isOpen]);
 
-  // ✅ Validation
   const validate = () => {
     let valid = true;
-    const newErrors = { email: "", phone: "" };
+    const newErrors = { fullName: "", email: "", phone: "", childName: "", childAge: "" };
+
+    const nameParts = formData.fullName.trim().split(/\s+/);
+    if (nameParts.length < 2 || !nameParts[1]) {
+      newErrors.fullName = "Please enter both your first and last name.";
+      valid = false;
+    }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
@@ -75,113 +69,84 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
       valid = false;
     }
 
-    const phoneRegex = /^[0-9]{10,15}$/;
-    if (!phoneRegex.test(formData.phone)) {
-      newErrors.phone = "Please enter a valid phone number (10–15 digits).";
+    const phoneRegex = /^\+?[0-9]{10,15}$/;
+    if (!phoneRegex.test(formData.phone.replace(/\s/g, ""))) {
+      newErrors.phone = "Please enter a valid phone number (e.g. 08012345678 or +2348012345678).";
       valid = false;
+    }
+
+    if (isKids) {
+      const childNameParts = formData.childName.trim().split(/\s+/);
+      if (childNameParts.length < 2 || !childNameParts[1]) {
+        newErrors.childName = "Please enter the child's first and last name.";
+        valid = false;
+      }
+      const age = parseInt(formData.childAge, 10);
+      if (!formData.childAge || isNaN(age) || age < 1 || age > 17) {
+        newErrors.childAge = "Please enter a valid age.";
+        valid = false;
+      }
     }
 
     setErrors(newErrors);
     return valid;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
-    try {
-      setLoading(true);
-
-      const payload = {
-        cohort_id: selectedCohortId,
-        course_id: selectedCourseId,
-        country: formData.location,
-        currency: currency, // Use the selected currency
+    enrol(
+      {
+        courseKey: selectedCourseId,
+        fullName: formData.fullName.trim(),
         email: formData.email,
-        first_name: formData.firstName,
-        last_name: formData.lastName,
-        phone_number: formData.phone,
-      };
+        whatsappPhone: formData.phone,
+        ...(isKids && { childName: formData.childName.trim(), childAge: formData.childAge }),
+        currency,
+      },
+      {
+        onSuccess: (data) => {
+          if (data?.authorizationUrl) {
+            onClose();
+            window.open(data.authorizationUrl, "_blank");
+          } else {
+            toast.error("Failed to get payment link. Please try again.");
+          }
+        },
+        onError: (error: any) => {
+          const responseData = error?.response?.data;
+          let errorMessage = "An error occurred. Please try again.";
 
-      const response = await registerEnrollment(payload);
+          if (error?.code === "ERR_NETWORK" || error?.message?.includes("Network Error")) {
+            errorMessage = "Unable to connect to the server. Please check your internet connection.";
+          } else if (error?.code === "ECONNABORTED" || error?.message?.includes("timeout")) {
+            errorMessage = "The request took too long. Please try again.";
+          } else if (responseData) {
+            if (typeof responseData === "string" && responseData.trim().startsWith("<!DOCTYPE")) {
+              errorMessage = "The service is temporarily unavailable. Please try again later.";
+            } else if (responseData.detail) {
+              errorMessage = typeof responseData.detail === "string" ? responseData.detail : JSON.stringify(responseData.detail);
+            } else if (responseData.message) {
+              errorMessage = responseData.message;
+            } else if (responseData.error) {
+              errorMessage = responseData.error;
+            }
+          } else if (error?.response?.status) {
+            const status = error.response.status;
+            if (status === 500) errorMessage = "Server error. Our team has been notified.";
+            else if (status === 502 || status === 503) errorMessage = "Service temporarily unavailable.";
+            else if (status === 504) errorMessage = "Request timeout. Please try again.";
+          }
 
-      if (response?.authorization_url) {
-        toast.success("Redirecting to payment...");
-        setSuccess(true);
-
-        setTimeout(() => {
-          onClose();
-          window.open(response.authorization_url, "_blank");
-        }, 1500);
-      } else {
-        toast.error("Failed to get payment link. Please try again.");
+          toast.error(errorMessage);
+        },
       }
-    } catch (error: any) {
-      console.error("Enrollment error:", error);
-      
-      // Extract error message from backend response
-      let errorMessage = "An error occurred. Please try again.";
-      
-      // Network error (backend is down)
-      if (error?.code === 'ERR_NETWORK' || error?.message?.includes('Network Error')) {
-        errorMessage = "Unable to connect to the server. Please check your internet connection.";
-      }
-      // Connection refused (backend not running)
-      else if (error?.message?.includes('ECONNREFUSED') || error?.message?.includes('Failed to fetch')) {
-        errorMessage = "The service is temporarily unavailable. Please try again in a few minutes.";
-      }
-      // Timeout error
-      else if (error?.code === 'ECONNABORTED' || error?.message?.includes('timeout')) {
-        errorMessage = "The request took too long. Please try again.";
-      }
-      else {
-        const responseData = error?.response?.data;
-        
-        if (responseData) {
-          // Detect HTML error pages
-          if (typeof responseData === 'string' && responseData.trim().startsWith('<!DOCTYPE')) {
-            errorMessage = "The service is temporarily unavailable. Please try again later.";
-          }
-          // Check for detail field (FastAPI standard)
-          else if (responseData.detail) {
-            errorMessage = typeof responseData.detail === 'string' 
-              ? responseData.detail 
-              : JSON.stringify(responseData.detail);
-          }
-          // Check for message field
-          else if (responseData.message) {
-            errorMessage = responseData.message;
-          }
-          // Check for error field
-          else if (responseData.error) {
-            errorMessage = responseData.error;
-          }
-          // If data itself is a string (not HTML)
-          else if (typeof responseData === 'string' && responseData.length < 200) {
-            errorMessage = responseData;
-          }
-        }
-        // HTTP status errors
-        else if (error?.response?.status) {
-          const status = error.response.status;
-          if (status === 500) errorMessage = "Server error. Our team has been notified.";
-          else if (status === 502 || status === 503) errorMessage = "Service temporarily unavailable.";
-          else if (status === 504) errorMessage = "Request timeout. Please try again.";
-        }
-        // Fallback to error message property but avoid generic axios messages
-        else if (error?.message && !error?.message.includes("status code")) {
-          errorMessage = error.message;
-        }
-      }
-      
-      toast.error(errorMessage);
-    } finally {
-      setLoading(false);
-    }
+    );
   };
 
   const inputBase =
-    "w-full border border-[#C7CAD1] rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#7148E5] focus:border-[#7148E5] transition-all";
+    "w-full rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#7148E5] transition-all bg-[#F0F0F0] placeholder:text-grey-300";
 
   return (
     <AnimatePresence>
@@ -197,175 +162,124 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-white rounded-xl shadow-lg w-full max-w-[605px] p-6 relative max-h-[90vh] overflow-y-auto"
+            className="bg-white rounded-xl shadow-lg w-full max-w-[605px] max-h-[90vh] flex flex-col overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
-            <button
-              onClick={onClose}
-              aria-label="Close modal"
-              className="absolute top-4 right-4 text-[#3A3D44] text-2xl font-bold hover:text-[#7148E5] transition-all"
-            >
-              &times;
-            </button>
+            <>
+              {/* Scrollable form fields */}
+              <div className="flex-1 overflow-y-auto no-scrollbar px-[50px] pt-[50px] pb-4">
+                  <h2 className="text-[24px] font-medium text-primary mb-5">{courseTitle}</h2>
 
-            {/* Success message */}
-            {success ? (
-              <div className="text-center space-y-4 mt-6">
-                <div className="flex justify-center">
-                  <img
-                    src="/images/icons/confetti.svg"
-                    alt="Confetti Icon"
-                    className="w-12 h-12"
-                  />
-                </div>
-                <h2 className="text-2xl font-bold text-[#181A25]">
-                  Redirecting to payment 🎉
-                </h2>
-                <p className="text-[#181A25] text-base">
-                  Please complete your payment in the new tab.
-                </p>
-              </div>
-            ) : (
-              <>
-                <div className="mt-2 mb-4">
-                  <h2 className="text-xl font-semibold text-[#181A25]">
-                    Start your French journey with {courseTitle}
-                  </h2>
-                </div>
-
-                {amount && (
-                  <div className="flex items-center gap-2 mb-4">
-                    <p className="text-[#0F766E] font-bold">Amount: {amount}</p>
-                    <span className="bg-[#E6E6FA] text-[#181A25] rounded-lg px-3 py-1 text-xs font-semibold">
-                      {currency}
-                    </span>
-                  </div>
-                )}
-
-                <form
-                  onSubmit={handleSubmit}
-                  className="space-y-4 text-[#181A25] text-sm"
-                >
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <div className="w-full">
-                      <label className="block mb-1 font-medium">
-                        First Name
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Type it here"
-                        value={formData.firstName}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            firstName: e.target.value,
-                          })
-                        }
-                        className={inputBase}
-                        required
-                      />
+                  {amount && (
+                    <div className="mb-5">
+                      <label className="block mb-1 text-base font-normal text-[#181A25]">Amount</label>
+                      <div className="w-full rounded-lg px-4 py-3 bg-[#F0F0F0] text-sm text-grey-400">
+                        <span className="mr-4">{currency}</span>
+                        {amount.replace(/[₦$]/g, "").trim()}
+                      </div>
                     </div>
+                  )}
 
-                    <div className="w-full">
-                      <label className="block mb-1 font-medium">Last Name</label>
-                      <input
-                        type="text"
-                        placeholder="Type it here"
-                        value={formData.lastName}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            lastName: e.target.value,
-                          })
-                        }
-                        className={inputBase}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block mb-1 font-medium">Email</label>
-                    <input
-                      type="email"
-                      placeholder="Type it here"
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                      className={`${inputBase} ${
-                        errors.email ? "border-red-500" : ""
-                      }`}
-                      required
-                    />
-                    {errors.email && (
-                      <p className="text-red-500 text-xs mt-1">
-                        {errors.email}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="block mb-1 font-medium">Phone</label>
-                    <input
-                      type="tel"
-                      placeholder="Type it here"
-                      value={formData.phone}
-                      onChange={(e) =>
-                        setFormData({ ...formData, phone: e.target.value })
-                      }
-                      className={`${inputBase} ${
-                        errors.phone ? "border-red-500" : ""
-                      }`}
-                      required
-                    />
-                    {errors.phone && (
-                      <p className="text-red-500 text-xs mt-1">
-                        {errors.phone}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* 🌍 Searchable Country Dropdown */}
-                  <div>
-                    <label className="block mb-1 font-medium">Country</label>
-                    <Select
-                      options={countryOptions}
-                      onChange={(option: any) =>
-                        setFormData({
-                          ...formData,
-                          location: option?.value || "",
-                        })
-                      }
-                      placeholder="Search or select your country"
-                      className="text-sm"
-                      isSearchable
-                      styles={{
-                        control: (base) => ({
-                          ...base,
-                          borderRadius: "0.5rem",
-                          borderColor: "#C7CAD1",
-                          padding: "2px",
-                        }),
-                      }}
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className={`w-[80%] mx-auto block px-6 py-3 rounded-lg font-medium mt-4 transition-all ${
-                      loading
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-[#7148E5] hover:bg-[#5a3bc3] text-white"
-                    }`}
+                  <form
+                    id="registration-form"
+                    onSubmit={handleSubmit}
+                    className="space-y-4 text-[#181A25] text-base font-normal"
                   >
-                    {loading ? "Processing..." : "Secure your spot"}
-                  </button>
-                </form>
-              </>
-            )}
+                    {isKids && (
+                      <p className="font-semibold text-[#181A25]">Parent Information</p>
+                    )}
+
+                    <div>
+                      <label className="block mb-1">Your first and last name</label>
+                      <input
+                        type="text"
+                        placeholder="Type it here"
+                        value={formData.fullName}
+                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                        className={`${inputBase} ${errors.fullName ? "ring-2 ring-red-500" : ""}`}
+                        required
+                      />
+                      {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName}</p>}
+                    </div>
+
+                    <div>
+                      <label className="block mb-1">Your email address</label>
+                      <input
+                        type="email"
+                        placeholder="Type it here"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className={`${inputBase} ${errors.email ? "ring-2 ring-red-500" : ""}`}
+                        required
+                      />
+                      {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+                    </div>
+
+                    <div>
+                      <label className="block mb-1">Your phone number (WhatsApp)</label>
+                      <input
+                        type="tel"
+                        placeholder="Type it here"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className={`${inputBase} ${errors.phone ? "ring-2 ring-red-500" : ""}`}
+                        required
+                      />
+                      {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
+                    </div>
+
+                    {isKids && (
+                      <>
+                        <p className="font-semibold text-[#181A25] pt-2">Child Information</p>
+
+                        <div>
+                          <label className="block mb-1">First and last name</label>
+                          <input
+                            type="text"
+                            placeholder="Type it here"
+                            value={formData.childName}
+                            onChange={(e) => setFormData({ ...formData, childName: e.target.value })}
+                            className={`${inputBase} ${errors.childName ? "ring-2 ring-red-500" : ""}`}
+                            required
+                          />
+                          {errors.childName && <p className="text-red-500 text-xs mt-1">{errors.childName}</p>}
+                        </div>
+
+                        <div>
+                          <label className="block mb-1">Age</label>
+                          <input
+                            type="number"
+                            placeholder="Type it here"
+                            min={1}
+                            max={17}
+                            value={formData.childAge}
+                            onChange={(e) => setFormData({ ...formData, childAge: e.target.value })}
+                            className={`${inputBase} ${errors.childAge ? "ring-2 ring-red-500" : ""}`}
+                            required
+                          />
+                          {errors.childAge && <p className="text-red-500 text-xs mt-1">{errors.childAge}</p>}
+                        </div>
+                      </>
+                    )}
+                  </form>
+                </div>
+
+              {/* Pinned footer — always visible, never scrolls away */}
+              <div className="flex-shrink-0 px-[50px] pb-[50px] pt-4">
+                <button
+                  type="submit"
+                  form="registration-form"
+                  disabled={isPending}
+                  className={`w-full px-6 py-4 rounded-xl font-medium transition-all text-base ${
+                    isPending
+                      ? "bg-gray-400 cursor-not-allowed text-white"
+                      : "bg-[#7148E5] hover:bg-[#5a3bc3] text-white"
+                  }`}
+                >
+                  {isPending ? "Processing..." : "Secure my spot"}
+                </button>
+              </div>
+            </>
           </motion.div>
         </motion.div>
       )}

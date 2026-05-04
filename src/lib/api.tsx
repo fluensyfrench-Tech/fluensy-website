@@ -1,15 +1,64 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosError } from "axios";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
+const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/api\/v1\/?$/, "");
+const API_V1 = `${API_BASE}/api/v1`;
+
+export class ApiError extends Error {
+  response: { data: unknown; status: number };
+
+  constructor(public status: number, message: string, data?: unknown) {
+    super(message);
+    this.name = "ApiError";
+    this.response = { status, data };
+  }
+}
+
+export const apiFetch = async (path: string, init?: RequestInit): Promise<Response> => {
+  let response: Response;
+  try {
+    response = await fetch(`${API_V1}${path}`, init);
+  } catch {
+    throw new ApiError(0, "Unable to connect to the server. Please check your internet connection.");
+  }
+  if (!response.ok) {
+    let message = response.statusText || "An error occurred";
+    let data: unknown;
+    try {
+      const contentType = response.headers.get("content-type");
+      if (contentType?.includes("application/json")) {
+        data = await response.json();
+        const typed = data as Record<string, unknown>;
+        message = (typed?.detail as string) || (typed?.message as string) || message;
+      }
+    } catch {}
+    throw new ApiError(response.status, message, data);
+  }
+  return response;
+};
 
 export const api = axios.create({
   baseURL: API_BASE,
   headers: { "Content-Type": "application/json" },
-  timeout: 15000, // 15 second timeout
-  validateStatus: (status) => status < 500, // Don't throw on 4xx errors
+  timeout: 15000,
+  validateStatus: (status) => status < 400,
 });
+
+api.interceptors.response.use(
+  (response) => response,
+  (error: AxiosError) => {
+    const status = error.response?.status ?? 0;
+    const data = error.response?.data;
+    const typed = data as Record<string, unknown> | undefined;
+    const message =
+      (typed?.detail as string) ||
+      (typed?.message as string) ||
+      error.message ||
+      "An unexpected error occurred";
+    return Promise.reject(new ApiError(status, message, data));
+  }
+);
 
 export interface Cohort {
   id: string;
@@ -73,13 +122,6 @@ export interface PaymentVerificationResponse {
   };
 }
 
-interface ApiError {
-  detail?: string;
-  message?: string;
-}
-
-
-
 export const addToWaitlist = async (
   email: string,
   date: string
@@ -133,7 +175,7 @@ export const verifyPayment = async (
   reference: string
 ): Promise<PaymentVerificationResponse> => {
   try {
-    const res = await api.get(`/api/payment/verify/${reference}`);
+    const res = await api.get(`/courses/verify/${reference}`);
     return res.data;
   } catch (error: any) {
     // Re-throw the original error with all its data intact

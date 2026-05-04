@@ -46,14 +46,14 @@ const Hero: React.FC = () => {
             We make French learning fun, impactful, and accessible.
           </motion.p>
 
-          <Link href="/program">
+          <Link href="/academy">
             <motion.button
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
               className="bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base sm:text-[20px] text-white px-6 py-[10px] sm:py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-normal hover:opacity-95 transition"
             >
-              Enrol now
+              Start learning now
             </motion.button>
           </Link>
         </div>

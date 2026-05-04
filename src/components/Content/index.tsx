@@ -35,14 +35,10 @@ const Content: React.FC = () => {
           className="text-center mb-8 md:mb-10 px-4"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-2">
-            Cohort 1 is open for registration
+            Ready to speak French <span className="block mb-4"></span>with confidence?
           </h2>
-          <p className="text-lg md:text-2xl text-gray-600 mb-6 px-4 py-4">
-            Be part of our Founding Learners, the pioneers of this exciting
-            journey.
-          </p>
-          <Link href="/program">
-            <MotionButton>Enrol now</MotionButton>
+          <Link href="/academy">
+            <MotionButton className="mt-5">Start learning now</MotionButton>
           </Link>
         </motion.div>
 
@@ -113,7 +109,7 @@ const Content: React.FC = () => {
               Why sit in a classroom when you can learn French from home, the
               beach, or anywhere you like?
             </h3>
-            <Link href="/program">
+            <Link href="/academy">
               <MotionButton>Start learning now</MotionButton>
             </Link>
           </motion.div>
@@ -196,7 +192,7 @@ const Content: React.FC = () => {
         </div>
       </section>
 
-      <section className="max-w-full bg-[#7DE5F2] my-0 md:my-[50px]">
+      {/* <section className="max-w-full bg-[#7DE5F2] my-0 md:my-[50px]">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -214,7 +210,7 @@ const Content: React.FC = () => {
             <span aria-hidden>😉</span>
           </motion.h3>
         </motion.div>
-      </section>
+      </section> */}
 
       <section className="max-w-7xl m-0 sm:mx-auto px-0 md:px-8 py-0 md:py-10 lg:py-14">
         <motion.div

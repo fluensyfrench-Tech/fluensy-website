@@ -2,12 +2,9 @@
 
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-// import AcademyNavbar from "@/components/Navbar/AcademyNavbar";
-import AcademyHero from "@/components/Hero/AcademyHero";
-// import FooterUp from "@/components/FooterUp";
-import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import { CourseDetails } from "@/components/Academy";
+import AboutUs from "@/components/Content/AboutUs";
+import Footer from "@/components/Footer";
 
 export default function HomePage() {
   useEffect(() => {
@@ -59,17 +56,13 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="min-h-screen">
+    <main className="h-screen flex flex-col">
       <Toaster position="top-center" />
       <Navbar />
-      {/* <AcademyNavbar /> */}
-      <AcademyHero />
-      <CourseDetails />
-      {/* <Academy /> */}
-      {/* <FooterUp/> */}
+      <div className="flex-grow">
+        <AboutUs />
+      </div>
       <Footer />
     </main>
   );
 }
-
-

@@ -21,8 +21,8 @@ export const privacy = [
           <li>Full name</li>
           <li>Email address</li>
           <li>Phone number</li>
+          <li>Child’s name and age (for kids’ courses, provided by a parent or guardian for class placement)</li>
           <li>Payment information (processed securely via third-party providers; we do not store your full payment details)</li>
-          <li>Country of residence.</li>
         </ul><br />
         <strong>Mobile App Waitlist:</strong><br />
         <ul class="list-disc list-inside">
