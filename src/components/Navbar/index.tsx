@@ -83,20 +83,20 @@ const Navbar: React.FC = () => {
           </Link>
           <div className="pt-20 flex flex-col items-center gap-[20px]">
             <Link
-              href="/meet-us"
+              href="/about-us"
               onClick={() => setOpen(false)}
               className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${
                 isActive ? "text-[#8f66ff] font-semibold" : ""
               }`}
             >
-              Meet Us
+              About Us
             </Link>
             <Link
-              href="/program"
+              href="/academy"
               onClick={() => setOpen(false)}
               className="bg-[#7148E5] text-white px-6 py-3.5 rounded-md text-base font-medium"
             >
-              Start Your French Course
+              Browse courses
             </Link>
           </div>
         </div>

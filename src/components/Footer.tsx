@@ -1,6 +1,6 @@
 const navLinks = [
-  { label: "Meet us", href: "/meet-us" },
-  // { label: "The Academy", href: "/academy" },
+  { label: "Academy", href: "/academy" },
+  { label: "About us", href: "/about-us" },
   { label: "Terms of service", href: "/terms" },
   { label: "Privacy policy", href: "/privacy-policy" },
 ];
