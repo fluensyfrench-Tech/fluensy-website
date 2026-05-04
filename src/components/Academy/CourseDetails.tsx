@@ -197,7 +197,7 @@ export const CourseDetails = () => {
                         ))}
                     </ul>
 
-                    <div className=" flex gap-4 flex-1">
+                    <div className="flex gap-4 flex-1">
                         {isLoading && <BundledCourseSkeleton />}
                         {isError && (
                             <div className="flex items-center justify-center flex-1 py-6">
@@ -207,7 +207,7 @@ export const CourseDetails = () => {
                         {beginnerToIntermediateCourse && (() => {
                             const staticInfo = COURSE_STATIC[beginnerToIntermediateCourse.courseKey]
                             return (
-                                <div className="rounded-lg bg-white px-5 py-6">
+                                <div className="rounded-lg bg-white px-5 py-6 mt-[30px] md:mt-0">
                                     <div className="child:bg-secondary-3 child:text-[18px] child:font-medium child:text-white child:px-[10px] child:py-[5px] child:rounded-lg space-x-[10px]">
                                         <span>${beginnerToIntermediateCourse.priceUSD}</span>
                                         <span>₦{beginnerToIntermediateCourse.priceNGN.toLocaleString()}</span>
@@ -261,7 +261,7 @@ export const CourseDetails = () => {
                         {conversationPracticeCourse && (() => {
                             const staticInfo = COURSE_STATIC[conversationPracticeCourse.courseKey]
                             return (
-                                <div className="rounded-lg bg-white px-5 py-6">
+                                <div className="rounded-lg bg-white px-5 py-6 mt-[30px] md:mt-0">
                                     <div className="child:bg-secondary-3 child:text-[18px] child:font-medium child:text-white child:px-[10px] child:py-[5px] child:rounded-lg space-x-[10px]">
                                         <span>${conversationPracticeCourse.priceUSD}</span>
                                         <span>₦{conversationPracticeCourse.priceNGN.toLocaleString()}</span>
@@ -386,7 +386,7 @@ export const CourseDetails = () => {
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
                     >
-                        Prefer private lessons tailored <br />to your {courseType === "kids" ? "child's" : ""} goals?
+                        Want a learning plan tailored {courseType !== "kids" && <br />} to  {courseType === "kids" && <br />} {courseType === "kids" ? "your child's" : "your"} goals{courseType === "kids" && ','} and pace?
                     </motion.h3>
                     <motion.button
                         className="mt-4 px-6 py-3 bg-secondary-1 text-white rounded-lg hover:bg-secondary-2 hover:text-primary transition-colors w-full md:w-[378px] h-[66px] text-[20px]"
