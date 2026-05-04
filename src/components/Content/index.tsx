@@ -253,7 +253,7 @@ const Content: React.FC = () => {
           <p className="text-3xl min-[400px]:text-6xl lg:text-8xl xl:text-9xl font-bold mb-3 sm:mb-6 py-3 sm:py-5">
             It&apos;s possible
           </p>
-          <Link href="/program">
+          <Link href="/academy">
             <MotionButton className="font-normal text-base md:text-lg">
               Start learning now
             </MotionButton>

@@ -89,9 +89,8 @@ export const CourseDetails = () => {
     ]
 
     const kidsGeneralCourseInfo = [
-        "Registration opens soon",
         "2-month program for ages 8-12",
-        "Classes hold twice a week (Saturdays & Sundays)",
+        "Classes run on Saturdays and Sundays",
         "Live online classes"
     ]
 
@@ -303,7 +302,7 @@ export const CourseDetails = () => {
                         {kidsGeneralCourseInfo.map((info, idx) => (
                             <li key={idx} className="flex items-start space-x-3">
                                 <Image src="/images/icons/check.svg" alt="Check Icon" className="w-8 h-8" width={32} height={32} />
-                                <span className={`text-primary text-xl ${idx === 0 ? 'font-bold' : 'font-normal'}`}>
+                                <span className={`text-primary text-xl font-normal`}>
                                     {info}
                                 </span>
                             </li>

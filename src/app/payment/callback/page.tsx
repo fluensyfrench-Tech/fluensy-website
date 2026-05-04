@@ -12,6 +12,7 @@ function PaymentCallbackContent() {
   const searchParams = useSearchParams();
 
   const reference = searchParams.get("reference") || searchParams.get("trxref") || "";
+  const type = searchParams.get("type");
   const { data, isLoading, isError, error } = useVerifyCoursePayment(reference);
 
   if (isLoading || !reference) {
@@ -59,6 +60,8 @@ function PaymentCallbackContent() {
   }
 
   if (data?.isPaid) {
+    const isKids = type === "kids";
+
     return (
       <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4">
         <div className="bg-white rounded-2xl shadow-2xl w-full max-w-[573px] p-8 relative">
@@ -70,27 +73,22 @@ function PaymentCallbackContent() {
           </button>
 
           <div className="flex justify-center mb-6">
-            <div className="text-8xl">
-              <Image src="/gif/confetti.gif" alt="Confetti Icon" width={246} height={246} />
-            </div>
+            <Image src="/gif/confetti.gif" alt="Confetti Icon" width={246} height={246} />
           </div>
 
           <div className="text-start space-y-4">
             <h2 className="text-2xl md:text-3xl font-bold text-[#181A25]">
-              You&apos;re officially enrolled!
+              {isKids ? "Your child is officially enrolled" : "You’re officially enrolled!"}
             </h2>
 
-    
-
             <p className="text-base text-[#3A3D44] leading-relaxed">
-              Check your email for next steps. Thank you for trusting us to
-              guide your French journey.
+              {isKids
+                ? "Check your email for next steps. We’re excited to support your child’s French learning journey."
+                : "Check your email for next steps. Thank you for trusting us to guide your French journey."}
             </p>
 
-        
-
             <p className="text-base text-[#3A3D44] flex items-center justify-start gap-2">
-              Get ready to be fluent, it&apos;s possible{" "}
+              {isKids ? "Fluensy is possible" : "Get ready to be fluent. Fluensy is possible"}{" "}
               <span className="text-2xl">👍</span>
             </p>
 
