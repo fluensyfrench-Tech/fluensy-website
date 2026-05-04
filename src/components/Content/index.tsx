@@ -35,7 +35,7 @@ const Content: React.FC = () => {
           className="text-center mb-8 md:mb-10 px-4"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-2">
-            Ready to speak French <span className="block mb-4"></span>with confidence?
+            Ready to speak French <span className="block mb-4 -mt-2 md:mt-0"></span>with confidence?
           </h2>
           <Link href="/academy">
             <MotionButton className="mt-5">Start learning now</MotionButton>

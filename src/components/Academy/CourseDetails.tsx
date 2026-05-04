@@ -296,7 +296,7 @@ export const CourseDetails = () => {
 
         if (courseType == 'kids') return (
             <div>
-                <h2 className="text-[35px] font-medium text-primary">French for kids</h2>
+                <h2 className="text-[35px] font-medium text-primary">Beginner French for kids</h2>
                 <div className="bg-secondary-2 rounded-lg px-4 py-8 mt-5 flex flex-col md:flex-row items-center">
                     <ul className="space-y-5 flex-1">
                         {kidsGeneralCourseInfo.map((info, idx) => (
@@ -380,7 +380,7 @@ export const CourseDetails = () => {
                     transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
                 >
                     <motion.h3
-                        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium !leading-[1.3] text-[#181A25] mb-2"
+                        className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-medium !leading-[1.3] text-[#181A25] mb-2"
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true, amount: 0.2 }}
