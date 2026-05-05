@@ -100,6 +100,20 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning>
+        <div id="debug-overlay" style={{
+          position: 'fixed',
+          top: '10px',
+          right: '10px',
+          background: 'rgba(0,0,0,0.8)',
+          color: 'white',
+          padding: '10px',
+          borderRadius: '5px',
+          fontSize: '12px',
+          zIndex: '9999',
+          display: 'none'
+        }}>
+          Debug Mode
+        </div>
         <script dangerouslySetInnerHTML={{
           __html: `
             // iPhone debugging
@@ -115,14 +129,32 @@ export default function RootLayout({
               console.error('Loading Error:', e.error);
             });
             
+            // Show debug overlay on iPhone
+            if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+              document.getElementById('debug-overlay').style.display = 'block';
+            }
+            
+            // Track loading errors
+            window.addEventListener('error', function(e) {
+              console.error('Loading Error:', e.error);
+              const overlay = document.getElementById('debug-overlay');
+              overlay.innerHTML += '<br>ERROR: ' + e.error.message;
+            });
+            
             // Track resource loading
             window.addEventListener('load', function() {
               console.log('Page fully loaded');
+              const overlay = document.getElementById('debug-overlay');
+              overlay.innerHTML = '✅ Page loaded<br>';
+              
               const images = document.querySelectorAll('img');
               console.log('Images found:', images.length);
+              overlay.innerHTML += 'Images: ' + images.length + '<br>';
+              
               images.forEach((img, index) => {
                 if (!img.complete) {
                   console.error('Image not loaded:', img.src);
+                  overlay.innerHTML += '❌ Image failed: ' + img.src + '<br>';
                 }
               });
             });
