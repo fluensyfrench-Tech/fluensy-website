@@ -157,6 +157,16 @@ export default function RootLayout({
                   overlay.innerHTML += '❌ Image failed: ' + img.src + '<br>';
                 }
               });
+              
+              // Performance debugging
+              setTimeout(() => {
+                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                overlay.innerHTML += 'Load time: ' + (loadTime/1000).toFixed(2) + 's<br>';
+                
+                if (loadTime > 3000) {
+                  overlay.innerHTML += '⚠️ Slow loading detected!';
+                }
+              }, 100);
             });
           `
         }} />
