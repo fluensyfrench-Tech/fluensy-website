@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
   return (
     <>
       {/* HERO CONTENT */}
-      <section className="relative overflow-hidden pb-20">
+      <section className="relative pb-20">
         <div className="relative z-20 max-w-4xl mx-auto px-4 text-center mt-24 sm:mt-36">
           <motion.h1
             initial={{ opacity: 0, y: 50 }}
