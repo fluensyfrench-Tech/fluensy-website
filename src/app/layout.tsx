@@ -100,6 +100,34 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            // iPhone debugging
+            console.log('=== iPhone Debug Info ===');
+            console.log('User Agent:', navigator.userAgent);
+            console.log('iPhone detected:', /iPhone|iPad|iPod/.test(navigator.userAgent));
+            console.log('Safari detected:', /^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+            console.log('Viewport width:', window.innerWidth);
+            console.log('Device pixel ratio:', window.devicePixelRatio);
+            
+            // Track loading errors
+            window.addEventListener('error', function(e) {
+              console.error('Loading Error:', e.error);
+            });
+            
+            // Track resource loading
+            window.addEventListener('load', function() {
+              console.log('Page fully loaded');
+              const images = document.querySelectorAll('img');
+              console.log('Images found:', images.length);
+              images.forEach((img, index) => {
+                if (!img.complete) {
+                  console.error('Image not loaded:', img.src);
+                }
+              });
+            });
+          `
+        }} />
         <Providers>
           <Toaster position="top-center" />
           <Suspense>
