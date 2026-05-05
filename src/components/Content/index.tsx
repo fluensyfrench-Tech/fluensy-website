@@ -239,7 +239,7 @@ const Content: React.FC = () => {
         </motion.div>
       </section>
 
-      <section className="py-12 md:py-20 relative overflow-hidden mb-7 md:mb-20 px-4">
+      <section className="py-12 md:py-20 relative mb-7 md:mb-20 px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
