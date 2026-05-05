@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import AcademyHero from "@/components/Hero/AcademyHero";
 import Footer from "@/components/Footer";
@@ -60,8 +60,12 @@ export default function HomePage() {
     <main className="min-h-screen">
       <Toaster position="top-center" />
       <Navbar />
-      <AcademyHero />
-      <CourseDetails />
+      <Suspense fallback={<div className="pt-[100px] pb-12 px-4 max-w-[1250px] mx-auto animate-pulse"><div className="h-10 bg-gray-100 rounded w-3/4 mb-4" /><div className="h-6 bg-gray-100 rounded w-full mb-2" /><div className="h-6 bg-gray-100 rounded w-5/6" /></div>}>
+        <AcademyHero />
+      </Suspense>
+      <Suspense fallback={<div className="px-4 py-8 max-w-[1250px] mx-auto"><div className="h-8 bg-gray-100 rounded w-1/2 mb-6 animate-pulse" /><div className="h-40 bg-gray-100 rounded animate-pulse" /></div>}>
+        <CourseDetails />
+      </Suspense>
       <Footer />
     </main>
   );
