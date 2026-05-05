@@ -15,6 +15,9 @@
     color: #181a25;
     background-color: #fff;
     min-height: 100vh;
+    /* Optimize rendering */
+    will-change: transform;
+    contain: layout style paint;
   }
 
   * {

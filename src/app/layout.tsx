@@ -11,8 +11,9 @@ import { Suspense } from "react";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   display: "swap",
+  preload: true,
 });
 
 const organizationSchema = {
@@ -132,6 +133,12 @@ export default function RootLayout({
             // Show debug overlay on iPhone
             if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
               document.getElementById('debug-overlay').style.display = 'block';
+              
+              // Disable animations for better performance
+              const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+              if (prefersReducedMotion) {
+                document.body.style.setProperty('--animation-duration', '0.01ms');
+              }
             }
             
             // Track loading errors
