@@ -56,13 +56,14 @@ export const metadata: Metadata = {
     canonical: "https://fluensyfrench.com",
   },
   openGraph: {
-    title: "Fluensy French – Learn French Online the Fun Way",
+    title: "Helping French learners gain fluency through science-backed learning methods",
     description:
       "AI-powered French courses for adults and kids. Download the app and go from A1 to B2 at your own pace.",
     url: "https://fluensyfrench.com",
     siteName: "Fluensy French",
     locale: "en_US",
     type: "website",
+    images: [{ url: "/opengraph-image.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
@@ -70,7 +71,7 @@ export const metadata: Metadata = {
     title: "Fluensy French – Learn French Online the Fun Way",
     description:
       "AI-powered French courses for adults and kids. Download the app and go from A1 to B2 at your own pace.",
-    images: ["/opengraph-image"],
+    images: ["/opengraph-image.jpg"],
   },
   icons: {
     icon: [
