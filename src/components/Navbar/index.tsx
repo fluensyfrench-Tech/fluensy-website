@@ -57,10 +57,10 @@ const Navbar: React.FC = () => {
               </Link>
             </div>
 
-            {/* p-3 -mr-3 gives a 48×48 touch target on iOS (icon is 24×24) */}
+            {/* p-3 -mr-3 gives a 48×48 touch target (icon alone is only 24×24) */}
             <div className="md:hidden">
               <button
-                onTouchEnd={(e) => { e.preventDefault(); toggleMenu(); }}
+                type="button"
                 onClick={toggleMenu}
                 className="text-[#7148E5] focus:outline-none p-3 -mr-3"
                 aria-label="Toggle menu"
@@ -86,7 +86,7 @@ const Navbar: React.FC = () => {
               <span className="font-normal text-gray-700">french</span>
             </Link>
             <button
-              onTouchEnd={(e) => { e.preventDefault(); closeMenu(); }}
+              type="button"
               onClick={closeMenu}
               className="text-[#7148E5] focus:outline-none p-3 -mr-3"
               aria-label="Close menu"
