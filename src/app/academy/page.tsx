@@ -6,6 +6,7 @@ import AcademyHero from "@/components/Hero/AcademyHero";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { CourseDetails } from "@/components/Academy";
+import DebugBar from "@/components/DebugBar";
 
 function AcademyContent() {
   const searchParams = useSearchParams();
@@ -17,6 +18,7 @@ function AcademyContent() {
       <AcademyHero courseType={courseType} />
       {courseType && <CourseDetails courseType={courseType} />}
       <Footer />
+      <DebugBar />
     </main>
   );
 }
