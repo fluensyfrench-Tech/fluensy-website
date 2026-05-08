@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
 import { useCourseEnrol } from "@/hooks/mutations/useCourseEnrol";
 
+
 interface RegistrationModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -69,9 +70,9 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
       valid = false;
     }
 
-    const phoneRegex = /^\+?[0-9]{10,15}$/;
-    if (!phoneRegex.test(formData.phone.replace(/\s/g, ""))) {
-      newErrors.phone = "Please enter a valid phone number (e.g. 08012345678 or +2348012345678).";
+    const phoneDigits = formData.phone.replace(/[\s\-()]/g, "");
+    if (!/^\+[1-9][0-9]{6,14}$/.test(phoneDigits)) {
+      newErrors.phone = "Include your country code, e.g. +2348012345678 or +447911123456.";
       valid = false;
     }
 
@@ -101,7 +102,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
         courseKey: selectedCourseId,
         fullName: formData.fullName.trim(),
         email: formData.email,
-        whatsappPhone: formData.phone,
+        whatsappPhone: formData.phone.replace(/[\s\-()]/g, ""),
         ...(isKids && { childName: formData.childName.trim(), childAge: formData.childAge }),
         currency,
       },
@@ -219,13 +220,16 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
                       <label className="block mb-1">Your phone number (WhatsApp)</label>
                       <input
                         type="tel"
-                        placeholder="Type it here"
+                        placeholder="+234 801 234 5678"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className={`${inputBase} ${errors.phone ? "ring-2 ring-red-500" : ""}`}
                         required
                       />
-                      {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
+                      {errors.phone
+                        ? <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+                        : <p className="text-xs text-gray-400 mt-1">Include your country code (e.g. +234 for Nigeria, +44 for UK)</p>
+                      }
                     </div>
 
                     {isKids && (
