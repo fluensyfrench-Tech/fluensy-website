@@ -28,8 +28,8 @@ const Content: React.FC = () => {
 
       <section className="max-w-7xl mx-auto px-0 !mt-10 sm:px-6 lg:px-8 py-8 md:py-12">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 50 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.2 }}
           className="text-center mb-8 md:mb-10 px-4"
@@ -43,8 +43,8 @@ const Content: React.FC = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 50 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
           viewport={{ once: true, amount: 0.2 }}
           className="sm:rounded-2xl mx-auto overflow-hidden max-w-[1200px] !mt-12 md:!mt-20 shadow-lg"
@@ -99,8 +99,8 @@ const Content: React.FC = () => {
         {/* Learn Anywhere Section */}
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-start">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 50 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.2 }}
             className="w-full md:w-[60%]"
@@ -115,8 +115,8 @@ const Content: React.FC = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 50 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             viewport={{ once: true, amount: 0.2 }}
             className="w-full md:w-[40%] md:order-last order-first"
@@ -133,8 +133,8 @@ const Content: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-[50px]">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-[10px] sm:gap-4">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 50 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.2 }}
             className="flex flex-col-reverse sm:flex-col justify-center items-center lg:items-start w-full max-w-[400px] lg:max-w-[600px]"
@@ -150,8 +150,8 @@ const Content: React.FC = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 50 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
             viewport={{ once: true, amount: 0.2 }}
             className="mx-auto"
@@ -160,8 +160,8 @@ const Content: React.FC = () => {
               {benefits.map((item, idx) => (
                 <motion.li
                   key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ y: 20 }}
+                  whileInView={{ y: 0 }}
                   transition={{ duration: 0.6, delay: idx * 0.06 }}
                   viewport={{ once: true, amount: 0.2 }}
                   className="flex items-center justify-between bg-[#7148E5] text-white rounded-md px-4 sm:px-6 py-3 shadow-md min-h-[56px] md:min-h-[64px]"
@@ -194,8 +194,8 @@ const Content: React.FC = () => {
 
       {/* <section className="max-w-full bg-[#7DE5F2] my-0 md:my-[50px]">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 50 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.2 }}
           className="py-16 md:py-24 text-center mx-auto w-full px-4 md:w-[80%] lg:w-[60%]"
@@ -214,8 +214,8 @@ const Content: React.FC = () => {
 
       <section className="max-w-7xl m-0 sm:mx-auto px-0 md:px-8 py-0 md:py-10 lg:py-14">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 50 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.2 }}
           className="bg-[#7148E5] rounded-none md:rounded-3xl px-4 sm:px-6 py-8 flex flex-col-reverse md:flex-row md:items-center gap-6"
@@ -241,8 +241,8 @@ const Content: React.FC = () => {
 
       <section className="py-12 md:py-20 relative mb-7 md:mb-20 px-4">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 50 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.2 }}
           className="text-center relative z-10"
