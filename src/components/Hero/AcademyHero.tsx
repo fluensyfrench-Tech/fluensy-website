@@ -31,18 +31,19 @@ const AcademyHero: React.FC<AcademyHeroProps> = ({ courseType, onSelect }) => {
       </div>
 
       <div className="mt-12 md:mt-16 flex flex-col min-[400px]:flex-row gap-4 md:gap-8">
-        {/* <a> instead of <button> — iOS Safari reliably fires onClick on anchors */}
+        {/* javascript:void(0) — no scroll-to-top side-effect, no e.preventDefault needed,
+            and <a> tags always fire onClick on iOS Safari unlike <button> with transition:all */}
         <a
-          href="#"
-          onClick={(e) => { e.preventDefault(); onSelect("adults"); }}
-          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] transition-all duration-200 w-full md:flex-1 cursor-pointer select-none ${getButtonClass("adults")}`}
+          href="javascript:void(0)"
+          onClick={() => onSelect("adults")}
+          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] w-full md:flex-1 cursor-pointer select-none ${getButtonClass("adults")}`}
         >
           Courses for adults
         </a>
         <a
-          href="#"
-          onClick={(e) => { e.preventDefault(); onSelect("kids"); }}
-          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] transition-all duration-200 w-full md:flex-1 cursor-pointer select-none ${getButtonClass("kids")}`}
+          href="javascript:void(0)"
+          onClick={() => onSelect("kids")}
+          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] w-full md:flex-1 cursor-pointer select-none ${getButtonClass("kids")}`}
         >
           Courses for kids
         </a>

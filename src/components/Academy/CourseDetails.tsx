@@ -62,7 +62,8 @@ export const CourseDetails = ({ courseType }: CourseDetailsProps) => {
         const timer = setTimeout(() => {
             if (containerRef.current) {
                 const top = containerRef.current.getBoundingClientRect().top + window.scrollY - 110
-                window.scrollTo({ top, behavior: 'smooth' })
+                // Two-arg form works on all iOS versions; behavior:'smooth' is iOS 15.4+ only
+                window.scrollTo(0, Math.max(0, top))
             }
         }, 50)
         return () => clearTimeout(timer)
