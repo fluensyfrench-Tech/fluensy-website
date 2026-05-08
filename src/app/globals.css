@@ -8,13 +8,13 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
     font-family: "Space Grotesk", sans-serif;
     color: #181a25;
     background-color: #fff;
-    overflow-x: hidden;
     min-height: 100vh;
   }
 
@@ -139,6 +139,11 @@ textarea,
 select,
 a {
   transition: all 0.2s ease-in-out;
+}
+
+button {
+  touch-action: manipulation;
+  cursor: pointer;
 }
 
 
