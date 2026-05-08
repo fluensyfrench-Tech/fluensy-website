@@ -17,9 +17,6 @@ export default function AcademyPage() {
 
   const handleSelect = (type: "adults" | "kids") => {
     setCourseType(type);
-    const params = new URLSearchParams(window.location.search);
-    params.set("course_type", type);
-    window.history.replaceState(null, "", `?${params.toString()}`);
   };
 
   useEffect(() => {
