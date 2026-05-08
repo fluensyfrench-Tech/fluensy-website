@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import AcademyHero from "@/components/Hero/AcademyHero";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import DebugBar from "@/components/DebugBar";
 
 // Lazy-loaded so framer-motion is NOT in the initial JS bundle.
 // Without this, framer-motion v12's class-field syntax causes a SyntaxError
@@ -24,7 +23,7 @@ export default function AcademyPage() {
       <AcademyHero courseType={courseType} onSelect={setCourseType} />
       {courseType && <CourseDetails courseType={courseType} />}
       <Footer />
-      <DebugBar courseType={courseType} />
+
     </main>
   );
 }

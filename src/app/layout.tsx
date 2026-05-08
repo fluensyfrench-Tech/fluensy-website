@@ -98,25 +98,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-        {/* Early JS error trap — runs before React, creates a DOM element outside React's tree */}
-        <script dangerouslySetInnerHTML={{ __html: `
-(function(){
-  var errs=[];
-  window.onerror=function(m,s,l){errs.push((m||'').slice(0,120)+' @'+(s||'').replace(/.*\\//,'')+':'+l);flush();return false;};
-  window.addEventListener('unhandledrejection',function(e){errs.push('REJECT:'+String(e.reason).slice(0,120));flush();});
-  function flush(){
-    var el=document.getElementById('__jserr');
-    if(el){el.textContent=errs.join(' | ');el.style.display='block';}
-  }
-  window.addEventListener('DOMContentLoaded',function(){
-    var d=document.createElement('div');
-    d.id='__jserr';
-    d.style.cssText='position:fixed;top:0;left:0;right:0;background:#c00;color:#fff;font-size:11px;font-family:monospace;padding:5px 8px;z-index:2147483647;display:none;word-break:break-all;white-space:pre-wrap';
-    document.body.appendChild(d);
-    if(errs.length)flush();
-  });
-})();
-        `}} />
       </head>
       <body suppressHydrationWarning>
         <Providers>
