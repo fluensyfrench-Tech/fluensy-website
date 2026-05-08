@@ -14,6 +14,7 @@
     font-family: "Space Grotesk", sans-serif;
     color: #181a25;
     background-color: #fff;
+    overflow-x: hidden;
     min-height: 100vh;
   }
 
