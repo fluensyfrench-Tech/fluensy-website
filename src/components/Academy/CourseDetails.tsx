@@ -59,13 +59,15 @@ export const CourseDetails = ({ courseType }: CourseDetailsProps) => {
 
     useEffect(() => {
         setOpenDropdown(null)
+        if (!courseType) return
         const timer = setTimeout(() => {
-            if (containerRef.current) {
-                const top = containerRef.current.getBoundingClientRect().top + window.scrollY - 110
-                // Two-arg form works on all iOS versions; behavior:'smooth' is iOS 15.4+ only
-                window.scrollTo(0, Math.max(0, top))
-            }
-        }, 50)
+            if (!containerRef.current) return
+            const top = containerRef.current.getBoundingClientRect().top + window.scrollY - 110
+            // scrollTop assignment bypasses html{scroll-behavior:smooth} CSS which causes
+            // window.scrollTo to silently fail on iOS Safari < 15.4
+            const scroller = document.scrollingElement || document.documentElement
+            scroller.scrollTop = Math.max(0, top)
+        }, 100)
         return () => clearTimeout(timer)
     }, [courseType])
 

@@ -28,9 +28,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   const isActive = mounted && pathname === "/meet-us";
-
   const closeMenu = () => setOpen(false);
-  const toggleMenu = () => setOpen((o) => !o);
 
   return (
     <>
@@ -57,24 +55,29 @@ const Navbar: React.FC = () => {
               </Link>
             </div>
 
-            {/* <a> not <button> — iOS doesn't reliably fire onClick on <button> with transition:all */}
+            {/* label+input trick: native form elements ALWAYS fire on iOS Safari,
+                unlike buttons/divs which can have click event synthesis issues */}
             <div className="md:hidden">
-              <a
-                href="javascript:void(0)"
-                onClick={toggleMenu}
-                className="text-[#7148E5] p-3 -mr-3 inline-flex items-center justify-center"
+              <input
+                type="checkbox"
+                id="mobile-nav-toggle"
+                className="sr-only"
+                checked={open}
+                onChange={() => setOpen((o) => !o)}
+                aria-hidden="true"
+              />
+              <label
+                htmlFor="mobile-nav-toggle"
+                className="text-[#7148E5] p-3 -mr-3 inline-flex items-center justify-center cursor-pointer"
                 aria-label="Toggle menu"
-                role="button"
               >
                 {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </a>
+              </label>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Rendered as a sibling (not inside nav) so it gets its own z-index
-          in the document stacking context rather than inside nav's z-50 layer */}
       {open && (
         <div className="fixed inset-0 bg-[#7DE5F2] z-[9999] flex flex-col text-lg px-4">
           <div className="flex items-center justify-between h-24">
@@ -86,15 +89,14 @@ const Navbar: React.FC = () => {
               <span className="font-bold">fluensy</span>
               <span className="font-normal text-gray-700">french</span>
             </Link>
-            <a
-              href="javascript:void(0)"
-              onClick={closeMenu}
-              className="text-[#7148E5] p-3 -mr-3 inline-flex items-center justify-center"
+            {/* Same label trick for the close button */}
+            <label
+              htmlFor="mobile-nav-toggle"
+              className="text-[#7148E5] p-3 -mr-3 inline-flex items-center justify-center cursor-pointer"
               aria-label="Close menu"
-              role="button"
             >
               <X className="h-6 w-6" />
-            </a>
+            </label>
           </div>
           <div className="flex flex-col items-center gap-[20px] mt-8">
             <Link

@@ -1,24 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import AcademyHero from "@/components/Hero/AcademyHero";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { CourseDetails } from "@/components/Academy";
 
-export default function AcademyPage() {
-  const [courseType, setCourseType] = useState<string | null>(null);
-
-  const handleSelect = (type: "adults" | "kids") => {
-    setCourseType(type);
-  };
+function AcademyContent() {
+  const searchParams = useSearchParams();
+  const courseType = searchParams.get("type"); // "adults" | "kids" | null
 
   return (
     <main className="min-h-screen">
       <Navbar />
-      <AcademyHero courseType={courseType} onSelect={handleSelect} />
+      <AcademyHero courseType={courseType} />
       {courseType && <CourseDetails courseType={courseType} />}
       <Footer />
     </main>
+  );
+}
+
+export default function AcademyPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen">
+        <Navbar />
+      </main>
+    }>
+      <AcademyContent />
+    </Suspense>
   );
 }
