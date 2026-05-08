@@ -61,17 +61,10 @@ const Hero: React.FC = () => {
       {/* IMAGE ROW */}
       <section className="relative z-10 bg-white">
         <div className="max-w-[1600px] mx-auto">
-          <div className="flex flex-nowrap justify-center items-start gap-3 xl:mt-0 w-full px-4">
+          <div className="flex flex-nowrap justify-center items-start gap-3 -mt-5 xl:mt-0 w-full px-4">
             {illustrations.map((src, idx) => (
-              <motion.div
+              <div
                 key={idx}
-                initial={{ y: 50 }}
-                animate={{ y: 0 }}
-                transition={{
-                  duration: 0.8,
-                  ease: "easeOut",
-                  delay: idx * 0.2,
-                }}
                 className={
                   idx === 0 ? "flex-[1.1]" : idx === 1 ? "flex-[1.5]" : "flex-1"
                 }
@@ -81,14 +74,14 @@ const Hero: React.FC = () => {
                   alt={`Illustration ${idx + 1}`}
                   className="w-full max-h-[320px] md:max-h-[340px] 2xl:max-h-[450px] object-contain transition-transform duration-300"
                 />
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* BLUE SECTION FULL WIDTH */}
-      <section className="bg-[#7DE5F2] relative z-30 md:-mt-10 xl:-mt-16 w-full">
+      <section className="bg-[#7DE5F2] relative z-30 -mt-5 md:-mt-10 xl:-mt-16 w-full">
         <div className="max-w-[1250px] mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
