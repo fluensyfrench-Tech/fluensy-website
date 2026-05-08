@@ -3,13 +3,13 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 
 interface AcademyHeroProps {
   courseType: string | null;
+  onSelect: (type: "adults" | "kids") => void;
 }
 
-const AcademyHero: React.FC<AcademyHeroProps> = ({ courseType }) => {
+const AcademyHero: React.FC<AcademyHeroProps> = ({ courseType, onSelect }) => {
   const getButtonClass = (type: "adults" | "kids") => {
     const isActive = courseType === type;
     if (isActive) {
@@ -30,22 +30,22 @@ const AcademyHero: React.FC<AcademyHeroProps> = ({ courseType }) => {
         </p>
       </div>
 
-      {/* Link (renders as <a>) — 100% iOS-safe, no JavaScript click events needed */}
       <div className="mt-12 md:mt-16 flex flex-col min-[400px]:flex-row gap-4 md:gap-8">
-        <Link
-          href="/academy?type=adults"
-          scroll={false}
-          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] w-full md:flex-1 ${getButtonClass("adults")}`}
+        {/* javascript:void(0) keeps <a> interactive on iOS without causing scroll-to-top */}
+        <a
+          href="javascript:void(0)"
+          onClick={() => onSelect("adults")}
+          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] w-full md:flex-1 cursor-pointer select-none ${getButtonClass("adults")}`}
         >
           Courses for adults
-        </Link>
-        <Link
-          href="/academy?type=kids"
-          scroll={false}
-          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] w-full md:flex-1 ${getButtonClass("kids")}`}
+        </a>
+        <a
+          href="javascript:void(0)"
+          onClick={() => onSelect("kids")}
+          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] w-full md:flex-1 cursor-pointer select-none ${getButtonClass("kids")}`}
         >
           Courses for kids
-        </Link>
+        </a>
       </div>
     </section>
   );

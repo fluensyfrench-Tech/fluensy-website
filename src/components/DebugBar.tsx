@@ -1,12 +1,11 @@
 "use client";
 
-import { useSearchParams, usePathname } from "next/navigation";
-import { Suspense } from "react";
+interface Props {
+  courseType: string | null;
+}
 
-function DebugBarInner() {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const type = searchParams.get("type");
+export default function DebugBar({ courseType }: Props) {
+  const ua = typeof navigator !== "undefined" ? navigator.userAgent : "ssr";
 
   return (
     <div
@@ -17,26 +16,15 @@ function DebugBarInner() {
         right: 0,
         background: "#000",
         color: "#0f0",
-        fontSize: "13px",
+        fontSize: "12px",
         fontFamily: "monospace",
-        padding: "6px 12px",
+        padding: "6px 10px",
         zIndex: 99999,
-        display: "flex",
-        gap: "16px",
-        flexWrap: "wrap",
+        lineHeight: "1.4",
       }}
     >
-      <span>path: {pathname}</span>
-      <span>type: {type ?? "null"}</span>
-      <span>ua: {typeof navigator !== "undefined" ? navigator.userAgent.slice(0, 60) : "?"}</span>
+      <div>courseType: <strong style={{ color: "#ff0" }}>{courseType ?? "null"}</strong></div>
+      <div style={{ color: "#aaa", fontSize: "11px" }}>{ua.slice(0, 80)}</div>
     </div>
-  );
-}
-
-export default function DebugBar() {
-  return (
-    <Suspense fallback={null}>
-      <DebugBarInner />
-    </Suspense>
   );
 }
