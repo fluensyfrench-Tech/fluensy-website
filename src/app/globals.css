@@ -136,12 +136,18 @@ select:focus-visible {
   outline-offset: 2px;
 }
 
+/* transition:all on buttons causes iOS Safari to fire :hover (not click) on first tap.
+   Use explicit properties instead so iOS always synthesises the click event. */
 button,
 input,
 textarea,
-select,
+select {
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out,
+              border-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
 a {
-  transition: all 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
 button,

@@ -57,16 +57,17 @@ const Navbar: React.FC = () => {
               </Link>
             </div>
 
-            {/* p-3 -mr-3 gives a 48×48 touch target (icon alone is only 24×24) */}
+            {/* <a> not <button> — iOS doesn't reliably fire onClick on <button> with transition:all */}
             <div className="md:hidden">
-              <button
-                type="button"
+              <a
+                href="javascript:void(0)"
                 onClick={toggleMenu}
-                className="text-[#7148E5] focus:outline-none p-3 -mr-3"
+                className="text-[#7148E5] p-3 -mr-3 inline-flex items-center justify-center"
                 aria-label="Toggle menu"
+                role="button"
               >
                 {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -85,14 +86,15 @@ const Navbar: React.FC = () => {
               <span className="font-bold">fluensy</span>
               <span className="font-normal text-gray-700">french</span>
             </Link>
-            <button
-              type="button"
+            <a
+              href="javascript:void(0)"
               onClick={closeMenu}
-              className="text-[#7148E5] focus:outline-none p-3 -mr-3"
+              className="text-[#7148E5] p-3 -mr-3 inline-flex items-center justify-center"
               aria-label="Close menu"
+              role="button"
             >
               <X className="h-6 w-6" />
-            </button>
+            </a>
           </div>
           <div className="flex flex-col items-center gap-[20px] mt-8">
             <Link
