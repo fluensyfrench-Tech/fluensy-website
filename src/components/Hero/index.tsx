@@ -66,13 +66,12 @@ const Hero: React.FC = () => {
               <motion.div
                 key={idx}
                 initial={{ y: 50 }}
-                whileInView={{ y: 0 }}
+                animate={{ y: 0 }}
                 transition={{
                   duration: 0.8,
                   ease: "easeOut",
                   delay: idx * 0.2,
                 }}
-                viewport={{ once: true }}
                 className={
                   idx === 0 ? "flex-[1.1]" : idx === 1 ? "flex-[1.5]" : "flex-1"
                 }
