@@ -29,62 +29,75 @@ const Navbar: React.FC = () => {
 
   const isActive = mounted && pathname === "/meet-us";
 
+  const closeMenu = () => setOpen(false);
+  const toggleMenu = () => setOpen((o) => !o);
+
   return (
-    <nav className="fixed z-50 top-0 left-0 w-full bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-24">
-          <Link
-            href="/"
-            className="flex-shrink-0 text-xl leading-[100%] tracking-[0]"
-          >
-            <span className="font-bold">fluensy</span>
-            <span className="font-normal">french</span>
-          </Link>
-
-          <div className="hidden md:flex items-center space-x-6">
-            <NavLink href="/about-us" pathname={pathname}>
-              About us
-            </NavLink>
+    <>
+      <nav className="fixed z-50 top-0 left-0 w-full bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-24">
             <Link
-              href="/academy"
-              className="bg-[#7148E5] text-white px-6 py-3.5 h-[52px] w-[221px] rounded-[12px] text-base text-center font-medium hover:opacity-95 transition hover:bg-[#7DE5F2] hover:text-[#181A25]"
+              href="/"
+              className="flex-shrink-0 text-xl leading-[100%] tracking-[0]"
             >
-              Browse courses
+              <span className="font-bold">fluensy</span>
+              <span className="font-normal">french</span>
             </Link>
-          </div>
 
-          <div className="md:hidden">
-            <button
-              onClick={() => setOpen(!open)}
-              className="text-[#7148E5] focus:outline-none"
-              aria-label="Toggle menu"
-            >
-              {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+            <div className="hidden md:flex items-center space-x-6">
+              <NavLink href="/about-us" pathname={pathname}>
+                About us
+              </NavLink>
+              <Link
+                href="/academy"
+                className="bg-[#7148E5] text-white px-6 py-3.5 h-[52px] w-[221px] rounded-[12px] text-base text-center font-medium hover:opacity-95 transition hover:bg-[#7DE5F2] hover:text-[#181A25]"
+              >
+                Browse courses
+              </Link>
+            </div>
+
+            {/* p-3 -mr-3 gives a 48×48 touch target on iOS (icon is 24×24) */}
+            <div className="md:hidden">
+              <button
+                onTouchEnd={(e) => { e.preventDefault(); toggleMenu(); }}
+                onClick={toggleMenu}
+                className="text-[#7148E5] focus:outline-none p-3 -mr-3"
+                aria-label="Toggle menu"
+              >
+                {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </nav>
 
+      {/* Rendered as a sibling (not inside nav) so it gets its own z-index
+          in the document stacking context rather than inside nav's z-50 layer */}
       {open && (
-        <div className="fixed inset-0 border bg-[#7DE5F2] z-40 flex flex-col justify-start space-y-6 text-lg px-6">
-          <button
-            onClick={() => setOpen(false)}
-            className="absolute top-6 right-6 text-[#7148E5] focus:outline-none"
-            aria-label="Close menu"
-          >
-            <X className="h-6 w-6" />
-          </button>
-          {/* <NavLink href="/meet-us" onClick={() => setOpen(false)}>
-            Meet us
-          </NavLink> */}
-          <Link href="/">
-            <span className="font-bold">fluensy</span>
-            <span className="font-normal text-gray-700">french</span>
-          </Link>
-          <div className="pt-20 flex flex-col items-center gap-[20px]">
+        <div className="fixed inset-0 bg-[#7DE5F2] z-[9999] flex flex-col text-lg px-4">
+          <div className="flex items-center justify-between h-24">
+            <Link
+              href="/"
+              onClick={closeMenu}
+              className="flex-shrink-0 text-xl leading-[100%] tracking-[0]"
+            >
+              <span className="font-bold">fluensy</span>
+              <span className="font-normal text-gray-700">french</span>
+            </Link>
+            <button
+              onTouchEnd={(e) => { e.preventDefault(); closeMenu(); }}
+              onClick={closeMenu}
+              className="text-[#7148E5] focus:outline-none p-3 -mr-3"
+              aria-label="Close menu"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          </div>
+          <div className="flex flex-col items-center gap-[20px] mt-8">
             <Link
               href="/about-us"
-              onClick={() => setOpen(false)}
+              onClick={closeMenu}
               className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${
                 isActive ? "text-[#8f66ff] font-semibold" : ""
               }`}
@@ -93,7 +106,7 @@ const Navbar: React.FC = () => {
             </Link>
             <Link
               href="/academy"
-              onClick={() => setOpen(false)}
+              onClick={closeMenu}
               className="bg-[#7148E5] text-white px-6 py-3.5 rounded-md text-base font-medium"
             >
               Browse courses
@@ -101,7 +114,7 @@ const Navbar: React.FC = () => {
           </div>
         </div>
       )}
-    </nav>
+    </>
   );
 };
 

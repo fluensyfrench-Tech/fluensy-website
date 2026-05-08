@@ -41,14 +41,16 @@ const AcademyHero: React.FC<AcademyHeroProps> = ({ courseType, onSelect }) => {
         mt-12 md:mt-16 flex flex-col min-[400px]:flex-row gap-4 md:gap-8
       ">
         <button
+          onTouchEnd={(e) => { e.preventDefault(); onSelect("adults"); }}
           onClick={() => onSelect("adults")}
-          className={`md:flex-1 ${getButtonClass("adults")}`}
+          className={`w-full md:flex-1 ${getButtonClass("adults")}`}
         >
           Courses for adults
         </button>
         <button
+          onTouchEnd={(e) => { e.preventDefault(); onSelect("kids"); }}
           onClick={() => onSelect("kids")}
-          className={`md:flex-1 ${getButtonClass("kids")}`}
+          className={`w-full md:flex-1 ${getButtonClass("kids")}`}
         >
           Courses for kids
         </button>
