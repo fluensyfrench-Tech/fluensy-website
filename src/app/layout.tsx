@@ -103,9 +103,9 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <Providers>
           <Toaster position="top-center" />
-          <Suspense>
+          {/* <Suspense> */}
             {children}
-          </Suspense>
+          {/* </Suspense> */}
           <CookieConsent />
         </Providers>
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (

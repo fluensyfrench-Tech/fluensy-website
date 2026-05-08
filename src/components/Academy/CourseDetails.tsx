@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Check, ChevronDown } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useFetchCourses, Course } from "@/hooks/queries/useFetchCourses";
 import { BundledCourseSkeleton, SingleLevelCourseSkeleton } from "./CourseCardSkeleton";
@@ -55,10 +55,17 @@ export const CourseDetails = ({ courseType }: CourseDetailsProps) => {
     const [modalOpen, setModalOpen] = useState(false)
     const [activeCourse, setActiveCourse] = useState<Course | null>(null)
     const [activeCurrency, setActiveCurrency] = useState<"NGN" | "USD">("NGN")
+    const containerRef = useRef<HTMLDivElement>(null)
 
-    // Close dropdown when switching course type tabs
     useEffect(() => {
         setOpenDropdown(null)
+        const timer = setTimeout(() => {
+            if (containerRef.current) {
+                const top = containerRef.current.getBoundingClientRect().top + window.scrollY - 110
+                window.scrollTo({ top, behavior: 'smooth' })
+            }
+        }, 50)
+        return () => clearTimeout(timer)
     }, [courseType])
 
     const openRegistrationModal = (course: Course, currency: "NGN" | "USD") => {
@@ -369,7 +376,7 @@ export const CourseDetails = ({ courseType }: CourseDetailsProps) => {
         : ""
 
     return (
-        <div className="px-4 sm:px-6 lg:px-8 max-w-[1250px] mx-auto pb-[76px]">
+        <div ref={containerRef} className="px-4 sm:px-6 lg:px-8 max-w-[1250px] mx-auto pb-[76px]">
             {renderCourseDetails()}
 
             {courseType && (
