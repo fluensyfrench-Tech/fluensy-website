@@ -36,15 +36,26 @@ const Hero: React.FC = () => {
             </span>
           </motion.h1>
 
-          <p className="text-base md:text-lg font-normal mb-6 md:mb-8 max-w-xl mx-auto leading-relaxed">
+          <motion.p
+            initial={{ y: 50 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+            className="text-base md:text-lg font-normal mb-6 md:mb-8 max-w-xl mx-auto leading-relaxed"
+          >
             We make French learning fun, impactful, and accessible.
-          </p>
+          </motion.p>
 
-          <Link href="/academy">
-            <button className="bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base sm:text-[20px] text-white px-6 py-[10px] sm:py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-normal hover:opacity-95 transition">
-              Start learning now
-            </button>
-          </Link>
+          <motion.div
+            initial={{ y: 50 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+          >
+            <Link href="/academy">
+              <button className="bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base sm:text-[20px] text-white px-6 py-[10px] sm:py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-normal hover:opacity-95 transition">
+                Start learning now
+              </button>
+            </Link>
+          </motion.div>
         </div>
       </section>
 
@@ -53,8 +64,11 @@ const Hero: React.FC = () => {
         <div className="max-w-[1600px] mx-auto">
           <div className="flex flex-nowrap justify-center items-start gap-3 -mt-5 xl:mt-0 w-full px-4">
             {illustrations.map((src, idx) => (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ y: 50 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.2 }}
                 className={
                   idx === 0 ? "flex-[1.1]" : idx === 1 ? "flex-[1.5]" : "flex-1"
                 }
@@ -64,7 +78,7 @@ const Hero: React.FC = () => {
                   alt={`Illustration ${idx + 1}`}
                   className="w-full max-h-[320px] md:max-h-[340px] 2xl:max-h-[450px] object-contain transition-transform duration-300"
                 />
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -74,25 +88,34 @@ const Hero: React.FC = () => {
       <section className="bg-[#7DE5F2] relative z-30 -mt-5 md:-mt-10 xl:-mt-16 w-full">
         <div className="max-w-[1250px] mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div>
+          <motion.div
+            initial={{ y: 50 }}
+            whileInView={{ y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             <h2 className="font-medium text-3xl md:text-4xl lg:text-5xl mb-0 md:mb-8 !leading-[1.3]">
               Meet learners like
-              <br className="hidden md:block" /> you in our growing learners’
+              <br className="hidden md:block" /> you in our growing learners&apos;
               club
             </h2>
 
             <Link href="/#cohort" className="hidden md:block">
-              <button className="bg-[#7148E5] hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg  text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-medium hover:opacity-95 transition">
+              <button className="bg-[#7148E5] hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-medium hover:opacity-95 transition">
                 Join now for free
               </button>
             </Link>
-          </div>
+          </motion.div>
 
           {/* Right Cards */}
           <div className="grid grid-cols-1 min-[400px]:grid-cols-2 gap-6">
             {cards.map((card, idx) => (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ y: 50 }}
+                whileInView={{ y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.2 }}
+                viewport={{ once: true }}
                 className="bg-white p-6 rounded-lg shadow-md flex flex-col gap-3"
               >
                 <img
@@ -103,15 +126,22 @@ const Hero: React.FC = () => {
                 <p className="text-gray-800 text-base md:text-xl font-normal">
                   {card.text}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          <Link href="/#cohort">
-            <button className="bg-[#7148E5] block md:hidden hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg  text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-medium hover:opacity-95 transition">
-              Join now for free
-            </button>
-          </Link>
+          <motion.div
+            initial={{ y: 50 }}
+            whileInView={{ y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <Link href="/#cohort">
+              <button className="bg-[#7148E5] block md:hidden hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-medium hover:opacity-95 transition">
+                Join now for free
+              </button>
+            </Link>
+          </motion.div>
         </div>
       </section>
     </>

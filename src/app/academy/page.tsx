@@ -1,11 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import AcademyHero from "@/components/Hero/AcademyHero";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import DebugBar from "@/components/DebugBar";
 
 // Lazy-loaded so framer-motion is NOT in the initial JS bundle.
 // Without this, framer-motion v12's class-field syntax causes a SyntaxError
@@ -18,13 +17,29 @@ const CourseDetails = dynamic(
 export default function AcademyPage() {
   const [courseType, setCourseType] = useState<string | null>(null);
 
+  // Read ?type= from URL on mount — avoids useSearchParams which requires Suspense
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get("type");
+    if (type === "adults" || type === "kids") {
+      setCourseType(type);
+    }
+  }, []);
+
+  const handleSelect = (type: "adults" | "kids") => {
+    setCourseType(type);
+    // Update URL without navigation or page reload
+    const url = new URL(window.location.href);
+    url.searchParams.set("type", type);
+    window.history.replaceState({}, "", url.toString());
+  };
+
   return (
     <main className="min-h-screen">
       <Navbar />
-      <AcademyHero courseType={courseType} onSelect={setCourseType} />
+      <AcademyHero courseType={courseType} onSelect={handleSelect} />
       {courseType && <CourseDetails courseType={courseType} />}
       <Footer />
-      <DebugBar courseType={courseType} />
     </main>
   );
 }
