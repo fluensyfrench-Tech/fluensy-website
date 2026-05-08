@@ -28,7 +28,6 @@ export default function AcademyPage() {
 
   const handleSelect = (type: "adults" | "kids") => {
     setCourseType(type);
-    // Update URL without navigation or page reload
     const url = new URL(window.location.href);
     url.searchParams.set("type", type);
     window.history.replaceState({}, "", url.toString());
