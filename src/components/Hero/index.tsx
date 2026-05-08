@@ -37,8 +37,8 @@ const Hero: React.FC = () => {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 50 }}
+            animate={{ y: 0 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             className="text-base md:text-lg font-normal mb-6 md:mb-8 max-w-xl mx-auto leading-relaxed"
           >
@@ -47,8 +47,8 @@ const Hero: React.FC = () => {
 
           <Link href="/academy">
             <motion.button
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ y: 50 }}
+              animate={{ y: 0 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
               className="bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base sm:text-[20px] text-white px-6 py-[10px] sm:py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-normal hover:opacity-95 transition"
             >
@@ -65,8 +65,8 @@ const Hero: React.FC = () => {
             {illustrations.map((src, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ y: 50 }}
+                whileInView={{ y: 0 }}
                 transition={{
                   duration: 0.8,
                   ease: "easeOut",
@@ -93,8 +93,8 @@ const Hero: React.FC = () => {
         <div className="max-w-[1250px] mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 50 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
@@ -106,8 +106,8 @@ const Hero: React.FC = () => {
 
             <Link href="/#cohort" className="hidden md:block">
               <motion.button
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ y: 50 }}
+                animate={{ y: 0 }}
                 transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
                 className="bg-[#7148E5] hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg  text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-medium hover:opacity-95 transition"
               >
@@ -121,8 +121,8 @@ const Hero: React.FC = () => {
             {cards.map((card, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ y: 50 }}
+                whileInView={{ y: 0 }}
                 transition={{
                   duration: 0.8,
                   ease: "easeOut",
@@ -145,8 +145,8 @@ const Hero: React.FC = () => {
 
           <Link href="/#cohort">
             <motion.button
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ y: 50 }}
+              animate={{ y: 0 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
               className="bg-[#7148E5] block md:hidden hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg  text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-medium hover:opacity-95 transition"
             >
