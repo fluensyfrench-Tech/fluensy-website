@@ -144,7 +144,8 @@ a {
   transition: all 0.2s ease-in-out;
 }
 
-button {
+button,
+a {
   touch-action: manipulation;
   cursor: pointer;
 }
