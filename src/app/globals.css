@@ -8,7 +8,10 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    /* clip doesn't create a scroll container — overflow:hidden on html/body
+       makes iOS Safari route touch events through the scroll container first,
+       which can silently swallow taps on buttons. clip prevents that. */
+    overflow-x: clip;
   }
 
   body {
