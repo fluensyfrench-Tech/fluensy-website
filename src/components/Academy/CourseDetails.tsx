@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { useSearchParams } from "next/navigation"
 import { Check, ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -47,9 +46,11 @@ const getCourseTitle = (course: Course) => {
     return course.name
 }
 
-export const CourseDetails = () => {
-    const searchParams = useSearchParams()
-    const courseType = searchParams.get("course_type")
+interface CourseDetailsProps {
+    courseType: string | null;
+}
+
+export const CourseDetails = ({ courseType }: CourseDetailsProps) => {
     const [openDropdown, setOpenDropdown] = useState<string | null>(null)
     const [modalOpen, setModalOpen] = useState(false)
     const [activeCourse, setActiveCourse] = useState<Course | null>(null)
