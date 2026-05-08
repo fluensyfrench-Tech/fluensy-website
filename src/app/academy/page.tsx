@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 import AcademyHero from "@/components/Hero/AcademyHero";
 import Footer from "@/components/Footer";
@@ -9,11 +8,9 @@ import Navbar from "@/components/Navbar";
 import { CourseDetails } from "@/components/Academy";
 
 export default function AcademyPage() {
-  const router = useRouter();
   const [courseType, setCourseType] = useState<string | null>(null);
 
   useEffect(() => {
-    // Read search params from window — no useSearchParams, no Suspense needed
     const params = new URLSearchParams(window.location.search);
     setCourseType(params.get("course_type"));
   }, []);
@@ -22,7 +19,7 @@ export default function AcademyPage() {
     setCourseType(type);
     const params = new URLSearchParams(window.location.search);
     params.set("course_type", type);
-    router.replace(`?${params.toString()}`, { scroll: false });
+    window.history.replaceState(null, "", `?${params.toString()}`);
   };
 
   useEffect(() => {
