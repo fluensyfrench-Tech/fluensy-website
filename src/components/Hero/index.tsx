@@ -61,7 +61,7 @@ const Hero: React.FC = () => {
       {/* IMAGE ROW */}
       <section className="relative z-10 bg-white">
         <div className="max-w-[1600px] mx-auto">
-          <div className="flex flex-nowrap justify-center items-start gap-3 -mt-5 xl:mt-0 w-full px-4">
+          <div className="flex flex-nowrap justify-center items-start gap-3 xl:mt-0 w-full px-4">
             {illustrations.map((src, idx) => (
               <motion.div
                 key={idx}
@@ -88,7 +88,7 @@ const Hero: React.FC = () => {
       </section>
 
       {/* BLUE SECTION FULL WIDTH */}
-      <section className="bg-[#7DE5F2] relative z-30 -mt-5 md:-mt-10 xl:-mt-16 w-full">
+      <section className="bg-[#7DE5F2] relative z-30 md:-mt-10 xl:-mt-16 w-full">
         <div className="max-w-[1250px] mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
