@@ -3,19 +3,19 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
 interface AcademyHeroProps {
   courseType: string | null;
-  onSelect: (type: "adults" | "kids") => void;
 }
 
-const AcademyHero: React.FC<AcademyHeroProps> = ({ courseType, onSelect }) => {
+const AcademyHero: React.FC<AcademyHeroProps> = ({ courseType }) => {
   const getButtonClass = (type: "adults" | "kids") => {
     const isActive = courseType === type;
     if (isActive) {
       return "bg-secondary-1 text-white";
     }
-    return "border border-grey-200 text-primary hover:bg-secondary-1 hover:text-secondary";
+    return "border border-grey-200 text-primary";
   };
 
   return (
@@ -30,23 +30,22 @@ const AcademyHero: React.FC<AcademyHeroProps> = ({ courseType, onSelect }) => {
         </p>
       </div>
 
+      {/* Link (renders as <a>) — 100% iOS-safe, no JavaScript click events needed */}
       <div className="mt-12 md:mt-16 flex flex-col min-[400px]:flex-row gap-4 md:gap-8">
-        {/* javascript:void(0) — no scroll-to-top side-effect, no e.preventDefault needed,
-            and <a> tags always fire onClick on iOS Safari unlike <button> with transition:all */}
-        <a
-          href="javascript:void(0)"
-          onClick={() => onSelect("adults")}
-          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] w-full md:flex-1 cursor-pointer select-none ${getButtonClass("adults")}`}
+        <Link
+          href="/academy?type=adults"
+          scroll={false}
+          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] w-full md:flex-1 ${getButtonClass("adults")}`}
         >
           Courses for adults
-        </a>
-        <a
-          href="javascript:void(0)"
-          onClick={() => onSelect("kids")}
-          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] w-full md:flex-1 cursor-pointer select-none ${getButtonClass("kids")}`}
+        </Link>
+        <Link
+          href="/academy?type=kids"
+          scroll={false}
+          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] w-full md:flex-1 ${getButtonClass("kids")}`}
         >
           Courses for kids
-        </a>
+        </Link>
       </div>
     </section>
   );
