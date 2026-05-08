@@ -374,15 +374,15 @@ export const CourseDetails = () => {
             {courseType && (
                 <motion.div
                     className="text-center py-12 md:py-16 px-4"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ y: 30 }}
+                    whileInView={{ y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
                 >
                     <motion.h3
                         className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-medium !leading-[1.3] text-[#181A25] mb-2"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ scale: 0.9 }}
+                        whileInView={{ scale: 1 }}
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
                     >

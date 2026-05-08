@@ -31,8 +31,8 @@ const Academy: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-lg">
           {/* Left: Black background with text */}
           <motion.div
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 80 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
             className="bg-[#181A25] text-white flex flex-col justify-center items-start px-8 py-16 text-left"
@@ -53,8 +53,8 @@ const Academy: React.FC = () => {
 
           {/* Right: Blue background with check icons */}
           <motion.div
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 80 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
             viewport={{ once: true }}
             className="bg-[#7DE5F2] flex flex-col justify-center px-5 md:px-8 py-14 md:py-16"
@@ -63,8 +63,8 @@ const Academy: React.FC = () => {
               {features.map((item, idx) => (
                 <motion.li
                   key={idx}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ y: 40 }}
+                  whileInView={{ y: 0 }}
                   transition={{
                     duration: 0.4,
                     ease: "easeOut",
@@ -94,8 +94,8 @@ const Academy: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 50 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
@@ -175,8 +175,8 @@ const Academy: React.FC = () => {
             {benefits.map((text, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ y: 40 }}
+                whileInView={{ y: 0 }}
                 transition={{
                   duration: 0.4,
                   ease: "easeOut",
@@ -208,8 +208,8 @@ const Academy: React.FC = () => {
 
           {/* Text Content */}
           <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 60 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
             viewport={{ once: true }}
             className="w-full md:w-1/2 flex flex-col items-center"

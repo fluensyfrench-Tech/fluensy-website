@@ -17,9 +17,13 @@ export class ApiError extends Error {
 
 export const apiFetch = async (path: string, init?: RequestInit): Promise<Response> => {
   let response: Response;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 15000);
   try {
-    response = await fetch(`${API_V1}${path}`, init);
+    response = await fetch(`${API_V1}${path}`, { ...init, signal: controller.signal });
+    clearTimeout(timeoutId);
   } catch {
+    clearTimeout(timeoutId);
     throw new ApiError(0, "Unable to connect to the server. Please check your internet connection.");
   }
   if (!response.ok) {
