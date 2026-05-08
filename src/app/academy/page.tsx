@@ -10,11 +10,6 @@ import { CourseDetails } from "@/components/Academy";
 export default function AcademyPage() {
   const [courseType, setCourseType] = useState<string | null>(null);
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setCourseType(params.get("course_type"));
-  }, []);
-
   const handleSelect = (type: "adults" | "kids") => {
     setCourseType(type);
   };
@@ -54,7 +49,7 @@ export default function AcademyPage() {
       <Toaster position="top-center" />
       <Navbar />
       <AcademyHero courseType={courseType} onSelect={handleSelect} />
-      <CourseDetails courseType={courseType} />
+      {courseType && <CourseDetails courseType={courseType} />}
       <Footer />
     </main>
   );
