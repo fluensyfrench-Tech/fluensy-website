@@ -26,9 +26,8 @@ const Hero: React.FC = () => {
       <section className="relative pb-20">
         <div className="relative z-20 max-w-4xl mx-auto px-4 text-center mt-24 sm:mt-36">
           <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-3xl sm:text-5xl lg:text-7xl mb-6"
           >
