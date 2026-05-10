@@ -110,7 +110,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
         onSuccess: (data) => {
           if (data?.authorizationUrl) {
             onClose();
-            window.open(data.authorizationUrl, "_blank");
+            window.location.href = data.authorizationUrl;
           } else {
             toast.error("Failed to get payment link. Please try again.");
           }
