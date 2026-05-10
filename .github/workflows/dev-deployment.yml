@@ -1,0 +1,103 @@
+name: DEV WEBSITE CI/CD - Normal Deployment
+
+on:
+  push:
+    branches:
+      - develop
+
+env:
+  AWS_DEFAULT_REGION: us-east-2
+  ECR_REPOSITORY: develop-fluensy-website
+  AWS_ACCOUNT_ID: 493738490528
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+          
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+        
+      - name: Build and push Docker image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          IMAGE_TAG=$(date +%Y%m%d-%H%M%S)-${GITHUB_SHA::7}
+          
+          echo "🏗️ Building Docker image..."
+          docker build \
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
+            .
+          
+          echo "📤 Pushing Docker images..."
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          
+          echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
+          echo "✅ Images pushed successfully"
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          command_timeout: 10m
+          script: |
+            set -e
+            cd /home/ubuntu/testwebsite
+            echo "=================================================="
+            echo "🚀 Starting Deployment"
+            echo "=================================================="
+            echo "🔐 Logging into ECR..."
+            aws ecr get-login-password --region ${{ env.AWS_DEFAULT_REGION }} | \
+              docker login --username AWS --password-stdin \
+              ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_DEFAULT_REGION }}.amazonaws.com
+            echo "📥 Pulling latest image..."
+            docker-compose pull
+            echo "🔄 Restarting containers..."
+            docker-compose down
+            docker-compose up -d
+            echo "⏳ Waiting for container to start..."
+            sleep 5
+            echo "🏥 Running health check..."
+            HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" -m 10 http://localhost:4001/ || echo "000")
+            if [ "$HTTP_STATUS" = "200" ] || [ "$HTTP_STATUS" = "301" ] || [ "$HTTP_STATUS" = "302" ] || [ "$HTTP_STATUS" = "304" ]; then
+              echo "✅ Health check passed (HTTP $HTTP_STATUS)"
+            else
+              echo "⚠️ Health check returned HTTP $HTTP_STATUS"
+              docker-compose logs --tail 20
+            fi
+            echo "=================================================="
+            echo "✅ DEPLOYMENT SUCCESSFUL"
+            echo "=================================================="
+
+      - name: Deployment Summary
+        if: always()
+        run: |
+          echo "=================================================="
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ DEPLOYMENT COMPLETED"
+            echo "=================================================="
+            echo "📦 Image: ${{ env.IMAGE_TAG }}"
+            echo "🌐 URL: https://develop.fluensyfrench.com"
+            echo "🕐 Time: $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
+            echo "📝 Commit: ${{ github.sha }}"
+            echo "👤 Author: ${{ github.actor }}"
+          else
+            echo "❌ DEPLOYMENT FAILED"
+            echo "=================================================="
+            echo "Please check the logs above for details"
+          fi
+          echo "=================================================="
