@@ -35,14 +35,14 @@ const AcademyHero: React.FC<AcademyHeroProps> = ({ courseType, onSelect }) => {
         <a
           href="#"
           onClick={(e) => { e.preventDefault(); onSelect("adults"); }}
-          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] w-full md:flex-1 cursor-pointer select-none ${getButtonClass("adults")}`}
+          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] w-full md:flex-1 cursor-pointer select-none hover:bg-secondary-1 ${getButtonClass("adults")}`}
         >
           Courses for adults
         </a>
         <a
           href="#"
           onClick={(e) => { e.preventDefault(); onSelect("kids"); }}
-          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] w-full md:flex-1 cursor-pointer select-none ${getButtonClass("kids")}`}
+          className={`flex items-center justify-center text-[18px] md:text-[40px] font-bold h-11 md:h-[171px] px-[14px] rounded-[10px] w-full md:flex-1 cursor-pointer select-none hover:bg-secondary-1 ${getButtonClass("kids")}`}
         >
           Courses for kids
         </a>
