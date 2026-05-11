@@ -41,10 +41,10 @@ function FooterUp() {
   return (
     <section className="bg-[#7148E5] text-white py-20 scroll-mt-60" id="cohort">
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ y: 16 }}
+        whileInView={{ y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0 }}
         className="max-w-3xl mx-auto px-4 text-center"
       >
         <h2 className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug mb-5">

@@ -31,10 +31,10 @@ const Academy: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-lg">
           {/* Left: Black background with text */}
           <motion.div
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 16 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
             className="bg-[#181A25] text-white flex flex-col justify-center items-start px-8 py-16 text-left"
           >
             <div className="ml-0 md:ml-5">
@@ -53,24 +53,24 @@ const Academy: React.FC = () => {
 
           {/* Right: Blue background with check icons */}
           <motion.div
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 16 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
             className="bg-[#7DE5F2] flex flex-col justify-center px-5 md:px-8 py-14 md:py-16"
           >
             <ul className="space-y-4 md:space-y-6">
               {features.map((item, idx) => (
                 <motion.li
                   key={idx}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ y: 16 }}
+                  whileInView={{ y: 0 }}
                   transition={{
                     duration: 0.4,
                     ease: "easeOut",
                     delay: 0.2 + idx * 0.1,
                   }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0 }}
                   className="flex items-center space-x-3 ml-0 sm:ml-8"
                 >
                   <img
@@ -94,10 +94,10 @@ const Academy: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 16 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
           >
             <h2 className="font-medium text-3xl md:text-5xl text-white leading-snug mb-0 md:mb-8">
               Free community
@@ -114,14 +114,14 @@ const Academy: React.FC = () => {
             {cards.map((card, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ y: 16 }}
+                whileInView={{ y: 0 }}
                 transition={{
                   duration: 0.8,
                   ease: "easeOut",
                   delay: idx * 0.2,
                 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0 }}
                 className="bg-white p-6 rounded-lg shadow-md flex flex-col gap-3"
               >
                 <img
@@ -175,14 +175,14 @@ const Academy: React.FC = () => {
             {benefits.map((text, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ y: 16 }}
+                whileInView={{ y: 0 }}
                 transition={{
                   duration: 0.4,
                   ease: "easeOut",
                   delay: idx * 0.1,
                 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0 }}
                 className="bg-[#7148E5] text-white xl:w-[75%] px-6 py-4 rounded-lg flex items-center space-x-3 shadow-md"
               >
                 <img
@@ -208,10 +208,10 @@ const Academy: React.FC = () => {
 
           {/* Text Content */}
           <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 16 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
             className="w-full md:w-1/2 flex flex-col items-center"
           >
             <h2 className="text-3xl md:text-5xl font-bold text-[#181A25] mb-4 text-center">

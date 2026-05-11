@@ -28,10 +28,10 @@ const Content: React.FC = () => {
 
       <section className="max-w-7xl mx-auto px-0 !mt-10 sm:px-6 lg:px-8 py-8 md:py-12">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 16 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0 }}
           className="text-center mb-8 md:mb-10 px-4"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-2">
@@ -43,10 +43,10 @@ const Content: React.FC = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 16 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0 }}
           className="sm:rounded-2xl mx-auto overflow-hidden max-w-[1200px] !mt-12 md:!mt-20 shadow-lg"
         >
           <div className="flex flex-col md:flex-row">
@@ -99,10 +99,10 @@ const Content: React.FC = () => {
         {/* Learn Anywhere Section */}
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-start">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 16 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0 }}
             className="w-full md:w-[60%]"
           >
             <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium !leading-[1.3] mb-6">
@@ -115,10 +115,10 @@ const Content: React.FC = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 16 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0 }}
             className="w-full md:w-[40%] md:order-last order-first"
           >
             <img
@@ -133,10 +133,10 @@ const Content: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-[50px]">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-[10px] sm:gap-4">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 16 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0 }}
             className="flex flex-col-reverse sm:flex-col justify-center items-center lg:items-start w-full max-w-[400px] lg:max-w-[600px]"
           >
             <h3 className="text-3xl md:text-4xl lg:text-5xl text-start font-medium mb-6 max-w-[400px] m-auto !leading-[1.3]">
@@ -150,20 +150,20 @@ const Content: React.FC = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 16 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0 }}
             className="mx-auto"
           >
             <ul className="space-y-3 md:space-y-4">
               {benefits.map((item, idx) => (
                 <motion.li
                   key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ y: 16 }}
+                  whileInView={{ y: 0 }}
                   transition={{ duration: 0.6, delay: idx * 0.06 }}
-                  viewport={{ once: true, amount: 0.2 }}
+                  viewport={{ once: true, amount: 0 }}
                   className="flex items-center justify-between bg-[#7148E5] text-white rounded-md px-4 sm:px-6 py-3 shadow-md min-h-[56px] md:min-h-[64px]"
                 >
                   <div className="flex items-center gap-3 md:gap-4">
@@ -194,8 +194,8 @@ const Content: React.FC = () => {
 
       {/* <section className="max-w-full bg-[#7DE5F2] my-0 md:my-[50px]">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 50 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.2 }}
           className="py-16 md:py-24 text-center mx-auto w-full px-4 md:w-[80%] lg:w-[60%]"
@@ -214,10 +214,10 @@ const Content: React.FC = () => {
 
       <section className="max-w-7xl m-0 sm:mx-auto px-0 md:px-8 py-0 md:py-10 lg:py-14">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 16 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0 }}
           className="bg-[#7148E5] rounded-none md:rounded-3xl px-4 sm:px-6 py-8 flex flex-col-reverse md:flex-row md:items-center gap-6"
         >
           <div className="flex justify-center md:justify-start items-end w-full md:w-1/3">
@@ -241,10 +241,10 @@ const Content: React.FC = () => {
 
       <section className="py-12 md:py-20 relative mb-7 md:mb-20 px-4">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 16 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0 }}
           className="text-center relative z-10"
         >
           <h1 className="text-lg min-[400px]:text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-light leading">

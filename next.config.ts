@@ -19,6 +19,9 @@ const nextConfig = {
     ],
   },
   
+  // Transpile framer-motion so SWC downgrades class-field syntax for iOS < 14
+  transpilePackages: ["framer-motion"],
+
   // ✅ Next.js 16: Empty turbopack config to acknowledge Turbopack usage
   turbopack: {},
   

@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { useSearchParams } from "next/navigation"
 import { Check, ChevronDown } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useFetchCourses, Course } from "@/hooks/queries/useFetchCourses";
 import { BundledCourseSkeleton, SingleLevelCourseSkeleton } from "./CourseCardSkeleton";
@@ -47,17 +46,29 @@ const getCourseTitle = (course: Course) => {
     return course.name
 }
 
-export const CourseDetails = () => {
-    const searchParams = useSearchParams()
-    const courseType = searchParams.get("course_type")
+interface CourseDetailsProps {
+    courseType: string | null;
+}
+
+export const CourseDetails = ({ courseType }: CourseDetailsProps) => {
     const [openDropdown, setOpenDropdown] = useState<string | null>(null)
     const [modalOpen, setModalOpen] = useState(false)
     const [activeCourse, setActiveCourse] = useState<Course | null>(null)
     const [activeCurrency, setActiveCurrency] = useState<"NGN" | "USD">("NGN")
+    const containerRef = useRef<HTMLDivElement>(null)
 
-    // Close dropdown when switching course type tabs
     useEffect(() => {
         setOpenDropdown(null)
+        if (!courseType) return
+        const timer = setTimeout(() => {
+            if (!containerRef.current) return
+            const top = containerRef.current.getBoundingClientRect().top + window.scrollY - 110
+            // scrollTop assignment bypasses html{scroll-behavior:smooth} CSS which causes
+            // window.scrollTo to silently fail on iOS Safari < 15.4
+            const scroller = document.scrollingElement || document.documentElement
+            scroller.scrollTop = Math.max(0, top)
+        }, 100)
+        return () => clearTimeout(timer)
     }, [courseType])
 
     const openRegistrationModal = (course: Course, currency: "NGN" | "USD") => {
@@ -368,22 +379,22 @@ export const CourseDetails = () => {
         : ""
 
     return (
-        <div className="px-4 sm:px-6 lg:px-8 max-w-[1250px] mx-auto pb-[76px]">
+        <div ref={containerRef} className="px-4 sm:px-6 lg:px-8 max-w-[1250px] mx-auto pb-[76px]">
             {renderCourseDetails()}
 
             {courseType && (
                 <motion.div
                     className="text-center py-12 md:py-16 px-4"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
+                    initial={{ y: 16 }}
+                    whileInView={{ y: 0 }}
+                    viewport={{ once: true, amount: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
                 >
                     <motion.h3
                         className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-medium !leading-[1.3] text-[#181A25] mb-2"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true, amount: 0.2 }}
+                        initial={{ scale: 0.9 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true, amount: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
                     >
                         Want a learning plan tailored {courseType !== "kids" && <br />} to  {courseType === "kids" && <br />} {courseType === "kids" ? "your child's" : "your"} goals{courseType === "kids" && ','} and pace?

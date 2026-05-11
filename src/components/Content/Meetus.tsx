@@ -8,8 +8,8 @@ const MeetUs: React.FC = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-start px-4 sm:px-6 lg:px-8 pt-32 pb-28 h-full">
         <motion.div
           className="w-full md:w-3/5 text-[#181A25] text-left flex flex-col justify-center max-w-2xl space-y-4"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 16 }}
+          animate={{ y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
         >
@@ -43,8 +43,8 @@ const MeetUs: React.FC = () => {
 
         <motion.div
           className="w-full md:w-2/5 flex justify-end items-center p-2 md:p-8"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 16 }}
+          animate={{ y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           viewport={{ once: true }}
         >

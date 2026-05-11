@@ -26,9 +26,8 @@ const Hero: React.FC = () => {
       <section className="relative pb-20">
         <div className="relative z-20 max-w-4xl mx-auto px-4 text-center mt-24 sm:mt-36">
           <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-3xl sm:text-5xl lg:text-7xl mb-6"
           >
@@ -38,24 +37,25 @@ const Hero: React.FC = () => {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 50 }}
+            animate={{ y: 0 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             className="text-base md:text-lg font-normal mb-6 md:mb-8 max-w-xl mx-auto leading-relaxed"
           >
             We make French learning fun, impactful, and accessible.
           </motion.p>
 
-          <Link href="/academy">
-            <motion.button
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-              className="bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base sm:text-[20px] text-white px-6 py-[10px] sm:py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-normal hover:opacity-95 transition"
-            >
-              Start learning now
-            </motion.button>
-          </Link>
+          <motion.div
+            initial={{ y: 50 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+          >
+            <Link href="/academy">
+              <button className="bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base sm:text-[20px] text-white px-6 py-[10px] sm:py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-normal hover:opacity-95 transition">
+                Start learning now
+              </button>
+            </Link>
+          </motion.div>
         </div>
       </section>
 
@@ -66,14 +66,9 @@ const Hero: React.FC = () => {
             {illustrations.map((src, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.8,
-                  ease: "easeOut",
-                  delay: idx * 0.2,
-                }}
-                viewport={{ once: true }}
+                initial={{ y: 50 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.2 }}
                 className={
                   idx === 0 ? "flex-[1.1]" : idx === 1 ? "flex-[1.5]" : "flex-1"
                 }
@@ -94,26 +89,21 @@ const Hero: React.FC = () => {
         <div className="max-w-[1250px] mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 50 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
             <h2 className="font-medium text-3xl md:text-4xl lg:text-5xl mb-0 md:mb-8 !leading-[1.3]">
               Meet learners like
-              <br className="hidden md:block" /> you in our growing learners’
+              <br className="hidden md:block" /> you in our growing learners&apos;
               club
             </h2>
 
             <Link href="/#cohort" className="hidden md:block">
-              <motion.button
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-                className="bg-[#7148E5] hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg  text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-medium hover:opacity-95 transition"
-              >
+              <button className="bg-[#7148E5] hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-medium hover:opacity-95 transition">
                 Join now for free
-              </motion.button>
+              </button>
             </Link>
           </motion.div>
 
@@ -122,18 +112,14 @@ const Hero: React.FC = () => {
             {cards.map((card, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.8,
-                  ease: "easeOut",
-                  delay: idx * 0.2,
-                }}
+                initial={{ y: 50 }}
+                whileInView={{ y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.2 }}
                 viewport={{ once: true }}
                 className="bg-white p-6 rounded-lg shadow-md flex flex-col gap-3"
               >
                 <img
-                  src={card.icon} // Make sure card.icon points to /images/...
+                  src={card.icon}
                   alt={`Icon ${idx + 1}`}
                   className="w-10 h-10 object-contain"
                 />
@@ -144,16 +130,18 @@ const Hero: React.FC = () => {
             ))}
           </div>
 
-          <Link href="/#cohort">
-            <motion.button
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-              className="bg-[#7148E5] block md:hidden hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg  text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-medium hover:opacity-95 transition"
-            >
-              Join now for free
-            </motion.button>
-          </Link>
+          <motion.div
+            initial={{ y: 50 }}
+            whileInView={{ y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <Link href="/#cohort">
+              <button className="bg-[#7148E5] block md:hidden hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-medium hover:opacity-95 transition">
+                Join now for free
+              </button>
+            </Link>
+          </motion.div>
         </div>
       </section>
     </>
