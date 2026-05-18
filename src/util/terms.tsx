@@ -4,9 +4,11 @@ export const terms = [
     label: "Introduction",
     content: [
       {
-        description: `Welcome to fluensyfrench, an online platform designed to help you learn French through our courses, Telegram community and mobile application. <br /><br />
- These Terms of Service (“Terms”) form a legal agreement between you and fluensyfrench. They explain how our services work, what you can expect from us, and what we expect from you when you use our learning tools and resources. <br /><br />
- By accessing or using fluensyfrench, you agree to comply with these Terms and any other policies or guidelines we make available. If you do not agree, you should not use our services.`,
+        description: `Welcome to fluensyfrench, an online platform designed to help you learn French through our courses, Telegram community, 
+        and mobile application. These services are owned and operated by fluensyfrench Global LTD. <br /><br />
+         These Terms of Service (“Terms”) form a legal agreement between you and fluensyfrench. They explain how our services work,
+        what you can expect from us, and what we expect from you when you use our learning tools and resources. <br /><br />
+         By accessing or using fluensyfrench, you agree to comply with these Terms and any other policies or guidelines we make available. If you do not agree, you should not use our services.  `,
       },
     ],
   },
@@ -85,7 +87,7 @@ export const terms = [
     content: [
       {
         description: `Except as required by law, payments are non-refundable.<br />
-        If you encounter a billing issue, please contact <a href="mailto:fluensyfrench@gmail.com" target="_blank" rel="noopener noreferrer" class="text-[#7148E5] underline hover:text-[#7DE5F2] transition-colors duration-200">fluensyfrench@gmail.com</a> within 14 days.<br />
+        If you encounter a billing issue, please contact <a href="mailto:bonjour@fluensyfrench.com" target="_blank" rel="noopener noreferrer" class="text-[#7148E5] underline hover:text-[#7DE5F2] transition-colors duration-200">bonjour@fluensyfrench.com</a> within 14 days.<br />
         Refunds, if approved, will be processed to your original payment method.`,
       },
     ],
@@ -175,7 +177,7 @@ export const terms = [
     label: "Contact Us",
     content: [
       {
-        description: `If you have questions, concerns, or need help, contact us at: <a href="mailto:fluensyfrench@gmail.com" target="_blank" rel="noopener noreferrer" class="text-[#7148E5] underline hover:text-[#7DE5F2] transition-colors duration-200">fluensyfrench@gmail.com</a>`,
+        description: `If you have questions, concerns, or need help, contact us at: <a href="mailto:bonjour@fluensyfrench.com" target="_blank" rel="noopener noreferrer" class="text-[#7148E5] underline hover:text-[#7DE5F2] transition-colors duration-200">bonjour@fluensyfrench.com</a>`,
       },
     ],
   },

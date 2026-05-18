@@ -4,9 +4,11 @@ export const privacy = [
     label: "Introduction",
     content: [
       {
-        description: `At fluensyfrench, your privacy matters. We are committed to protecting your personal information and ensuring that it is collected, used, and stored responsibly.<br />
-        This Privacy Policy explains the information we collect, how we use it, when we share it, and the choices available to you across our services—including our website, and mobile app waitlist.<br /><br />
-        By using our services, you agree to the practices described in this Privacy Policy. If you do not agree, you should discontinue using fluensyfrench services.`,
+        description: `At fluensyfrench, owned and operated by fluensyfrench Global LTD, your privacy matters. We are 
+        committed to protecting your personal information and ensuring that it is collected, used, and stored responsibly. 
+        This Privacy Policy explains the information we collect, how we use it, when we share it, and the choices available
+         to you across our services including our website, and mobile app . <br /><br />
+                       By using our services, you agree to the practices described in this Privacy Policy. If you do not agree, you should discontinue using fluensyfrench services.`,
       },
     ],
   },
@@ -16,7 +18,7 @@ export const privacy = [
     content: [
       {
         description: `We collect information in different ways depending on how you interact with us:<br /><br />
-        <strong>Academy Students (Website Registration):</strong><br />
+        <strong>Course Registration:</strong><br />
         <ul class="list-disc list-inside">
           <li>Full name</li>
           <li>Email address</li>
@@ -24,8 +26,9 @@ export const privacy = [
           <li>Child’s name and age (for kids’ courses, provided by a parent or guardian for class placement)</li>
           <li>Payment information (processed securely via third-party providers; we do not store your full payment details)</li>
         </ul><br />
-        <strong>Mobile App Waitlist:</strong><br />
+        <strong>Mobile App:</strong><br />
         <ul class="list-disc list-inside">
+          <li>Full name</li>
           <li>Email address</li>
         </ul><br />
         We do not intentionally collect sensitive categories of data such as financial account numbers, medical records, or government-issued identification unless required for compliance with applicable law.`,
@@ -44,7 +47,7 @@ export const privacy = [
           <li>Personalize your learning experience and communication</li>
           <li>Communicate with you about courses, applications, updates, and policy changes</li>
           <li>Maintain platform security, prevent fraud, and monitor misuse</li>
-          <li>Manage the mobile app waitlist and onboarding</li>
+          <li>Manage the mobile app and onboarding</li>
         </ul>`,
       },
     ],
@@ -117,13 +120,13 @@ By using fluensyfrench, you consent to the use of cookies as described in this p
         <ul class="list-disc list-inside">
           <li>Access the data we hold about you</li>
           <li>Request corrections to inaccurate information</li>
-          <li>Request deletion of your data</li>
+          <li>Request deletion of your personal data or your account</li>
           <li>Restrict or object to certain processing activities</li>
           <li>Request a portable copy of your data</li>
         </ul><br />
-        <strong>How to Exercise Your Rights:</strong><br />
-        To exercise these rights, contact us at <a href="mailto:fluensyfrench@gmail.com" target="_blank" rel="noopener noreferrer" class="text-[#7148E5] underline hover:text-[#7DE5F2] transition-colors duration-200">fluensyfrench@gmail.com</a>.<br />
-        Verification of identity may be required.`,
+        To exercise these rights, contact us at <a href="mailto:bonjour@fluensyfrench.com" target="_blank" rel="noopener noreferrer" class="text-[#7148E5] underline hover:text-[#7DE5F2] transition-colors duration-200">bonjour@fluensyfrench.com</a>.<br />
+        Verification of identity may be required.<br /><br />
+        You can also delete your account at any time through the app. When you delete your account, your personal data will be deleted, except where we are required to retain certain information for legal, security, or legitimate business purposes.`,
       },
     ],
   },
@@ -133,8 +136,8 @@ By using fluensyfrench, you consent to the use of cookies as described in this p
     label: "International Data Transfers",
     content: [
       {
-        description: `If you use fluensyfrench from outside the country where our servers are hosted, your data may be transferred internationally.<br />
-        We ensure such transfers comply with applicable laws and include appropriate safeguards.`,
+        description: `If you use fluensyfrench from outside the country where our servers are hosted, your data may be transferred internationally.
+         We ensure such transfers comply with applicable laws and include appropriate safeguards`,
       },
     ],
   },
@@ -164,7 +167,7 @@ By using fluensyfrench, you consent to the use of cookies as described in this p
     label: "Contact Us",
     content: [
       {
-        description: `If you have questions or concerns about this Privacy Policy, please contact us at: <a href="mailto:fluensyfrench@gmail.com" target="_blank" rel="noopener noreferrer" class="text-[#7148E5] underline hover:text-[#7DE5F2] transition-colors duration-200">fluensyfrench@gmail.com</a>`,
+        description: `If you have questions or concerns about this Privacy Policy, please contact us at: <a href="mailto:bonjour@fluensyfrench.com" target="_blank" rel="noopener noreferrer" class="text-[#7148E5] underline hover:text-[#7DE5F2] transition-colors duration-200">bonjour@fluensyfrench.com</a>`,
       },
     ],
   },

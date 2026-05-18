@@ -400,7 +400,7 @@ export const CourseDetails = ({ courseType }: CourseDetailsProps) => {
                         Want a learning plan tailored {courseType !== "kids" && <br />} to  {courseType === "kids" && <br />} {courseType === "kids" ? "your child's" : "your"} goals{courseType === "kids" && ','} and pace?
                     </motion.h3>
                     <div>
-                        <a href="mailto:Fluensyfrench@gmail.com">
+                        <a href="mailto:bonjour@fluensyfrench.com">
                             <motion.button
                                 className="mt-4 mx-auto px-6 py-3 bg-secondary-1 text-white rounded-lg hover:bg-secondary-2 hover:text-primary transition-colors w-full md:w-[378px] h-[66px] text-[20px] flex items-center justify-center"
                                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
