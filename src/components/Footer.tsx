@@ -20,7 +20,7 @@ const socialLinks = [
   // { label: "Telegram", href: "https://t.me/+c5zFTQKZjGFmNGRk" },
 ];
 
-const contactLinks = [{ label: "Contact us", href: "fluensyfrench@gmail.com" }];
+const contactLinks = [{ label: "Contact us", href: "bonjour@fluensyfrench.com" }];
 
 const Footer = () => {
   return (
