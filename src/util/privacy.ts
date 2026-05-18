@@ -167,7 +167,7 @@ By using fluensyfrench, you consent to the use of cookies as described in this p
     label: "Contact Us",
     content: [
       {
-        description: `If you have questions or concerns about this Privacy Policy, please contact us at: <a href="mailto:fluensyfrench@gmail.com" target="_blank" rel="noopener noreferrer" class="text-[#7148E5] underline hover:text-[#7DE5F2] transition-colors duration-200">bonjour@fluensyfrench.com</a>`,
+        description: `If you have questions or concerns about this Privacy Policy, please contact us at: <a href="mailto:bonjour@fluensyfrench.com" target="_blank" rel="noopener noreferrer" class="text-[#7148E5] underline hover:text-[#7DE5F2] transition-colors duration-200">bonjour@fluensyfrench.com</a>`,
       },
     ],
   },
