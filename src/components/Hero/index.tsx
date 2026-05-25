@@ -36,7 +36,7 @@ const Hero: React.FC = () => {
             className="text-4xl sm:text-5xl lg:text-6xl mb-0 max-w-3xl mx-auto"
           >
             <p className="font-bold leading-[1.3]">
-              Your journey <br className="md:hidden" /> to <span className="text-secondary-1">fluensy french </span> starts <span className="hidden md:inline">now</span> <span className="md:hidden">here</span>
+              Your journey <br className="md:hidden" /> to <span className="text-secondary-1">fluensyfrench </span> starts <span className="hidden md:inline">now</span> <span className="md:hidden">here</span>
             </p>
           </motion.h1>
 
