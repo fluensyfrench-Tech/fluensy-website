@@ -65,7 +65,7 @@ const Hero: React.FC = () => {
             </div>
           </motion.div>
 
-          <div className="hidden md:block mt-4">
+          <div className="hidden md:block mt-8">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}

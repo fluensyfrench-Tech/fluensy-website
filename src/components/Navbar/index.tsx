@@ -152,6 +152,7 @@ const Navbar: React.FC = () => {
               About us
             </Link>
             <a
+              target="_blank"
               href="https://play.google.com/store/apps/details?id=com.fluensyfrench.app"
               rel="noopener noreferrer"
               className="bg-[#643BD8] flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-white"
