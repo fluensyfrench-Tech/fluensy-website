@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import PlayStoreIcon from "../icons/PlayStoreIcon";
 import AppStoreIcon from "../icons/AppStoreIcon";
+import { PiGooglePlayLogoLight } from "react-icons/pi";
+import AppleFooterIcon from "../icons/AppleFooterIcon";
 
 const NavLink: React.FC<{
   href: string;
@@ -149,30 +151,22 @@ const Navbar: React.FC = () => {
             >
               About us
             </Link>
-            <button
-              onClick={() => {
-                setOpen(false);
-                const footer = document.querySelector('footer');
-                footer?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="bg-[#7148E5] text-white px-6 py-3.5 rounded-md text-base font-medium w-full"
+            <a
+              target="_blank"
+              href="https://play.google.com/store/apps/details?id=com.fluensyfrench.app"
+              rel="noopener noreferrer"
+              className="bg-[#643BD8] flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-white"
             >
-              Download app
-            </button>
-            <div className="flex items-center space-x-5">
-              <a
-                href="https://play.google.com/store/apps/details?id=com.fluensyfrench.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-opacity"
-                onClick={() => setOpen(false)}
-              >
-                <PlayStoreIcon />
-              </a>
-              <button className="transition-opacity">
-                <AppStoreIcon disabled />
-              </button>
+              <PiGooglePlayLogoLight size={32} fill="white" />
+              Download on Google Play
+            </a>
+            <div
+              className="bg-grey-300 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-primary cursor-not-allowed"
+            >
+              <AppleFooterIcon isHovered={false}/>
+              Download on App Store
             </div>
+           
           </div>
         </div>
       )}

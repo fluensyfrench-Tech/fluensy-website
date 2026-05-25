@@ -87,7 +87,7 @@ const Footer = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
           >
-            Stay consistent and make <br className="hidden md:block" />  faster progress. Get the app
+            Stay consistent and make <br className="hidden md:block" />  faster progress.<br className="md:hidden" /> Get the app
           </motion.h2>
 
           {/* Animated buttons container */}
