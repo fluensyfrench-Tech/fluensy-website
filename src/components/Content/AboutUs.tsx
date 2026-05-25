@@ -7,7 +7,7 @@ const AboutUs: React.FC = () => {
     <section className="h-full">
       <div className="max-w-[1250px] mx-auto flex flex-col md:flex-row items-center justify-start md:justify-between px-4 sm:px-6 lg:px-8 pt-32 pb-28 h-full">
         <motion.div
-          className="w-full md:w-3/5 text-[#181A25] text-left flex flex-col justify-center max-w-2xl space-y-4"
+          className="w-full md:w-3/5 text-[#181A25] text-left flex flex-col justify-center max-w-2xl space-y-6"
           initial={{ y: 16 }}
           animate={{ y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -17,21 +17,13 @@ const AboutUs: React.FC = () => {
             About fluensyfrench
           </h2>
           <p className="text-lg md:text-xl">
-            We help French learners <strong>gain fluency</strong> through proven,
-            science-backed learning methods. 
-            Our goal is to guide them at every step, 
-            all the way to fluency, with lessons designed to be engaging, 
-            practical, and easy to follow.
+            We help kids and adults gain fluency in French by learning smarter, not harder through science-backed methods. Our goal is to guide them at every step all the way to fluency, with lessons designed to be engaging, practical, and easy to follow.
           </p>
           <p className="text-lg md:text-xl">
-           Our lessons are designed with how people naturally learn, 
-           <strong>using proven, science-backed methods</strong> to make learning 
-           effective and enjoyable.
+           Our approach is built around how people naturally learn languages, making the process both effective and enjoyable.
           </p>
           <p className="text-lg md:text-xl">
-            We believe learning is more fun and effective when people
-            are supported, so our <strong>community</strong> is here to motivate, encourage, 
-            and celebrate every step of their journey.
+           We believe learning is more fun and effective when people are supported, so our community is here to motivate, encourage, and celebrate every step of their journey.
           </p>
           <p className="text-lg md:text-xl">
             Remember, with fluensyfrench,{" "}

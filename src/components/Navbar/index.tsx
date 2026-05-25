@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import PlayStoreIcon from "../icons/PlayStoreIcon";
+import AppStoreIcon from "../icons/AppStoreIcon";
 
 const NavLink: React.FC<{
   href: string;
@@ -13,9 +16,30 @@ const NavLink: React.FC<{
   <Link
     href={href}
     onClick={onClick}
-    className={`transition-colors px-2 py-1 ${href === pathname ? "text-[#7148e5]" : "text-gray-700 hover:text-gray-900 "}`}
+    className={`relative transition-colors px-2 py-1 group ${href === pathname
+        ? "text-secondary-1 font-bold"
+        : "text-primary hover:text-gray-900"
+      }`}
   >
     {children}
+    {href !== pathname && (
+      <span className="absolute left-0 -bottom-2 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-[10px]">
+        <svg
+          width="100%"
+          height="6"
+          viewBox="0 0 67 6"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0.485596 4.35548C13.1523 0.0221491 43.4856 1.1131 66.4856 4.35548"
+            stroke="#643BD8"
+            strokeWidth="3"
+          />
+        </svg>
+      </span>
+    )}
   </Link>
 );
 
@@ -23,102 +47,136 @@ const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const isActive = mounted && pathname === "/meet-us";
-  const closeMenu = () => setOpen(false);
 
   return (
-    <>
-      <nav className="fixed z-50 top-0 left-0 w-full bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-24">
-            <Link
-              href="/"
-              className="flex-shrink-0 text-xl leading-[100%] tracking-[0]"
+    <nav className="fixed z-50 top-0 left-0 w-full bg-white">
+      <div className="max-w-[1250px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-[72px]">
+          {/* Logo */}
+          <Link
+            href="/"
+            className="flex-shrink-0 text-xl leading-[100%] tracking-[0]"
+          >
+            <span className="font-bold">fluensy</span>
+            <span className="font-normal">french</span>
+          </Link>
+
+          {/* Desktop Center Links */}
+          <div className="hidden md:flex items-center space-x-7">
+            <NavLink href="/academy" pathname={pathname}>
+              Academy
+            </NavLink>
+            <NavLink href="/about-us" pathname={pathname}>
+              About us
+            </NavLink>
+          </div>
+
+          {/* Desktop Right Actions */}
+          <div className="hidden md:flex items-center space-x-7">
+            <div className="flex items-center space-x-5">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.fluensyfrench.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-opacity"
+              >
+                <PlayStoreIcon />
+              </a>
+              <button className="transition-opacity">
+                <AppStoreIcon disabled />
+              </button>
+            </div>
+            <button
+              onClick={() => {
+                const footer = document.querySelector('footer');
+                footer?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="bg-secondary-1 text-white px-5 h-[45px] rounded-[12px] text-base text-center font-normal hover:opacity-95 transition hover:bg-[#7DE5F2] hover:text-[#181A25] grid place-items-center"
             >
-              <span className="font-bold">fluensy</span>
-              <span className="font-normal">french</span>
-            </Link>
+              Download app
+            </button>
+          </div>
 
-            <div className="hidden md:flex items-center space-x-6">
-              <NavLink href="/about-us" pathname={pathname}>
-                About us
-              </NavLink>
-              <Link
-                href="/academy"
-                className="bg-[#7148E5] text-white px-6 py-3.5 h-[52px] w-[221px] rounded-[12px] text-base text-center font-medium hover:opacity-95 transition hover:bg-[#7DE5F2] hover:text-[#181A25]"
-              >
-                Browse courses
-              </Link>
-            </div>
-
-            {/* label+input trick: native form elements ALWAYS fire on iOS Safari,
-                unlike buttons/divs which can have click event synthesis issues */}
-            <div className="md:hidden">
-              <input
-                type="checkbox"
-                id="mobile-nav-toggle"
-                className="sr-only"
-                checked={open}
-                onChange={() => setOpen((o) => !o)}
-                aria-hidden="true"
-              />
-              <label
-                htmlFor="mobile-nav-toggle"
-                className="text-[#7148E5] p-3 -mr-3 inline-flex items-center justify-center cursor-pointer"
-                aria-label="Toggle menu"
-              >
-                {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </label>
-            </div>
+          {/* Mobile Hamburger */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setOpen(!open)}
+              className="text-[#7148E5] focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
         </div>
-      </nav>
+      </div>
 
+      {/* Mobile Menu */}
       {open && (
-        <div className="fixed inset-0 bg-[#7DE5F2] z-[9999] flex flex-col text-lg px-4">
-          <div className="flex items-center justify-between h-24">
-            <Link
-              href="/"
-              onClick={closeMenu}
-              className="flex-shrink-0 text-xl leading-[100%] tracking-[0]"
-            >
-              <span className="font-bold">fluensy</span>
-              <span className="font-normal text-gray-700">french</span>
-            </Link>
-            {/* Same label trick for the close button */}
-            <label
-              htmlFor="mobile-nav-toggle"
-              className="text-[#7148E5] p-3 -mr-3 inline-flex items-center justify-center cursor-pointer"
-              aria-label="Close menu"
-            >
-              <X className="h-6 w-6" />
-            </label>
-          </div>
-          <div className="flex flex-col items-center gap-[20px] mt-8">
-            <Link
-              href="/about-us"
-              onClick={closeMenu}
-              className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${
-                isActive ? "text-[#8f66ff] font-semibold" : ""
-              }`}
-            >
-              About Us
-            </Link>
+        <div className="fixed inset-0 border bg-[#7DE5F2] z-40 flex flex-col justify-start space-y-6 text-lg px-6">
+          <button
+            onClick={() => setOpen(false)}
+            className="absolute top-6 right-6 text-[#7148E5] focus:outline-none"
+            aria-label="Close menu"
+          >
+            <X className="h-6 w-6" />
+          </button>
+
+          <Link href="/">
+            <span className="font-bold">fluensy</span>
+            <span className="font-normal text-gray-700">french</span>
+          </Link>
+
+          <div className="pt-20 flex flex-col items-center gap-[20px]">
             <Link
               href="/academy"
-              onClick={closeMenu}
-              className="bg-[#7148E5] text-white px-6 py-3.5 rounded-md text-base font-medium"
+              onClick={() => setOpen(false)}
+              className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${isActive ? "text-[#8f66ff] font-semibold" : ""
+                }`}
             >
-              Browse courses
+              Academy
             </Link>
+            <Link
+              href="/about-us"
+              onClick={() => setOpen(false)}
+              className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${isActive ? "text-[#8f66ff] font-semibold" : ""
+                }`}
+            >
+              About us
+            </Link>
+            <button
+              onClick={() => {
+                setOpen(false);
+                const footer = document.querySelector('footer');
+                footer?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="bg-[#7148E5] text-white px-6 py-3.5 rounded-md text-base font-medium w-full"
+            >
+              Download app
+            </button>
+            <div className="flex items-center space-x-5">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.fluensyfrench.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-opacity"
+                onClick={() => setOpen(false)}
+              >
+                <PlayStoreIcon />
+              </a>
+              <button className="transition-opacity">
+                <AppStoreIcon disabled />
+              </button>
+            </div>
           </div>
         </div>
       )}
-    </>
+    </nav>
   );
 };
 
