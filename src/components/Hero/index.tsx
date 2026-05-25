@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
@@ -7,13 +6,17 @@ import { cards } from "../../data/content";
 import { registerEmail } from "../../util/register";
 import Link from "next/link";
 import MotionButton from "../ui/MotionButton";
+import Image from "next/image";
+import { PiGooglePlayLogoLight } from "react-icons/pi";
+import { TbBrandApple } from "react-icons/tb";
+import AppleFooterIcon from "../icons/AppleFooterIcon";
 
 const Hero: React.FC = () => {
   const illustrations = [
-    "/images/hero-img1.svg",
-    "/images/hero-img2.svg",
-    "/images/hero-img3.svg",
-    "/images/hero-img4.svg",
+    { src: "/images/hero-img-1.svg", alt: "Student learning French on their phone" },
+    { src: "/images/hero-img-2.svg", alt: "Fluensy French interactive lesson screen" },
+    { src: "/images/hero-img-3.svg", alt: "French chat practice in the Fluensy app" },
+    { src: "/images/hero-img-4.svg", alt: "French vocabulary quiz in the Fluensy app" },
   ];
 
   const onRegisterClick = (email: string) => {
@@ -23,59 +26,101 @@ const Hero: React.FC = () => {
   return (
     <>
       {/* HERO CONTENT */}
-      <section className="relative pb-20">
-        <div className="relative z-20 max-w-4xl mx-auto px-4 text-center mt-24 sm:mt-36">
+      <section className="relative overflow-hidden pb-20">
+        <div className="relative z-20 max-w-4xl mx-auto px-4 text-center mt-24 sm:mt-36 lg:mt-28">
           <motion.h1
-            initial={{ y: 20 }}
-            animate={{ y: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-3xl sm:text-5xl lg:text-7xl mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl mb-0 max-w-3xl mx-auto"
           >
-            <span className="block mt-2 font-bold leading-[1.3]">
-              Your journey to fluent French starts here
-            </span>
+            <p className="font-bold leading-[1.3]">
+              Your journey <br className="md:hidden" /> to <span className="text-secondary-1">fluensy french </span> starts <span className="hidden md:inline">now</span> <span className="md:hidden">here</span>
+            </p>
           </motion.h1>
 
-          <motion.p
-            initial={{ y: 50 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-            className="text-base md:text-lg font-normal mb-6 md:mb-8 max-w-xl mx-auto leading-relaxed"
+          <motion.div 
+            className="mt-6 space-y-4 px-[20px] md:hidden"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
           >
-            We make French learning fun, impactful, and accessible.
-          </motion.p>
+            <motion.a
+              href="https://play.google.com/store/apps/details?id=com.fluensyfrench.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-secondary-1 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-white"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              <PiGooglePlayLogoLight size={32} fill="white" />
+              Download on Google Play
+            </motion.a>
 
-          <motion.div
-            initial={{ y: 50 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-          >
-            <Link href="/academy">
-              <button className="bg-[#7148E5] hover:bg-[#7DE5F2] hover:text-[#181A25] text-base sm:text-[20px] text-white px-6 py-[10px] sm:py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-normal hover:opacity-95 transition">
-                Start learning now
-              </button>
-            </Link>
+            <motion.button
+              className="bg-grey-300 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-black"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              <AppleFooterIcon isHovered={false}/>
+              Download on App Store
+            </motion.button>
           </motion.div>
+
+          <div className="hidden md:block">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+              className="max-w-xl mx-auto w-fit"
+            >
+              <Image
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=211x211&data=${encodeURIComponent("https://fluensyfrench.com/download?ref=qr")}`}
+                alt="QR Code to download Fluensy French app"
+                width={211}
+                height={211}
+              />
+            </motion.div>
+
+            <motion.span
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+              className="text-primary text-sm"
+            >
+              Scan now to download app
+            </motion.span>
+          </div>
         </div>
       </section>
 
       {/* IMAGE ROW */}
       <section className="relative z-10 bg-white">
         <div className="max-w-[1600px] mx-auto">
-          <div className="flex flex-nowrap justify-center items-start gap-3 -mt-5 xl:mt-0 w-full px-4">
-            {illustrations.map((src, idx) => (
+          <div className="flex flex-nowrap justify-between items-start gap-3 -mt-5 xl:mt-0 w-full">
+            {illustrations.map(({ src, alt }, idx) => (
               <motion.div
                 key={idx}
-                initial={{ y: 50 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.2 }}
-                className={
-                  idx === 0 ? "flex-[1.1]" : idx === 1 ? "flex-[1.5]" : "flex-1"
-                }
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeOut",
+                  delay: idx * 0.2,
+                }}
+                viewport={{ once: true }}
+
               >
-                <img
+                <Image
                   src={src}
-                  alt={`Illustration ${idx + 1}`}
+                  alt={alt}
+                  width={0}
+                  height={0}
+                  sizes="25vw"
                   className="w-full max-h-[320px] md:max-h-[340px] 2xl:max-h-[450px] object-contain transition-transform duration-300"
                 />
               </motion.div>
@@ -86,24 +131,29 @@ const Hero: React.FC = () => {
 
       {/* BLUE SECTION FULL WIDTH */}
       <section className="bg-[#7DE5F2] relative z-30 -mt-5 md:-mt-10 xl:-mt-16 w-full">
-        <div className="max-w-[1250px] mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-[1250px] mx-auto px-7 py-10 md:py-[98px] flex flex-col md:flex-row gap-12 items-center">
           {/* Left Content */}
           <motion.div
-            initial={{ y: 50 }}
-            whileInView={{ y: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
             <h2 className="font-medium text-3xl md:text-4xl lg:text-5xl mb-0 md:mb-8 !leading-[1.3]">
               Meet learners like
-              <br className="hidden md:block" /> you in our growing learners&apos;
+              <br className="hidden md:block" /> you in our growing learners’
               club
             </h2>
 
             <Link href="/#cohort" className="hidden md:block">
-              <button className="bg-[#7148E5] hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-medium hover:opacity-95 transition">
-                Join now for free
-              </button>
+              <motion.button
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+                className="bg-[#7148E5] hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg  text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-regular hover:opacity-95 transition"
+              >
+                Download app
+              </motion.button>
             </Link>
           </motion.div>
 
@@ -112,36 +162,40 @@ const Hero: React.FC = () => {
             {cards.map((card, idx) => (
               <motion.div
                 key={idx}
-                initial={{ y: 50 }}
-                whileInView={{ y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.2 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeOut",
+                  delay: idx * 0.2,
+                }}
                 viewport={{ once: true }}
-                className="bg-white p-6 rounded-lg shadow-md flex flex-col gap-3"
+                className="bg-white py-4 px-6 rounded-lg shadow-md flex flex-col gap-3"
               >
-                <img
+                <Image
                   src={card.icon}
-                  alt={`Icon ${idx + 1}`}
-                  className="w-10 h-10 object-contain"
+                  alt={card.text}
+                  className="w-[30px] h-[30px] md:w-[35px] md:h-[35px] object-contain"
+                  width={35}
+                  height={35}
                 />
-                <p className="text-gray-800 text-base md:text-xl font-normal">
+                <p className="text-primary text-base md:text-xl font-normal">
                   {card.text}
                 </p>
               </motion.div>
             ))}
           </div>
 
-          <motion.div
-            initial={{ y: 50 }}
-            whileInView={{ y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <Link href="/#cohort">
-              <button className="bg-[#7148E5] block md:hidden hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg text-white px-6 py-3.5 h-[66px] w-full max-w-[378px] rounded-[12px] text-center font-medium hover:opacity-95 transition">
-                Join now for free
-              </button>
-            </Link>
-          </motion.div>
+          <Link className="w-full block md:hidden" href="/#cohort">
+            <motion.button
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+              className="bg-[#7148E5]  hover:bg-[#ffffff] hover:text-[#181A25] text-base sm:text-lg  text-white px-6 h-[66px] w-full rounded-[12px] text-center font-regular hover:opacity-95 transition"
+            >
+              Download app
+            </motion.button>
+          </Link>
         </div>
       </section>
     </>

@@ -57,7 +57,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen w-screen overflow-x-hidden">
       <Toaster position="top-center" />
       <Navbar />
       <Hero />
