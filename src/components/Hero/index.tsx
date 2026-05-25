@@ -47,28 +47,22 @@ const Hero: React.FC = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
           >
-            <motion.a
+            <a
               href="https://play.google.com/store/apps/details?id=com.fluensyfrench.app"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-secondary-1 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-white"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <PiGooglePlayLogoLight size={32} fill="white" />
               Download on Google Play
-            </motion.a>
+            </a>
 
-            <motion.button
-              className="bg-grey-300 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-black"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            <div
+              className="bg-grey-300 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-primary cursor-not-allowed"
             >
               <AppleFooterIcon isHovered={false}/>
               Download on App Store
-            </motion.button>
+            </div>
           </motion.div>
 
           <div className="hidden md:block mt-4">
