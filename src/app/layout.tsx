@@ -17,7 +17,7 @@ const spaceGrotesk = Space_Grotesk({
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Fluensy French",
+  name: "Fluensyfrench",
   url: "https://fluensyfrench.com",
   logo: "https://fluensyfrench.com/favicon.jpg",
   sameAs: [
@@ -32,11 +32,11 @@ const organizationSchema = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://fluensyfrench.com"),
   title: {
-    default: "Fluensy French – Learn French Online the Fun Way",
-    template: "%s | Fluensy French",
+    default: "Fluensyfrench – Learn French Online the Fun Way",
+    template: "%s | Fluensyfrench",
   },
   description:
-    "AI-powered French courses for adults and kids. Science-backed methods, live classes, and a supportive community. Download the app and go from A1 to B2 at your own pace.",
+    "We help kids and adults gain fluency in French by learning smarter, not harder through science-backed methods.",
   keywords: [
     "learn French online",
     "online French course",
@@ -48,18 +48,18 @@ export const metadata: Metadata = {
     "French lessons",
     "speak French fluently",
     "AI French tutor",
-    "Fluensy French app",
+    "Fluensyfrench app",
   ],
-  authors: [{ name: "Fluensy French" }],
+  authors: [{ name: "Fluensyfrench" }],
   alternates: {
     canonical: "https://fluensyfrench.com",
   },
   openGraph: {
-    title: "Helping French learners gain fluency through science-backed learning methods",
+    title: "Fluensyfrench — Helping French learners gain fluency through science-backed learning methods",
     description:
-      "AI-powered French courses for adults and kids. Download the app and go from A1 to B2 at your own pace.",
+      "We help kids and adults gain fluency in French by learning smarter, not harder through science-backed methods.",
     url: "https://fluensyfrench.com",
-    siteName: "Fluensy French",
+    siteName: "Fluensyfrench",
     locale: "en_US",
     type: "website",
     images: [{ url: "/opengraph-image.jpg", width: 1200, height: 630 }],
@@ -67,9 +67,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@fluensyfrench",
-    title: "Fluensy French – Learn French Online the Fun Way",
+    title: "Fluensyfrench – Learn French Online the Fun Way",
     description:
-      "AI-powered French courses for adults and kids. Download the app and go from A1 to B2 at your own pace.",
+      "We help kids and adults gain fluency in French by learning smarter, not harder through science-backed methods.",
     images: ["/opengraph-image.jpg"],
   },
   icons: {
