@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   description:
     "Review the Fluensy French terms of service. Learn about your rights and responsibilities when using our French learning platform and app.",
   alternates: {
-    canonical: "https://fluensyfrench.com/terms",
+    canonical: "https://www.fluensyfrench.com/terms",
   },
   openGraph: {
     title: "Terms of Service | Fluensy French",
     description:
       "Review the Fluensy French terms of service. Learn about your rights and responsibilities when using our platform.",
-    url: "https://fluensyfrench.com/terms",
+    url: "https://www.fluensyfrench.com/terms",
   },
 };
 

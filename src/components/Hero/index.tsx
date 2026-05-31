@@ -73,7 +73,7 @@ const Hero: React.FC = () => {
               className="max-w-xl mx-auto w-fit"
             >
               <Image
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=211x211&data=${encodeURIComponent("https://fluensyfrench.com/download?ref=qr")}`}
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=211x211&data=${encodeURIComponent("https://www.fluensyfrench.com/download?ref=qr")}`}
                 alt="QR Code to download Fluensy French app"
                 width={211}
                 height={211}

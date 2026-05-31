@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   description:
     "Download the Fluensy French app on your Android or iOS device and start speaking French with confidence.",
   alternates: {
-    canonical: "https://fluensyfrench.com/download",
+    canonical: "https://www.fluensyfrench.com/download",
   },
   openGraph: {
     title: "Download | Fluensy French",
     description:
       "Download the Fluensy French app on your Android or iOS device and start speaking French with confidence.",
-    url: "https://fluensyfrench.com/download",
+    url: "https://www.fluensyfrench.com/download",
   },
   twitter: {
     title: "Download | Fluensy French",
