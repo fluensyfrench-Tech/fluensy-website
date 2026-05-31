@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/payment/", "/api/"],
       },
     ],
-    sitemap: "https://fluensyfrench.com/sitemap.xml",
+    sitemap: "https://www.fluensyfrench.com/sitemap.xml",
   };
 }

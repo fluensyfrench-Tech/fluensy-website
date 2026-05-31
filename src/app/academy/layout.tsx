@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     "CEFR French course",
   ],
   alternates: {
-    canonical: "https://fluensyfrench.com/academy",
+    canonical: "https://www.fluensyfrench.com/academy",
   },
   openGraph: {
     title: "French Courses for Adults & Kids | Fluensy Academy",
     description:
       "CEFR-aligned online French courses from beginner (A1) to advanced (B2). Adult classes and kids programmes ages 8–12. Download the app and start learning today.",
-    url: "https://fluensyfrench.com/academy",
+    url: "https://www.fluensyfrench.com/academy",
   },
   twitter: {
     title: "French Courses for Adults & Kids | Fluensy Academy",

@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   description:
     "Discover the story behind Fluensy French — our mission, methods, and the team helping thousands speak French with confidence.",
   alternates: {
-    canonical: "https://fluensyfrench.com/about-us",
+    canonical: "https://www.fluensyfrench.com/about-us",
   },
   openGraph: {
     title: "About Us | Fluensy French",
     description:
       "Discover the story behind Fluensy French — our mission, methods, and the team helping thousands speak French with confidence.",
-    url: "https://fluensyfrench.com/about-us",
+    url: "https://www.fluensyfrench.com/about-us",
   },
   twitter: {
     title: "About Us | Fluensy French",
