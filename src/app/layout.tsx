@@ -18,8 +18,8 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Fluensyfrench",
-  url: "https://fluensyfrench.com",
-  logo: "https://fluensyfrench.com/favicon.jpg",
+  url: "https://www.fluensyfrench.com",
+  logo: "https://www.fluensyfrench.com/favicon.jpg",
   sameAs: [
     "https://www.youtube.com/@fluensyfrench",
     "https://x.com/fluensyfrench",
@@ -30,7 +30,7 @@ const organizationSchema = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fluensyfrench.com"),
+  metadataBase: new URL("https://www.fluensyfrench.com"),
   title: {
     default: "Fluensyfrench – Learn French Online the Fun Way",
     template: "%s | Fluensyfrench",
@@ -52,13 +52,13 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Fluensyfrench" }],
   alternates: {
-    canonical: "https://fluensyfrench.com",
+    canonical: "https://www.fluensyfrench.com",
   },
   openGraph: {
     title: "Fluensyfrench — Helping French learners gain fluency through science-backed learning methods",
     description:
       "We help kids and adults gain fluency in French by learning smarter, not harder through science-backed methods.",
-    url: "https://fluensyfrench.com",
+    url: "https://www.fluensyfrench.com",
     siteName: "Fluensyfrench",
     locale: "en_US",
     type: "website",
