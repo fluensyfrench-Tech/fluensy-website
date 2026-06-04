@@ -115,16 +115,22 @@ const Footer = () => {
               Download on Google Play
             </motion.a>
 
-            <motion.button
-              className={`flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] md:min-w-[320px] transition bg-grey-300`}
-              disabled
+            <motion.a
+              href="https://apps.apple.com/app/fluensy/id6748966423"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] md:min-w-[320px] transition ${
+                isAppStoreHovered 
+                  ? "bg-[#7DE5F2] text-primary" 
+                  : "bg-white text-secondary-1"
+              }`}
               onMouseEnter={() => setIsAppStoreHovered(true)}
               onMouseLeave={() => setIsAppStoreHovered(false)}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <AppleFooterIcon isHovered={isAppStoreHovered} />
               Download on App Store
-            </motion.button>
+            </motion.a>
           </motion.div>
         </div>
       </section>
