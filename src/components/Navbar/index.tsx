@@ -91,7 +91,7 @@ const Navbar: React.FC = () => {
                 <PlayStoreIcon />
               </a>
               <a
-                href="https://apps.apple.com/app/id6770974375"
+                href="https://apps.apple.com/us/app/fluensyfrench/id6770974375"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-opacity cursor-pointer"
@@ -146,7 +146,7 @@ const Navbar: React.FC = () => {
               className={`text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 ${isActive ? "text-[#8f66ff] font-semibold" : ""
                 }`}
             >
-              Academyya
+              Academy
             </Link>
             <Link
               href="/about-us"
@@ -157,23 +157,18 @@ const Navbar: React.FC = () => {
               About us
             </Link>
             <a
+              onClick={() => {
+                setOpen(false)
+                window.scrollTo(0, 0)
+              }}
               target="_blank"
-              href="https://play.google.com/store/apps/details?id=com.fluensyfrench.app"
               rel="noopener noreferrer"
               className="bg-[#643BD8] flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-white"
             >
-              <PiGooglePlayLogoLight size={32} fill="white" />
-              Download on Google Play
+              
+              Download app
             </a>
-            <a
-              target="_blank"
-              href="https://apps.apple.com/app/id6770974375"
-              rel="noopener noreferrer"
-              className="bg-grey-300 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-primary cursor-pointer"
-            >
-              <AppleFooterIcon />
-              Download on App Store
-            </a>
+           
 
           </div>
         </div>

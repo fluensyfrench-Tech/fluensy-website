@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { PiAppStoreLogo, PiGooglePlayLogoLight } from "react-icons/pi";
 
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.fluensyfrench.app";
-const APP_STORE_URL = "https://apps.apple.com/app/fluensy-french/id6748888888";
+const APP_STORE_URL = "https://apps.apple.com/us/app/fluensyfrench/id6770974375";
 
 const DownloadPage = () => {
   const [device, setDevice] = useState<"android" | "ios" | null>(null);

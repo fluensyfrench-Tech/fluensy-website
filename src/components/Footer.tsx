@@ -116,19 +116,19 @@ const Footer = () => {
             </motion.a>
 
             <motion.a
-              href="https://apps.apple.com/app/fluensy/id6748966423"
+              href="https://apps.apple.com/us/app/fluensyfrench/id6770974375"
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] md:min-w-[320px] transition ${
+              className={`flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] md:min-w-[320px] transition text-primary ${
                 isAppStoreHovered 
-                  ? "bg-[#7DE5F2] text-primary" 
-                  : "bg-white text-secondary-1"
+                  ? "bg-[#7DE5F2]" 
+                  : "bg-secondary-2 md:bg-white"
               }`}
               onMouseEnter={() => setIsAppStoreHovered(true)}
               onMouseLeave={() => setIsAppStoreHovered(false)}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <AppleFooterIcon isHovered={isAppStoreHovered} />
+              <AppleFooterIcon  isHovered={isAppStoreHovered} />
               Download on App Store
             </motion.a>
           </motion.div>
