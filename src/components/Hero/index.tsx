@@ -63,7 +63,7 @@ const Hero: React.FC = () => {
               rel="noopener noreferrer"
               className="bg-secondary-2 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-primary"
             >
-              <AppleFooterIcon isHovered={false}/>
+              <AppleFooterIcon hoverColor="#643BD8" isHovered={false}/>
               Download on App Store
             </a>
           </motion.div>
