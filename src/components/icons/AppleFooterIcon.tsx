@@ -5,7 +5,6 @@ interface AppleFooterIconProps {
 }
 
 const AppleFooterIcon = ({ isHovered = false, color = "#181A25", hoverColor = "#181A25" }: AppleFooterIconProps) => {
-  console.log(hoverColor)
   const strokeColor = isHovered ? hoverColor : color;
   return (
     <svg 
