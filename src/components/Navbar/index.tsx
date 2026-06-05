@@ -19,8 +19,8 @@ const NavLink: React.FC<{
     href={href}
     onClick={onClick}
     className={`relative transition-colors px-2 py-1 group ${href === pathname
-        ? "text-secondary-1 font-bold"
-        : "text-primary hover:text-gray-900"
+      ? "text-secondary-1 font-bold"
+      : "text-primary hover:text-gray-900"
       }`}
   >
     {children}
@@ -90,9 +90,14 @@ const Navbar: React.FC = () => {
               >
                 <PlayStoreIcon />
               </a>
-              <button className="transition-opacity">
-                <AppStoreIcon disabled />
-              </button>
+              <a
+                href="https://apps.apple.com/us/app/fluensyfrench/id6770974375"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-opacity cursor-pointer"
+              >
+                <AppStoreIcon />
+              </a>
             </div>
             <button
               onClick={() => {
@@ -160,13 +165,17 @@ const Navbar: React.FC = () => {
               <PiGooglePlayLogoLight size={32} fill="white" />
               Download on Google Play
             </a>
-            <div
-              className="bg-grey-300 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-primary cursor-not-allowed"
+            <a
+              target="_blank"
+              href="https://apps.apple.com/app/id6770974375"
+              rel="noopener noreferrer"
+              className="bg-white flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-primary cursor-pointer"
             >
-              <AppleFooterIcon isHovered={false}/>
+              <AppleFooterIcon />
               Download on App Store
-            </div>
+            </a>
            
+
           </div>
         </div>
       )}

@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PiGooglePlayLogoLight } from "react-icons/pi";
+import { PiAppStoreLogo, PiGooglePlayLogoLight } from "react-icons/pi";
 
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.fluensyfrench.app";
+const APP_STORE_URL = "https://apps.apple.com/us/app/fluensyfrench/id6770974375";
 
 const DownloadPage = () => {
   const [device, setDevice] = useState<"android" | "ios" | null>(null);
@@ -29,6 +30,12 @@ const DownloadPage = () => {
     if (device === "android") {
       const timer = setTimeout(() => {
         window.location.href = PLAY_STORE_URL;
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+    if (device === "ios") {
+      const timer = setTimeout(() => {
+        window.location.href = APP_STORE_URL;
       }, 2000);
       return () => clearTimeout(timer);
     }
@@ -64,18 +71,21 @@ const DownloadPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-white px-6 text-center gap-5">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-white px-6 text-center gap-6">
       <div className="w-16 h-16 rounded-full bg-[#7DE5F2]/20 flex items-center justify-center">
-        <span className="text-2xl font-bold text-[#643BD8]">soon</span>
+        <PiAppStoreLogo size={36} fill="#643BD8" />
       </div>
-      <h1 className="text-2xl font-bold text-[#181A25]">Coming soon to iOS</h1>
+      <h1 className="text-2xl font-bold text-[#181A25]">Redirecting to App Store</h1>
       <p className="text-[#7A7D88] text-base max-w-xs">
-        The Fluensy French app is not yet available on the App Store. Check back soon!
+        Taking you to download the Fluensy French app...
       </p>
-      <div className="flex items-center justify-center gap-2 w-full max-w-[320px] h-[56px] rounded-[12px] bg-[#A1A4AD] text-[#7A7D88] cursor-not-allowed">
-        <PiGooglePlayLogoLight size={24} />
-        Download on App Store
-      </div>
+      <a
+        href={APP_STORE_URL}
+        className="bg-[#643BD8] text-white w-full max-w-[320px] h-[56px] rounded-[12px] flex items-center justify-center gap-2 text-base font-medium"
+      >
+        <PiAppStoreLogo size={24} fill="white" />
+        Open App Store
+      </a>
     </div>
   );
 };

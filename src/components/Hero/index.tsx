@@ -57,12 +57,15 @@ const Hero: React.FC = () => {
               Download on Google Play
             </a>
 
-            <div
-              className="bg-grey-300 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-primary cursor-not-allowed"
+            <a
+              href="https://apps.apple.com/us/app/fluensyfrench/id6770974375"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-secondary-2 flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-primary"
             >
-              <AppleFooterIcon isHovered={false}/>
+              <AppleFooterIcon hoverColor="#643BD8" isHovered={false}/>
               Download on App Store
-            </div>
+            </a>
           </motion.div>
 
           <div className="hidden md:block mt-8">
