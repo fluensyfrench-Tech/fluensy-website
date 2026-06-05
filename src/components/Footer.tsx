@@ -121,14 +121,14 @@ const Footer = () => {
               rel="noopener noreferrer"
               className={`flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] md:min-w-[320px] transition text-primary ${
                 isAppStoreHovered 
-                  ? "bg-[#7DE5F2]" 
-                  : "bg-secondary-2 md:bg-white"
+                  ? "bg-white text-secondary-1" 
+                  : "bg-secondary-2 "
               }`}
               onMouseEnter={() => setIsAppStoreHovered(true)}
               onMouseLeave={() => setIsAppStoreHovered(false)}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <AppleFooterIcon  isHovered={isAppStoreHovered} />
+              <AppleFooterIcon hoverColor="#643BD8" isHovered={isAppStoreHovered} />
               Download on App Store
             </motion.a>
           </motion.div>
