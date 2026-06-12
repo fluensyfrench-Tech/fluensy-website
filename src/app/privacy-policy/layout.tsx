@@ -4,6 +4,10 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "Read the Fluensy French privacy policy. Understand how we collect, use, and protect your personal data when you use our app and website.",
+  robots: {
+    index: false,
+    follow: true,
+  },
   alternates: {
     canonical: "https://www.fluensyfrench.com/privacy-policy",
   },

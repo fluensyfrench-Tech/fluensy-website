@@ -38,6 +38,17 @@ const nextConfig = {
     });
     return config;
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'fluensyfrench.com' }],
+        destination: 'https://www.fluensyfrench.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
