@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/payment/", "/api/"],
+        disallow: ["/payment/", "/api/", "/_next/static/media/"],
       },
     ],
     sitemap: "https://www.fluensyfrench.com/sitemap.xml",
