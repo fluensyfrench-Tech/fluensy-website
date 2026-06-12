@@ -94,7 +94,7 @@ export const CourseDetails = ({ courseType }: CourseDetailsProps) => {
 
     const conversationPracticeGeneralCourseInfo = [
         "1-month guided conversation practice",
-        "Suitable for all levels between A1 and B2",
+        "Suitable for all levels between A1 and A2",
         "Sessions run 4 times a week",
         "Live online sessions + Telegram community"
     ]

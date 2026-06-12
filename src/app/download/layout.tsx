@@ -4,6 +4,10 @@ export const metadata: Metadata = {
   title: "Download",
   description:
     "Download the Fluensy French app on your Android or iOS device and start speaking French with confidence.",
+  robots: {
+    index: false,
+    follow: true,
+  },
   alternates: {
     canonical: "https://www.fluensyfrench.com/download",
   },

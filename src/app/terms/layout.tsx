@@ -4,6 +4,10 @@ export const metadata: Metadata = {
   title: "Terms of Service",
   description:
     "Review the Fluensy French terms of service. Learn about your rights and responsibilities when using our French learning platform and app.",
+  robots: {
+    index: false,
+    follow: true,
+  },
   alternates: {
     canonical: "https://www.fluensyfrench.com/terms",
   },
