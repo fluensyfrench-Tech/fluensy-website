@@ -4,7 +4,6 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import CookieConsent from "@/components/CookieConsent";
 import { GoogleAnalytics } from '@next/third-parties/google';
-import favicon from "./faviconnn.jpg";
 
 import { Space_Grotesk } from "next/font/google";
 
@@ -32,7 +31,7 @@ const organizationSchema = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.fluensyfrench.com"),
   title: {
-    default: "Fluensyfrench – Learn French Online the Fun Way",
+    default: "Fluensyfrench – The Smart Way to Learn French Online",
     template: "%s | Fluensyfrench",
   },
   description:
@@ -67,17 +66,17 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@fluensyfrench",
-    title: "Fluensyfrench – Learn French Online the Fun Way",
+    title: "Fluensyfrench – The Smart Way to Learn French Online",
     description:
       "We help kids and adults gain fluency in French by learning smarter, not harder through science-backed methods.",
     images: ["/opengraph-image.jpg"],
   },
   icons: {
     icon: [
-      { url: favicon.src, type: "image/jpeg", sizes: "32x32" },
-      { url: favicon.src, type: "image/jpeg", sizes: "192x192" },
+      { url: "/favicon.jpg", type: "image/jpeg", sizes: "32x32" },
+      { url: "/favicon.jpg", type: "image/jpeg", sizes: "192x192" },
     ],
-    apple: [{ url: favicon.src, type: "image/jpeg", sizes: "180x180" }],
+    apple: [{ url: "/favicon.jpg", type: "image/jpeg", sizes: "180x180" }],
   },
 };
 
@@ -90,8 +89,8 @@ export default function RootLayout({
     <html lang="en" className={`scroll-smooth ${spaceGrotesk.className}`} suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-        <link rel="icon" type="image/jpeg" href={favicon.src} />
-        <link rel="apple-touch-icon" type="image/jpeg" href={favicon.src} />
+        <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
+        <link rel="apple-touch-icon" type="image/jpeg" href="/favicon.jpg" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <script
