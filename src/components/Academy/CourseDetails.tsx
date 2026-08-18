@@ -105,16 +105,7 @@ export const CourseDetails = ({ courseType }: CourseDetailsProps) => {
         "Live online classes"
     ]
 
-    const kidsCourseInfo = [
-        {
-            id: "kids-beginner",
-            pricing: ["$100", "₦100,000"],
-            title: "Beginner (A1)",
-            subtitle: "No prior knowledge required",
-            heading: "Learning achievements",
-            description: "You'll be able to understand and respond to simple everyday conversations, read basic texts and write short sentences about your daily life."
-        },
-    ]
+    
 
     const { data: courses, isLoading, isError } = useFetchCourses(courseType?.toUpperCase() || '')
 
@@ -122,6 +113,19 @@ export const CourseDetails = ({ courseType }: CourseDetailsProps) => {
     const beginnerToIntermediateCourse = courses?.find(c => c.courseKey === "BEGINNER_TO_INTERMEDIATE")
     const conversationPracticeCourse = courses?.find(c => c.courseKey === "CONVERSATION_PRACTICE")
     const kidsCourse = courses?.[0] ?? null
+    const kidsCoursePriceNGN = kidsCourse?.priceNGN
+    const kidsCoursePriceUSD = kidsCourse?.priceUSD
+
+    const kidsCourseInfo = [
+        {
+            id: "kids-beginner",
+            pricing: [kidsCoursePriceUSD, kidsCoursePriceNGN],
+            title: "Beginner (A1)",
+            subtitle: "No prior knowledge required",
+            heading: "Learning achievements",
+            description: "You'll be able to understand and respond to simple everyday conversations, read basic texts and write short sentences about your daily life."
+        },
+    ]
 
     const renderCourseDetails = () => {
         if (courseType == 'adults') return (
@@ -330,8 +334,8 @@ export const CourseDetails = ({ courseType }: CourseDetailsProps) => {
                         {!isLoading && !isError && kidsCourseInfo.map(course => (
                             <div key={course.id} className="rounded-lg bg-white px-5 py-6 w-full">
                                 <div className="child:bg-secondary-3 child:text-[18px] child:font-medium child:text-white child:px-[10px] child:py-[5px] child:rounded-lg space-x-[10px]">
-                                    <span>$100</span>
-                                    <span>₦100,000</span>
+                                    <span>${course.pricing[0]}</span>
+                                    <span>₦{course.pricing[1]?.toLocaleString()}</span>
                                 </div>
                                 <h2 className="text-primary font-bold text-[20px] mt-[18px]">Beginner French for kids</h2>
                                 <p className="text-sm text-grey-600 mt-1">No prior knowledge required</p>
