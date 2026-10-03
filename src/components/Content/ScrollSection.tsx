@@ -9,8 +9,8 @@ function ScrollSection() {
     "Fluensy is possible 👍🏾",
   ];
 
-  return (
-    <section className="bg-white py-8">
+  return ( 
+    <section className="bg-white py-8 mt-10">
       <div className="max-w-[1200px] mx-auto">
         <div className="overflow-hidden whitespace-nowrap">
           <div className="inline-flex animate-scroll-left">
