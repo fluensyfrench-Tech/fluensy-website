@@ -1,14 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiFetch } from "@/lib/api";
-
-export interface Course {
-  courseKey: string;
-  name: string;
-  type: "ADULTS" | "KIDS";
-  levels: string[];
-  priceNGN: number;
-  priceUSD: number;
-}
+import type { Course } from "@/types";
 
 export const COURSES_QUERY_KEY = ["courses"] as const;
 
