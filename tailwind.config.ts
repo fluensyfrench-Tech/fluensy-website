@@ -24,6 +24,7 @@ const config: Config = {
         "grey-200": "#C7CAD1",
         "grey-400": "#7A7D88",
         "grey-600": "#3A3D44",
+        "grey-700": "#22252A"
       },
       boxShadow: {
         custom: "0 4px 20px rgba(0, 0, 0, 0.1)",

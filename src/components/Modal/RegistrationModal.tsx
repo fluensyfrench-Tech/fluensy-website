@@ -146,6 +146,12 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
     );
   };
 
+  // Passing onUpdate makes Framer animate opacity in JS instead of with the
+  // browser's accelerated animation. The accelerated path can leave one frame
+  // at the start value when it finishes, which flashed the whole screen on
+  // open (blink to transparent) and close (blink of the full backdrop).
+  const disableAcceleratedOpacity = () => {};
+
   const inputBase =
     "w-full rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#7148E5] transition-all bg-[#F0F0F0] placeholder:text-grey-300";
 
@@ -156,6 +162,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          onUpdate={disableAcceleratedOpacity}
           className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4"
           onClick={onClose}
         >
@@ -163,6 +170,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
+            onUpdate={disableAcceleratedOpacity}
             className="bg-white rounded-xl shadow-lg w-full max-w-[605px] max-h-[90vh] flex flex-col overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >

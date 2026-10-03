@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
+
 import Image from "next/image";
 import PlayStoreFooterIcon from "./icons/PlayStoreFooterIcon";
 import AppleFooterIcon from "./icons/AppleFooterIcon";
