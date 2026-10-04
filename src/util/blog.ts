@@ -3,7 +3,7 @@ import { blog } from "@/types";
 export const blogs: blog[] = [
     {
         id: "1",
-        date: "March 30, 2026",
+        date: "October 4, 2026",
         title: "Why you should learn a new language",
         description: "Learning a new language does more than help you communicate. It keeps your brain sharp and opens doors in school, work and your community.",
         image: "/blog-1-image.svg",
@@ -29,7 +29,7 @@ People who speak more than one language constantly switch between languages and 
 Learning multiple languages introduces people to different communities, perspectives, and ways of seeing the world. It fosters empathy, understanding, and the ability to connect with others from diverse backgrounds.
 
 Research consistently shows that learning a new language benefits the brain, the individual, and society, making it one of the most valuable skills someone can develop. So if you’ve been thinking about learning a new language, start today. Your future self will thank you for it.
-`,
+`, 
     },
     // {  
     //     id: "2",
