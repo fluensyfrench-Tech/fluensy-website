@@ -169,7 +169,7 @@ const Footer = () => {
             </div>
 
             {/* Column 2-4: Stay connected + Courses + Company (flattened into the grid on desktop) */}
-            <div className="grid min-[400px]:flex md:contents gap-10 text-base font-normal">
+            <div className="grid gap-10 md:contents text-base font-normal">
               {/* Stay Connected */}
               <div className="space-y-2">
                 <h4 className="font-normal whitespace-nowrap">Let’s be friends online 😍</h4>
