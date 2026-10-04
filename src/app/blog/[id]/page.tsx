@@ -31,6 +31,7 @@ export async function generateMetadata({
             title: blog.title,
             description: " ",
             url: `/blog/${blog.id}`,
+            siteName: "Fluensyfrench",
             type: "article",
         },
         twitter: {
