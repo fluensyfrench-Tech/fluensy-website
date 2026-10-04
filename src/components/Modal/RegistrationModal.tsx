@@ -180,7 +180,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
                 type="button"
                 onClick={onClose}
                 aria-label="Close registration form"
-                className="absolute top-4 right-4 z-10 p-1 rounded-full text-[#181A25] hover:bg-[#F0F0F0] transition-colors"
+                className="absolute top-12 right-12 z-10 p-1 rounded-full text-[#181A25] hover:bg-[#F0F0F0] transition-colors"
               >
                 <X className="w-6 h-6" />
               </button>
