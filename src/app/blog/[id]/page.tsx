@@ -8,9 +8,7 @@ import Footer from "@/components/Footer";
 import ShareArticle from "@/components/Blog/ShareArticle";
 import type { Metadata } from "next";
 
-// Every article shares the same preview image for now
-const BLOG_OG_IMAGE = { url: "/opengraph-image.jpg", width: 1200, height: 630 };
-
+// Link previews use the article's generated image (opengraph-image.tsx) and title.
 export async function generateMetadata({
     params,
 }: {
@@ -25,19 +23,20 @@ export async function generateMetadata({
 
     return {
         title: blog.title,
-        description: blog.description,
+        // Plain meta tag for search only. Next copies any page or layout description into
+        // the Open Graph and X tags, so those are set to a blank space to keep previews to
+        // title + image.
+        other: { description: blog.description },
         openGraph: {
             title: blog.title,
-            description: blog.description,
+            description: " ",
             url: `/blog/${blog.id}`,
             type: "article",
-            images: [BLOG_OG_IMAGE],
         },
         twitter: {
             card: "summary_large_image",
             title: blog.title,
-            description: blog.description,
-            images: [BLOG_OG_IMAGE.url],
+            description: " ",
         },
     }
 }

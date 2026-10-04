@@ -6,6 +6,7 @@ export const blogs: blog[] = [
         date: "March 30, 2026",
         title: "Why you should learn a new language",
         description: "Learning a new language does more than help you communicate. It keeps your brain sharp and opens doors in school, work and your community.",
+        image: "/blog-1-image.svg",
         previewBg: "bg-secondary-1",
         // Keep the Markdown flush-left: lines indented 4+ spaces render as code blocks.
         content: `

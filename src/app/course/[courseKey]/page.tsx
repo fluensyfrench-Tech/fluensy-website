@@ -63,7 +63,7 @@ export default function CourseDetailsPage() {
       <Navbar />
 
       <div className="max-w-[1250px] mx-auto">
-        <div className="px-4 sm:px-6 lg:px-8 pt-24 lg:pt-32 pb-16 lg:pb-[104px] flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-0">
+        <div className="px-4 sm:px-6 lg:px-8 pt-24 lg:pt-32 pb-16 flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-0">
           <div className="w-full lg:w-[48.87%]">
             <h1 className="text-primary text-[36px] sm:text-[48px] lg:text-[60px] font-bold leading-[130%] lg:whitespace-pre">{course.title}</h1>
             <p className="leading-[150%] text-[16px] sm:text-[18px] lg:text-[20px] font-normal mt-5 lg:mt-7 max-w-[606px]">{course.intro}</p>
