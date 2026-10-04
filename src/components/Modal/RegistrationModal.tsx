@@ -5,6 +5,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
+import { X } from "lucide-react";
 import { useCourseEnrol } from "@/hooks/mutations/useCourseEnrol";
 
 
@@ -171,10 +172,19 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             onUpdate={disableAcceleratedOpacity}
-            className="bg-white rounded-xl shadow-lg w-full max-w-[605px] max-h-[90vh] flex flex-col overflow-hidden"
+            className="relative bg-white rounded-xl shadow-lg w-full max-w-[605px] max-h-[90vh] flex flex-col overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <>
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label="Close registration form"
+                className="absolute top-4 right-4 z-10 p-1 rounded-full text-[#181A25] hover:bg-[#F0F0F0] transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
               {/* Scrollable form fields */}
               <div className="flex-1 overflow-y-auto no-scrollbar px-[50px] pt-[50px] pb-4">
                   <h2 className="text-[24px] font-medium text-primary mb-5">{courseTitle}</h2>

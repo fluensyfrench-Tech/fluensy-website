@@ -99,7 +99,7 @@ export default function CourseDetailsPage() {
           </div>
 
 
-          <div className="w-full lg:w-[40.24%]">
+          <div className="w-full lg:w-[40.24%] lg:sticky lg:top-24">
             <div className="bg-secondary-2 rounded-[10px] px-5 py-7 sm:px-[38px] sm:py-[42px]">
               {priceLoading && (
                 // Same size as the real price pills so nothing jumps when they load
@@ -170,12 +170,12 @@ export default function CourseDetailsPage() {
             Want a learning plan tailored {courseType !== "kids" && <br />} to  {courseType === "kids" && <br />} {courseType === "kids" ? "your child's" : "your"} goals{courseType === "kids" && ','} and pace?
           </motion.h3>
           <div>
-            <a href="mailto:bonjour@fluensyfrench.com">
+            <a href="https://wa.me/2347065535423" target="_blank" rel="noopener noreferrer">
               <motion.button
                 className="mt-4 mx-auto px-6 py-3 bg-secondary-1 text-white rounded-lg hover:bg-secondary-2 hover:text-primary transition-colors w-full md:w-[378px] h-[66px] text-[20px] flex items-center justify-center"
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                Send us a mail
+                Message us on WhatsApp
               </motion.button>
             </a>
           </div>
