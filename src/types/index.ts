@@ -70,8 +70,10 @@ export interface blog {
   id: string;
   date: string;
   title: string;
-  /** Short summary used in search results and link previews */
+  /** Short summary used for search results */
   description: string;
+  /** Article image in /public, used for link previews */
+  image?: string;
   previewBg: string;
   /** Article body as Markdown: blank line between paragraphs, `## ` for headings */
   content?: string;
