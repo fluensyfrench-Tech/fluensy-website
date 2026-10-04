@@ -26,9 +26,9 @@ export default function Blogs() {
                                         <Image src="/images/blogs/blog-preview.svg" width={188} height={188} alt="blog" />
                                     </div>
 
-                                    <Link href={`/blog/${blog.id}`}>
+                                    <Link className="group" href={`/blog/${blog.id}`}>
                                         <span className="text-[16px] sm:text-[18px] text-grey-400">{blog.date}</span>
-                                        <h2 className="text-[20px] sm:text-[24px] font-bold text-primary max-w-[663px]">{blog.title}</h2>
+                                        <h2 className="text-[20px] sm:text-[24px] font-bold text-primary max-w-[663px] group-hover:text-secondary-1">{blog.title}</h2>
                                     </Link>
                                 </div>
                             )
