@@ -5,6 +5,42 @@ import Image from "next/image";
 import Link from "next/link";
 import Markdown, { type Components } from "react-markdown";
 import Footer from "@/components/Footer";
+import ShareArticle from "@/components/Blog/ShareArticle";
+import type { Metadata } from "next";
+
+// Every article shares the same preview image for now
+const BLOG_OG_IMAGE = { url: "/opengraph-image.jpg", width: 1200, height: 630 };
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+    const { id } = await params
+    const blog = blogs.find((b) => b.id === id)
+
+    if (!blog) {
+        return {}
+    }
+
+    return {
+        title: blog.title,
+        description: blog.description,
+        openGraph: {
+            title: blog.title,
+            description: blog.description,
+            url: `/blog/${blog.id}`,
+            type: "article",
+            images: [BLOG_OG_IMAGE],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: blog.title,
+            description: blog.description,
+            images: [BLOG_OG_IMAGE.url],
+        },
+    }
+}
 
 // Styling for every post's Markdown lives here, not in the content.
 const markdownComponents: Components = {
@@ -47,9 +83,13 @@ export default async function BlogDetails({
                     </Link>
                 </div>
 
-                <div className="max-w-[675px] mx-auto flex flex-col items-center">
-                    <h1 className="text-[48px] font-bold text-primary text-center max-w-[562px] leading-[130%]">{blog.title}</h1>
-                    <p className="text-[20px] text-grey-700 text-center mt-2">{blog.date}</p>
+                <div className="max-w-[675px] mx-auto flex flex-col items-start">
+                    <h1 className="text-[48px] font-bold text-primary max-w-[562px] leading-[130%]">{blog.title}</h1>
+                    <div className="flex flex-wrap items-center gap-3 mt-5">
+                        <p className="text-[20px] text-grey-700">{blog.date}</p>
+                        <div className="h-[10px] bg-grey-100 w-[10px] rounded-full"></div>
+                        <ShareArticle title={blog.title} path={`/blog/${blog.id}`} />
+                    </div>
 
                     <div className={`mt-12 ${blog.previewBg} w-full pt-[26px] grid place-items-center rounded-[10px]`}>
                         <Image src={"/images/blogs/blog-preview.svg"} alt="" width={352} height={352} />
@@ -64,8 +104,6 @@ export default async function BlogDetails({
 
             </section>
             <Footer />
-
-
         </main>
     );
 }
