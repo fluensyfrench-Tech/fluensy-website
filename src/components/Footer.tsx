@@ -8,7 +8,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 const navLinks = [
-  { label: "Academy", href: "/academy" },
+  { label: "Blog", href: "/blog" },
   { label: "About us", href: "/about-us" },
   { label: "Terms of service", href: "/terms" },
   { label: "Privacy policy", href: "/privacy-policy" },
