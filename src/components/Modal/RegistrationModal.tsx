@@ -5,6 +5,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
+import { X } from "lucide-react";
 import { useCourseEnrol } from "@/hooks/mutations/useCourseEnrol";
 
 
@@ -146,6 +147,12 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
     );
   };
 
+  // Passing onUpdate makes Framer animate opacity in JS instead of with the
+  // browser's accelerated animation. The accelerated path can leave one frame
+  // at the start value when it finishes, which flashed the whole screen on
+  // open (blink to transparent) and close (blink of the full backdrop).
+  const disableAcceleratedOpacity = () => {};
+
   const inputBase =
     "w-full rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#7148E5] transition-all bg-[#F0F0F0] placeholder:text-grey-300";
 
@@ -156,6 +163,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          onUpdate={disableAcceleratedOpacity}
           className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4"
           onClick={onClose}
         >
@@ -163,10 +171,20 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-white rounded-xl shadow-lg w-full max-w-[605px] max-h-[90vh] flex flex-col overflow-hidden"
+            onUpdate={disableAcceleratedOpacity}
+            className="relative bg-white rounded-xl shadow-lg w-full max-w-[605px] max-h-[90vh] flex flex-col overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <>
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label="Close registration form"
+                className="absolute top-12 right-12 z-10 p-1 rounded-full text-[#181A25] hover:bg-[#F0F0F0] transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
               {/* Scrollable form fields */}
               <div className="flex-1 overflow-y-auto no-scrollbar px-[50px] pt-[50px] pb-4">
                   <h2 className="text-[24px] font-medium text-primary mb-5">{courseTitle}</h2>

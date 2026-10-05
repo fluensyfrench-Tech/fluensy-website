@@ -2,39 +2,17 @@
 import { Check, ChevronDown } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useFetchCourses, Course } from "@/hooks/queries/useFetchCourses";
+import { useFetchCourses } from "@/hooks/queries/useFetchCourses";
+import {
+  COURSE_STATIC,
+  SINGLE_LEVEL_KEYS,
+  BEGINNER_TO_INTERMEDIATE_KEY,
+  CONVERSATION_PRACTICE_KEY,
+} from "@/constants/courses";
+import type { Course } from "@/types";
 import { BundledCourseSkeleton, SingleLevelCourseSkeleton } from "./CourseCardSkeleton";
 import RegistrationModal from "@/components/Modal/RegistrationModal";
 import Image from "next/image";
-
-const COURSE_STATIC: Record<string, { subtitle: string; description: string }> = {
-    BEGINNER_A1: {
-        subtitle: "No prior knowledge required",
-        description: "You'll be able to understand and respond to simple everyday conversations, read basic texts and write short sentences about your daily life.",
-    },
-    ELEMENTARY_A2: {
-        subtitle: "A1 level or equivalent required",
-        description: "You'll confidently join everyday interactions, describe your routines, understand short texts and write simple messages about familiar topics.",
-    },
-    INTERMEDIATE_B1: {
-        subtitle: "A2 level or equivalent required",
-        description: "You'll participate in conversations on familiar topics, understand and summarize everyday texts, and write clear texts about your experiences.",
-    },
-    UPPER_INTERMEDIATE_B2: {
-        subtitle: "B1 level or equivalent required",
-        description: "You'll understand complex discussions, express ideas fluently, read detailed texts, and write structured content.",
-    },
-    BEGINNER_TO_INTERMEDIATE: {
-        subtitle: "No prior knowledge required",
-        description: "You'll communicate confidently in French from beginner to intermediate, developing strong reading, writing, speaking, and listening skills.",
-    },
-    CONVERSATION_PRACTICE: {
-        subtitle: "Builds on your existing French knowledge",
-        description: "You'll enhance your French speaking skills through guided conversation practice and live interactive sessions.",
-    },
-}
-
-const SINGLE_LEVEL_KEYS = ["BEGINNER_A1", "ELEMENTARY_A2", "INTERMEDIATE_B1", "UPPER_INTERMEDIATE_B2"]
 
 const getCourseTitle = (course: Course) => {
     if (course.levels && course.levels.length > 1) {
@@ -110,8 +88,8 @@ export const CourseDetails = ({ courseType }: CourseDetailsProps) => {
     const { data: courses, isLoading, isError } = useFetchCourses(courseType?.toUpperCase() || '')
 
     const singleLevelCourses = courses?.filter(c => SINGLE_LEVEL_KEYS.includes(c.courseKey)) ?? []
-    const beginnerToIntermediateCourse = courses?.find(c => c.courseKey === "BEGINNER_TO_INTERMEDIATE")
-    const conversationPracticeCourse = courses?.find(c => c.courseKey === "CONVERSATION_PRACTICE")
+    const beginnerToIntermediateCourse = courses?.find(c => c.courseKey === BEGINNER_TO_INTERMEDIATE_KEY)
+    const conversationPracticeCourse = courses?.find(c => c.courseKey === CONVERSATION_PRACTICE_KEY)
     const kidsCourse = courses?.[0] ?? null
     const kidsCoursePriceNGN = kidsCourse?.priceNGN
     const kidsCoursePriceUSD = kidsCourse?.priceUSD

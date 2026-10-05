@@ -9,6 +9,7 @@ import MotionButton from "../ui/MotionButton";
 import ScrollingPhones from "./ScrollingPhones";
 import YourGoToApp from "./YourGoToApp";
 import LoveLetters from "./LoveLetters";
+import { Courses } from "./Courses";
 
 const Content: React.FC = () => {
   const benefits = [
@@ -28,9 +29,10 @@ const Content: React.FC = () => {
   return (
     <>
       <ScrollingPhones />
-      <section className="max-w-[1250px] mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-0 mb-[30px]">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6  py-10 md:py-0 mb-[30px]">
+        <Courses />
         {/* Learn Anywhere Section */}
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-start">
+        {/* <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-start">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -70,7 +72,7 @@ const Content: React.FC = () => {
               className="w-full max-w-md mx-auto"
             />
           </motion.div>
-        </div>
+        </div> */}
       </section>
       <ScrollSection />
 
@@ -80,7 +82,7 @@ const Content: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="sm:rounded-2xl mx-auto overflow-hidden max-w-[1200px] !mt-12 md:!mt-20 shadow-lg"
+          className="sm:rounded-2xl mx-auto overflow-hidden max-w-[1200px] !mt-10 shadow-lg"
         >
           <div className="flex flex-col md:flex-row">
             <div className="w-full bg-secondary-1 px-[30px] md:px-[60px] lg:px-[80px] py-10 md:py-16 text-white">

@@ -17,7 +17,7 @@ const AboutUs: React.FC = () => {
             About fluensyfrench
           </h2>
           <p className="text-lg md:text-xl">
-            We help kids and adults gain fluency in French by learning smarter, not harder through science-backed methods. Our goal is to guide them at every step all the way to fluency, with lessons designed to be engaging, practical, and easy to follow.
+            We help kids and adults gain fluency in French by learning smarter, not harder through science-backed methods. For adults, we also offer preparation for DELF, TEF and TCF exams. Our goal is to guide them at every step all the way to fluency, with lessons designed to be engaging, practical, and easy to follow.
           </p>
           <p className="text-lg md:text-xl">
            Our approach is built around how people naturally learn languages, making the process both effective and enjoyable.

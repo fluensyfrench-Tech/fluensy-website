@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
+
 import Image from "next/image";
 import PlayStoreFooterIcon from "./icons/PlayStoreFooterIcon";
 import AppleFooterIcon from "./icons/AppleFooterIcon";
@@ -6,7 +8,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 const navLinks = [
-  { label: "Academy", href: "/academy" },
+  { label: "Blog", href: "/blog" },
   { label: "About us", href: "/about-us" },
   { label: "Terms of service", href: "/terms" },
   { label: "Privacy policy", href: "/privacy-policy" },
@@ -25,6 +27,16 @@ const socialLinks = [
     href: "https://www.instagram.com/fluensyfrench?igsh=aWZ6dnlna3hmc3B5&utm_source=qr",
   },
   // { label: "Telegram", href: "https://t.me/+c5zFTQKZjGFmNGRk" },
+];
+
+const courseLinks = [
+  { label: "A1-B2 course", courseKey: "BEGINNER_TO_INTERMEDIATE" },
+  { label: "A1 beginner course", courseKey: "BEGINNER_A1" },
+  { label: "A2 elementary course", courseKey: "ELEMENTARY_A2" },
+  { label: "B1 intermediate course", courseKey: "INTERMEDIATE_B1" },
+  { label: "B2 upper intermediate course", courseKey: "UPPER_INTERMEDIATE_B2" },
+  { label: "French for kids", courseKey: "BEGINNER_KIDS" },
+  { label: "Conversational practice", courseKey: "CONVERSATION_PRACTICE" },
 ];
 
 const contactLinks = [{ label: "Contact us", href: "bonjour@fluensyfrench.com" }];
@@ -138,7 +150,7 @@ const Footer = () => {
       <footer className="bg-[#181A25] text-white py-12 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
           {/* Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-[auto_auto_auto_auto_auto] md:justify-between gap-8 w-full">
             {/* Column 1 */}
             <div className="md:space-y-8 flex flex-row items-center md:flex-col md:items-start gap-4">
               <p className="text-2xl font-bold md:-mb-5">
@@ -146,21 +158,21 @@ const Footer = () => {
               </p>
               <div>
                 <Image
-                  className="w-[50px] h-[47px] md:w-[196px] md:h-[202px]"
+                  className="w-[50px] h-[47px] md:w-[196px] md:h-[185px]"
                   src="/images/hand.svg"
                   alt="hand"
                   width={196}
-                  height={202}
+                  height={185}
                 />
 
               </div>
             </div>
 
-            {/* Column 2 & 3: Stay connected + Company */}
-            <div className="grid min-[400px]:flex gap-10 text-base font-normal">
+            {/* Column 2-4: Stay connected + Courses + Company (flattened into the grid on desktop) */}
+            <div className="grid gap-10 md:contents text-base font-normal">
               {/* Stay Connected */}
               <div className="space-y-2">
-                <h4 className="font-normal">Let’s be friends online 😍</h4>
+                <h4 className="font-normal whitespace-nowrap">Let’s be friends online 😍</h4>
                 <ul className="space-y-2 text-base font-normal text-[#C7CAD1]">
                   {socialLinks.map(({ label, href }) => (
                     <li key={label}>
@@ -177,9 +189,26 @@ const Footer = () => {
                 </ul>
               </div>
 
+              {/* Courses */}
+              <div className="space-y-2">
+                <h4 className="font-normal whitespace-nowrap">Enrol in a course</h4>
+                <ul className="space-y-2 text-base font-normal text-[#C7CAD1]">
+                  {courseLinks.map(({ label, courseKey }) => (
+                    <li key={courseKey}>
+                      <a
+                        href={`/course/${courseKey}`}
+                        className="inline-block transition-all duration-200 hover:text-[#7DE5F2] hover:scale-105"
+                      >
+                        {label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
               {/* Company */}
               <div className="space-y-2">
-                <h4 className="text-base font-normal">Company</h4>
+                <h4 className="text-base font-normal whitespace-nowrap">Company</h4>
                 <ul className="space-y-2 text-base font-normal text-[#C7CAD1]">
                   {navLinks.map(({ href, label }) => (
                     <li key={label}>
