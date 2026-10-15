@@ -7,7 +7,6 @@ export const blogs: blog[] = [
         title: "Why you should learn a new language",
         description: "Learning a new language does more than help you communicate. It keeps your brain sharp and opens doors in school, work and your community.",
         image: "/blog-1-image.svg",
-        previewBg: "bg-secondary-1",
         // Keep the Markdown flush-left: lines indented 4+ spaces render as code blocks.
         content: `
 Learning a new language can do more than help you communicate with people from different cultures, it can also be one of the best exercises for your brain. Just like a muscle, the brain performs best when it is regularly challenged and exercised. As we grow older, keeping it active becomes increasingly important for maintaining memory, focus, and overall cognitive health.
@@ -29,9 +28,9 @@ People who speak more than one language constantly switch between languages and 
 Learning multiple languages introduces people to different communities, perspectives, and ways of seeing the world. It fosters empathy, understanding, and the ability to connect with others from diverse backgrounds.
 
 Research consistently shows that learning a new language benefits the brain, the individual, and society, making it one of the most valuable skills someone can develop. So if you’ve been thinking about learning a new language, start today. Your future self will thank you for it.
-`, 
+`,
     },
-    // {  
+    // {
     //     id: "2",
     //     date: "March 30, 2026",
     //     title: "The first thing you need to know before learning a new language",
