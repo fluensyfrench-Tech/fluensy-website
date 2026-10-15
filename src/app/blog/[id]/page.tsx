@@ -91,8 +91,8 @@ export default async function BlogDetails({
                         <ShareArticle title={blog.title} path={`/blog/${blog.id}`} />
                     </div>
 
-                    <div className={`mt-12 ${blog.previewBg} w-full pt-[26px] grid place-items-center rounded-[10px]`}>
-                        <Image src={"/images/blogs/blog-preview.svg"} alt="" width={352} height={352} />
+                    <div className={`mt-12 w-full  grid place-items-center rounded-[10px]`}>
+                        <Image src={blog.image ?? ""} alt="blog-image" width={352} height={352} className="w-full h-auto rounded-[10px]" />
                     </div>
 
                     {blog.content && (
