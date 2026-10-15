@@ -28,16 +28,19 @@ export async function generateMetadata({
 
     return {
         title: blog.title,
-        // Plain meta tag for search only. Next copies any page or layout description into
-        // the Open Graph and X tags, so those are set to a blank space to keep previews to
-        // title + image.
-        other: { description: blog.description },
+        description: blog.description,
+        alternates: {
+            canonical: `/blog/${blog.id}`,
+        },
         openGraph: {
             title: blog.title,
+            // Kept blank so link previews show just title + image, not description.
             description: " ",
             url: `/blog/${blog.id}`,
             siteName: "Fluensyfrench",
             type: "article",
+            publishedTime: new Date(blog.date).toISOString(),
+            authors: ["Fluensyfrench"],
         },
         twitter: {
             card: "summary_large_image",
