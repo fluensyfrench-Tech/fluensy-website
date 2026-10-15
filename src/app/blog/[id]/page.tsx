@@ -124,7 +124,7 @@ export default async function BlogDetails({
                     </div>
 
                     <div className={`mt-12 w-full  grid place-items-center rounded-[10px]`}>
-                        <Image src={blog.image ?? ""} alt="blog-image" width={352} height={352} className="w-full h-auto rounded-[10px]" />
+                        <Image src={blog.image ?? ""} alt="blog-image" width={352} height={352} className="w-full h-auto rounded-[10px]" priority />
                     </div>
 
                     {blog.content && (

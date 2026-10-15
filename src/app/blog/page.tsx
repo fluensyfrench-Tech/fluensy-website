@@ -22,7 +22,7 @@ export default function Blogs() {
                             return (
                                 // Image above the text on phones, side by side from sm up
                                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-8 lg:gap-16" key={index}>
-                                    <Image className="w-[347.27px] h-auto rounded-[5.38px]" src={blog.image ?? ""} width={188} height={188} alt="blog" />
+                                    <Image className="w-[347.27px] h-auto rounded-[5.38px]" src={blog.image ?? ""} width={188} height={188} alt="blog" priority={index === 0} />
 
                                     <Link className="group" href={`/blog/${blog.id}`}>
                                         <span className="text-[16px] sm:text-[18px] text-grey-400">{blog.date}</span>
