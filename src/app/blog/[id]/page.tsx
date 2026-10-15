@@ -81,8 +81,32 @@ export default async function BlogDetails({
         notFound()
     }
 
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: blog.title,
+        description: blog.description,
+        image: blog.image ? `https://www.fluensyfrench.com${blog.image}` : undefined,
+        datePublished: new Date(blog.date).toISOString(),
+        dateModified: new Date(blog.date).toISOString(),
+        author: { "@type": "Organization", name: "Fluensyfrench" },
+        publisher: {
+            "@type": "Organization",
+            name: "Fluensyfrench",
+            logo: { "@type": "ImageObject", url: "https://www.fluensyfrench.com/favicon.jpg" },
+        },
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `https://www.fluensyfrench.com/blog/${blog.id}`,
+        },
+    };
+
     return (
         <main>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+            />
             <Navbar />
             <section className="pt-[100px] max-w-[1250px] mx-auto w-full px-8 pb-[64px]">
                 <div className="relative">
