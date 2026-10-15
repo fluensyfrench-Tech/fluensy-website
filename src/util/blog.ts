@@ -27,7 +27,9 @@ People who speak more than one language constantly switch between languages and 
 
 Learning multiple languages introduces people to different communities, perspectives, and ways of seeing the world. It fosters empathy, understanding, and the ability to connect with others from diverse backgrounds.
 
-Research consistently shows that learning a new language benefits the brain, the individual, and society, making it one of the most valuable skills someone can develop. So if you’ve been thinking about learning a new language, start today. Your future self will thank you for it.
+Research consistently shows that learning a new language benefits the brain, the individual, and society, making it one of the most valuable skills someone can develop.
+
+So if you’ve been thinking about learning a new language, start today. Your future self will thank you for it.
 `,
     },
     // {
