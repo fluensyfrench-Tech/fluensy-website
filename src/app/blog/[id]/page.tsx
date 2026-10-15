@@ -8,6 +8,11 @@ import Footer from "@/components/Footer";
 import ShareArticle from "@/components/Blog/ShareArticle";
 import type { Metadata } from "next";
 
+// Pre-render every known post at build time instead of per-request.
+export function generateStaticParams() {
+    return blogs.map((blog) => ({ id: blog.id }));
+}
+
 // Link previews use the article's generated image (opengraph-image.tsx) and title.
 export async function generateMetadata({
     params,
