@@ -35,7 +35,7 @@ So if you’ve been thinking about learning a new language, start today. Your fu
     {
         id: "2",
         date: "October 15, 2026",
-        title: "You Are Not Too Old to Learn a New Language",
+        title: "You are not too old to learn a new language",
         description: "Think you've missed your chance to become fluent? Here's why age isn't the barrier to learning French you believe it to be.",
         image: "/images/blogs/blog-2-image.svg",
         // Keep the Markdown flush-left: lines indented 4+ spaces render as code blocks.
