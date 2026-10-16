@@ -24,7 +24,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
     (
       <div style={{ width: "100%", height: "100%", display: "flex", position: "relative" }}>
         <img src={imageSrc} width={1200} height={630} style={{ objectFit: "cover" }} />
-        <div
+        {/* <div
           style={{
             position: "absolute",
             left: 0,
@@ -40,7 +40,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
           }}
         >
           {blog?.title ?? "Fluensyfrench blog"}
-        </div>
+        </div> */}
       </div>
     ),
     size

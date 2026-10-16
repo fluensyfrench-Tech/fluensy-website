@@ -74,7 +74,6 @@ export interface blog {
   description: string;
   /** Article image in /public, used for link previews */
   image?: string;
-  previewBg: string;
   /** Article body as Markdown: blank line between paragraphs, `## ` for headings */
   content?: string;
 }

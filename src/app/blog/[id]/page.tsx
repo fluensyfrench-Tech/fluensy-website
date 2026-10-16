@@ -8,6 +8,11 @@ import Footer from "@/components/Footer";
 import ShareArticle from "@/components/Blog/ShareArticle";
 import type { Metadata } from "next";
 
+// Pre-render every known post at build time instead of per-request.
+export function generateStaticParams() {
+    return blogs.map((blog) => ({ id: blog.id }));
+}
+
 // Link previews use the article's generated image (opengraph-image.tsx) and title.
 export async function generateMetadata({
     params,
@@ -23,16 +28,19 @@ export async function generateMetadata({
 
     return {
         title: blog.title,
-        // Plain meta tag for search only. Next copies any page or layout description into
-        // the Open Graph and X tags, so those are set to a blank space to keep previews to
-        // title + image.
-        other: { description: blog.description },
+        description: blog.description,
+        alternates: {
+            canonical: `/blog/${blog.id}`,
+        },
         openGraph: {
             title: blog.title,
+            // Kept blank so link previews show just title + image, not description.
             description: " ",
             url: `/blog/${blog.id}`,
             siteName: "Fluensyfrench",
             type: "article",
+            publishedTime: new Date(blog.date).toISOString(),
+            authors: ["Fluensyfrench"],
         },
         twitter: {
             card: "summary_large_image",
@@ -73,8 +81,32 @@ export default async function BlogDetails({
         notFound()
     }
 
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: blog.title,
+        description: blog.description,
+        image: blog.image ? `https://www.fluensyfrench.com${blog.image}` : undefined,
+        datePublished: new Date(blog.date).toISOString(),
+        dateModified: new Date(blog.date).toISOString(),
+        author: { "@type": "Organization", name: "Fluensyfrench" },
+        publisher: {
+            "@type": "Organization",
+            name: "Fluensyfrench",
+            logo: { "@type": "ImageObject", url: "https://www.fluensyfrench.com/favicon.jpg" },
+        },
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `https://www.fluensyfrench.com/blog/${blog.id}`,
+        },
+    };
+
     return (
         <main>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+            />
             <Navbar />
             <section className="pt-[100px] max-w-[1250px] mx-auto w-full px-8 pb-[64px]">
                 <div className="relative">
@@ -91,8 +123,8 @@ export default async function BlogDetails({
                         <ShareArticle title={blog.title} path={`/blog/${blog.id}`} />
                     </div>
 
-                    <div className={`mt-12 ${blog.previewBg} w-full pt-[26px] grid place-items-center rounded-[10px]`}>
-                        <Image src={"/images/blogs/blog-preview.svg"} alt="" width={352} height={352} />
+                    <div className={`mt-12 w-full  grid place-items-center rounded-[10px]`}>
+                        <Image src={blog.image ?? ""} alt="blog-image" width={352} height={352} className="w-full h-auto rounded-[10px]" priority />
                     </div>
 
                     {blog.content && (
