@@ -4,7 +4,6 @@
 import Image from "next/image";
 import PlayStoreFooterIcon from "./icons/PlayStoreFooterIcon";
 import AppleFooterIcon from "./icons/AppleFooterIcon";
-import { useState } from "react";
 import { motion } from "framer-motion";
 
 const navLinks = [
@@ -65,9 +64,6 @@ const footerIcons = [
 ];
 
 const Footer = () => {
-  const [isPlayStoreHovered, setIsPlayStoreHovered] = useState(false);
-  const [isAppStoreHovered, setIsAppStoreHovered] = useState(false);
-  
   return (
     <>
       <section className="bg-secondary-1 px-6 pt-8 pb-16 md:pt-24 md:pb-24">
@@ -110,39 +106,21 @@ const Footer = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
           >
-            <motion.a
-              href="https://play.google.com/store/apps/details?id=com.fluensyfrench.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] md:min-w-[320px] transition ${
-                isPlayStoreHovered 
-                  ? "bg-[#7DE5F2] text-primary" 
-                  : "bg-white text-secondary-1"
-              }`}
-              onMouseEnter={() => setIsPlayStoreHovered(true)}
-              onMouseLeave={() => setIsPlayStoreHovered(false)}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            <motion.div
+              aria-disabled="true"
+              className="flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] md:min-w-[320px] transition bg-white text-secondary-1 opacity-50 cursor-not-allowed pointer-events-none"
             >
-              <PlayStoreFooterIcon isHovered={isPlayStoreHovered} />
+              <PlayStoreFooterIcon isHovered={false} />
               Download on Google Play
-            </motion.a>
+            </motion.div>
 
-            <motion.a
-              href="https://apps.apple.com/us/app/fluensyfrench/id6770974375"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] md:min-w-[320px] transition text-primary ${
-                isAppStoreHovered 
-                  ? "bg-white text-secondary-1" 
-                  : "bg-secondary-2 "
-              }`}
-              onMouseEnter={() => setIsAppStoreHovered(true)}
-              onMouseLeave={() => setIsAppStoreHovered(false)}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            <motion.div
+              aria-disabled="true"
+              className="flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] md:min-w-[320px] transition text-primary bg-secondary-2 opacity-50 cursor-not-allowed pointer-events-none"
             >
-              <AppleFooterIcon hoverColor="#643BD8" isHovered={isAppStoreHovered} />
+              <AppleFooterIcon hoverColor="#643BD8" isHovered={false} />
               Download on App Store
-            </motion.a>
+            </motion.div>
           </motion.div>
         </div>
       </section>
