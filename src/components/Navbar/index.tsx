@@ -153,29 +153,17 @@ const Navbar: React.FC = () => {
           {/* Desktop Right Actions */}
           <div className="hidden md:flex items-center space-x-7">
             <div className="flex items-center space-x-5">
-              <a
-                href="https://play.google.com/store/apps/details?id=com.fluensyfrench.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-opacity"
-              >
+              <span aria-disabled="true" className="opacity-50 cursor-not-allowed pointer-events-none">
                 <PlayStoreIcon />
-              </a>
-              <a
-                href="https://apps.apple.com/us/app/fluensyfrench/id6770974375"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-opacity cursor-pointer"
-              >
+              </span>
+              <span aria-disabled="true" className="opacity-50 cursor-not-allowed pointer-events-none">
                 <AppStoreIcon />
-              </a>
+              </span>
             </div>
             <button
-              onClick={() => {
-                const footer = document.querySelector('footer');
-                footer?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="bg-secondary-1 text-white px-5 h-[45px] rounded-[12px] text-base text-center font-normal hover:opacity-95 transition hover:bg-[#7DE5F2] hover:text-[#181A25] grid place-items-center"
+              disabled
+              aria-disabled="true"
+              className="bg-secondary-1 text-white px-5 h-[45px] rounded-[12px] text-base text-center font-normal transition grid place-items-center opacity-50 cursor-not-allowed"
             >
               Download app
             </button>
@@ -268,24 +256,20 @@ const Navbar: React.FC = () => {
             >
               About us
             </Link>
-            <a
-              target="_blank"
-              href="https://play.google.com/store/apps/details?id=com.fluensyfrench.app"
-              rel="noopener noreferrer"
-              className="bg-[#643BD8] flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-white"
+            <div
+              aria-disabled="true"
+              className="bg-[#643BD8] flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-white opacity-50 cursor-not-allowed pointer-events-none"
             >
               <PiGooglePlayLogoLight size={32} fill="white" />
               Download on Google Play
-            </a>
-            <a
-              target="_blank"
-              href="https://apps.apple.com/app/id6770974375"
-              rel="noopener noreferrer"
-              className="bg-white flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-primary cursor-pointer"
+            </div>
+            <div
+              aria-disabled="true"
+              className="bg-white flex items-center justify-center text-[16px] font-normal gap-[10px] w-full h-[66px] rounded-[10px] text-primary opacity-50 cursor-not-allowed pointer-events-none"
             >
               <AppleFooterIcon />
               Download on App Store
-            </a>
+            </div>
 
 
           </div>

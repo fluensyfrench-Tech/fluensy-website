@@ -170,7 +170,7 @@ export default function CourseDetailsPage() {
             Want a learning plan tailored {courseType !== "kids" && <br />} to  {courseType === "kids" && <br />} {courseType === "kids" ? "your child's" : "your"} goals{courseType === "kids" && ','} and pace?
           </motion.h3>
           <div>
-            <a href="https://wa.me/2347065535423" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/2348076077878?s=p" target="_blank" rel="noopener noreferrer">
               <motion.button
                 className="mt-4 mx-auto px-6 py-3 bg-secondary-1 text-white rounded-lg hover:bg-secondary-2 hover:text-primary transition-colors w-full md:w-[378px] h-[66px] text-[20px] flex items-center justify-center"
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
